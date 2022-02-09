@@ -1,13 +1,13 @@
 package com.rodrigues.rodrigues.serial.service;
 
-import org.apache.el.stream.Optional;
-
 import javax.comm.CommPortIdentifier;
 import javax.comm.SerialPort;
 import javax.comm.SerialPortEvent;
 import javax.comm.SerialPortEventListener;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SerialService implements Runnable, SerialPortEventListener {
 
@@ -63,32 +63,79 @@ public class SerialService implements Runnable, SerialPortEventListener {
 		}
 	}
 
-	public void WriteData(byte[] bufferWrite) {
+	public Boolean WriteData(byte[] bufferWrite) {
 		if (runExec) {
 			try {
 				saida = porta.getOutputStream();
-			} catch (Exception e) {
-				System.out.println("Erro.STATUS: " + e);
-			}
-
-			try {
 				saida.write(bufferWrite);
 				saida.flush();
-			} catch (Exception e) {
-				e.printStackTrace();
-				FecharCom();
-			}
+				porta.setInputBufferSize(7);
 
+			} catch (Exception e) {
+				System.out.println("Erro.STATUS: " + e);
+				return false;
+			}
 		} else {
 			thread.interrupt();
 			System.out.println("thread.interrupt");
-			PortaOK = false;
 			runExec = true;
+			return false;
+		}
+		return true;
+	}
+
+	public void LerDados() throws InterruptedException {
+		thread = new Thread(this);
+		thread.start();
+		thread.join(100);
+	}
+
+	@Override
+	public void run() {
+
+		System.out.println("Join");
+		runExec = false;
+		try {
+			porta.getInputStream();
+
+		} catch (Exception e) {
+			System.out.println(" Entrada vazia");
+			e.printStackTrace();
+			runExec = true;
+			Thread.interrupted();
+		}
+
+		try {
+			Timer timer = new Timer();
+			TimerTask timerTask;
+			timerTask = new TimerTask() {
+				@Override
+				public void run() {
+					System.out.println("Return Run");
+					thread.interrupt();
+					return;
+				}
+			};
+			timer.schedule(timerTask,500);
+			entrada.read(bufferRead,0,7);
+			System.out.println("Get input stream");
+			// System.out.println("Fim do read");
+			runExec = true;
+			formatDados();
+			Thread.interrupted();
+
+		} catch (NullPointerException e) {
+			// System.out.println("Endereço errado ");
+			runExec = true;
+			Thread.interrupted();
+		} catch (Exception e) {
+			// System.out.println("Erro durante a leitura: " + e);
+			runExec = true;
+			Thread.interrupted();
 		}
 
 	}
 
-	
 	public void formatDados() {
 		if (Byte.toUnsignedInt(this.bufferRead[3]) > 0) {
 			try {
@@ -116,44 +163,6 @@ public class SerialService implements Runnable, SerialPortEventListener {
 
 	@Override
 	public void serialEvent(SerialPortEvent ev) {
-	}
-
-	public Boolean LerDados() throws InterruptedException {
-		thread = new Thread(this);
-		thread.start();
-		thread.join(5*100);
-		return true;
-	}
-
-	@Override
-	public void run() {
-		runExec = false;
-		try {
-			porta.setInputBufferSize(7);
-			entrada = porta.getInputStream();
-		} catch (Exception e) {
-			System.out.println(" Entrada vazia");
-			e.printStackTrace();
-			runExec = true;
-			Thread.interrupted();
-		}
-
-		try {
-			entrada.read(bufferRead);
-			// System.out.println("Fim do read");
-			runExec = true;
-			formatDados();
-			Thread.interrupted();
-
-		} catch (NullPointerException e) {
-			// System.out.println("Endereço errado ");
-			runExec = true;
-			Thread.interrupted();
-		} catch (Exception e) {
-			// System.out.println("Erro durante a leitura: " + e);
-			runExec = true;
-			Thread.interrupted();
-		}
-
+		System.out.println("Event Listner");
 	}
 }

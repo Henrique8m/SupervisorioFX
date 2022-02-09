@@ -11,8 +11,10 @@ public class SerialController{
     public SerialController(){}
     
     private SerialService service;
-    private final SerialProperties properties = new SerialProperties();
-    
+    private ReadControler readControler;
+    private final SerialProperties properties = new SerialProperties("COM4");
+
+    private int numGadgets=1;
     private Timer timer;
     private TimerTask tarefa;
 
@@ -23,9 +25,9 @@ public class SerialController{
         if(service.getPortIdentifier()){
             if(service.AbrirPorta()){
                 if(timer == null){
+                    readControler = new ReadControler(service, numGadgets);
                     timerInstantiated();
                 }
-
             }
         }
         return true;
@@ -37,13 +39,13 @@ public class SerialController{
             @Override
             public void run() {
                 try {
-                    System.out.println("Teste ");
-                    //irei chamar uma nova comunicação por aqui, iniciando uma varredura por todos aparelhos
+                    readControler.read();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    tarefa.cancel();
                 }
             }
         };
-        timer.scheduleAtFixedRate(tarefa, 0, 2000);        
+        timer.scheduleAtFixedRate(tarefa, 0, 5000);
     }
 }
