@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rodrigues.rodrigues.gui.FXMLController">
+   <content>
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="1359.0">
+         <children>
+            <MenuBar style="-fx-background-color: #696969;">
+              <menus>
+                <Menu mnemonicParsing="false" text="Config">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#stopComunication" text="Stop Comunication" />
+                        <MenuItem mnemonicParsing="false" onAction="#startComunication" text="Start Comunication" />
+                     </items></Menu>
+              </menus>
+            </MenuBar>
+            <TabPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1356.0" style="-fx-background-color: #696969;" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab style="-fx-background-color: #696969;" text="Alto Forno">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="709.0" fitWidth="1360.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@../styles/AutoFornoGlendon.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="854.0" layoutY="43.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="CQ 1" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="1028.0" layoutY="43.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="CQ 2" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="1204.0" layoutY="43.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="CQ 3" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="cq1" alignment="TOP_RIGHT" cache="true" layoutX="854.0" layoutY="82.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="C°" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="cq2" alignment="TOP_RIGHT" cache="true" layoutX="1028.0" layoutY="82.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="C°" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="cq3" alignment="TOP_RIGHT" cache="true" layoutX="1204.0" layoutY="82.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="C°" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="853.0" layoutY="147.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="Saída 1" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="1027.0" layoutY="147.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="Saída 2" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="1203.0" layoutY="147.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="Saída 3" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="s1" alignment="TOP_RIGHT" cache="true" layoutX="853.0" layoutY="186.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="C°" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="s2" alignment="TOP_RIGHT" cache="true" layoutX="1027.0" layoutY="186.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="C°" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="s3" alignment="TOP_RIGHT" cache="true" layoutX="1203.0" layoutY="186.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="C°" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="853.0" layoutY="254.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="Topo" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="1027.0" layoutY="254.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="Coroa" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="1203.0" layoutY="254.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="P. Coroa" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="topo" alignment="TOP_RIGHT" cache="true" layoutX="853.0" layoutY="293.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="C°" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="coroa" alignment="TOP_RIGHT" cache="true" layoutX="1027.0" layoutY="293.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="C°" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="pcoroa" alignment="CENTER_RIGHT" cache="true" layoutX="1203.0" layoutY="293.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="MCA" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="852.0" layoutY="355.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="P. Topo" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="1026.0" layoutY="355.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="Vazão" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="TOP_CENTER" cache="true" layoutX="1202.0" layoutY="355.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="P. S. M." textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="ptopo" alignment="CENTER_RIGHT" cache="true" layoutX="852.0" layoutY="394.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="MCA" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="vazao" alignment="CENTER_RIGHT" cache="true" layoutX="1026.0" layoutY="394.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="NM³/h" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="psm" alignment="CENTER_RIGHT" cache="true" layoutX="1202.0" layoutY="394.0" minHeight="16" minWidth="69" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #3d49b9;" text="MCA" textAlignment="RIGHT" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                </Tab>
+                <Tab style="-fx-background-color: #696969;" text="Gráfico" />
+              </tabs>
+            </TabPane>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
