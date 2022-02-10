@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 
 import javax.comm.UnsupportedCommOperationException;
 import java.net.URL;
@@ -18,23 +19,23 @@ public class FXMLController implements Initializable {
 
 //	private SerialService sComm;
 
-	private final SerialController controller = new SerialController();
+	private final SerialController controller = new SerialController(this);
 	private Boolean comunicationOn;
 	private Timeline timeline;
 	private boolean time;
 
 	@FXML
-	private Label cq1, cq2, cq3;
+	public Text cq1, cq2, cq3;
 	@FXML
-	private Label s1, s2, s3;
+	public Text s1, s2, s3;
 	@FXML
-	private Label topo, coroa;
+	public Text topo, coroa;
 	@FXML
-	private Label pcoroa, ptopo;
+	public Text pcoroa, ptopo;
 	@FXML
-	private Label vazao;
+	public Text vazao;
 	@FXML
-	private Label psm;
+	public Text psm;
 
 	//@FXML
 	//private MenuItem menuItemportCom;
@@ -55,7 +56,13 @@ public class FXMLController implements Initializable {
 	}
 
 	@Override
-	public void initialize(URL url, ResourceBundle rb) {}
+	public void initialize(URL url, ResourceBundle rb) {
+		try {
+			comunicationOn = controller.startCommunication();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void beginTimer() {
 		timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(2), ev -> {

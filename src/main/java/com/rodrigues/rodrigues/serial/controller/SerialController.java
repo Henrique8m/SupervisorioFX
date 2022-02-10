@@ -1,5 +1,6 @@
 package com.rodrigues.rodrigues.serial.controller;
 
+import com.rodrigues.rodrigues.gui.FXMLController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.service.SerialService;
 
@@ -8,21 +9,23 @@ import java.util.TimerTask;
 
 
 public class SerialController{
-    public SerialController(){}
-    
-    private SerialService service;
-    private ReadControler readControler;
-    private final SerialProperties properties = new SerialProperties("COM4");
+    public SerialController(FXMLController fxmlController){
+        this.fxmlController  = fxmlController;
+    }
 
-    private int numGadgets=2;
+    private FXMLController fxmlController;
+    private ReadControler readControler;
+
+
+    private int numGadgets=11;
     private Timer timer = new Timer(true);
     private TimerTask tarefa;
 
     int end = 2;
 
     public Boolean startCommunication() throws InterruptedException {
-        if (service==null) service = new SerialService(properties.getPorta(), properties.getBaud(),properties.getTimeout());
-        if (readControler==null) readControler = new ReadControler(service, numGadgets);
+
+        if (readControler==null) readControler = new ReadControler(numGadgets,fxmlController);
         timerInstantiated();
         return true;
     }
@@ -38,6 +41,6 @@ public class SerialController{
                 }
             }
         };
-        timer.scheduleAtFixedRate(tarefa, 0, 10000);
+        timer.scheduleAtFixedRate(tarefa, 0, 7000);
     }
 }

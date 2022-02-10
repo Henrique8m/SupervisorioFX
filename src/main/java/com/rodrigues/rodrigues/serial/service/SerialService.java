@@ -18,8 +18,7 @@ public class SerialService{
 	private CommPortIdentifier cp;
 	private SerialPort serialPort;
 
-	private BufferedOutputStream saida;
-	private OutputStream entrada2;
+	private OutputStream saida;
 	private InputStream entrada;
 
 	private Timer timer = new Timer(true);
@@ -48,7 +47,6 @@ public class SerialService{
 	public void openPort() {
 
 		try {
-			commPort = commPort.o
 			serialPort = (SerialPort) cp.open("SerialService", timeout);
 			serialPort.setSerialPortParams(baudRate, serialPort.DATABITS_8, serialPort.STOPBITS_2, serialPort.PARITY_NONE);
 		}
@@ -59,12 +57,15 @@ public class SerialService{
 	public void writeData(byte[] bufferWrite) {
 
 		try {
-			serialPort.setInputBufferSize(8);
-			saida = new BufferedOutputStream(serialPort.getOutputStream());
+			serialPort.setOutputBufferSize(8);
+			saida = serialPort.getOutputStream();
 			saida.write(bufferWrite);
+			Thread.sleep(200);
 			saida.flush();
 			saida.close();
-		} catch (IOException e) {System.out.println("Erro ao enviar os dados! STATUS: ");e.printStackTrace();}
+		} catch (IOException e) {System.out.println("Erro ao enviar os dados! STATUS: ");e.printStackTrace();} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Boolean readData(){
@@ -80,9 +81,8 @@ public class SerialService{
 		} catch (IOException e) {
 			System.out.println("Erro na leitura dos dados! STATUS: ");
 			timerTask.cancel();
-			serialPort=null;
 		}
-		serialPort=null;
+		serialPort.close();
 		timerTask.cancel();
 		return true;
 	}
@@ -99,6 +99,5 @@ public class SerialService{
 		} else {
 			this.display = Integer.toString(Byte.toUnsignedInt(this.bufferRead[4]));
 		}
-		System.out.println(display);
 	}
 }
