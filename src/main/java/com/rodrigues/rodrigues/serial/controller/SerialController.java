@@ -14,27 +14,20 @@ public class SerialController{
     private ReadControler readControler;
     private final SerialProperties properties = new SerialProperties("COM4");
 
-    private int numGadgets=1;
-    private Timer timer;
+    private int numGadgets=2;
+    private Timer timer = new Timer(true);
     private TimerTask tarefa;
 
     int end = 2;
 
     public Boolean startCommunication() throws InterruptedException {
-        service = new SerialService(properties.getPorta(), properties.getBaud(),properties.getTimeout());
-        if(service.getPortIdentifier()){
-            if(service.AbrirPorta()){
-                if(timer == null){
-                    readControler = new ReadControler(service, numGadgets);
-                    timerInstantiated();
-                }
-            }
-        }
+        if (service==null) service = new SerialService(properties.getPorta(), properties.getBaud(),properties.getTimeout());
+        if (readControler==null) readControler = new ReadControler(service, numGadgets);
+        timerInstantiated();
         return true;
     }
 
     private void timerInstantiated() {
-        timer = new Timer();
         tarefa = new TimerTask() {
             @Override
             public void run() {
@@ -42,10 +35,9 @@ public class SerialController{
                     readControler.read();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    tarefa.cancel();
                 }
             }
         };
-        timer.scheduleAtFixedRate(tarefa, 0, 5000);
+        timer.scheduleAtFixedRate(tarefa, 0, 10000);
     }
 }
