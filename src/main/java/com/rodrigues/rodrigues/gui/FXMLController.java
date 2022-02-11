@@ -25,17 +25,27 @@ public class FXMLController implements Initializable {
 	private boolean time;
 
 	@FXML
+	public Text cf1, cf2, cf3;
+	@FXML
+	public Text cm1, cm2, cm3;
+	@FXML
 	public Text cq1, cq2, cq3;
 	@FXML
 	public Text s1, s2, s3;
 	@FXML
-	public Text topo, coroa;
+	public Text topoE, topoD, coroaE, coroaD;
+	@FXML
+	public Text topoE1, topoD1, coroaE1, coroaD1;
+	@FXML
+	public Text pcoroa1, ptopo1;
 	@FXML
 	public Text pcoroa, ptopo;
 	@FXML
-	public Text vazao;
+	public Text vazao, vazao1;
 	@FXML
-	public Text psm;
+	public Text psm, psm1;
+	@FXML
+	public Text pirometro, pirometro1;
 
 	//@FXML
 	//private MenuItem menuItemportCom;

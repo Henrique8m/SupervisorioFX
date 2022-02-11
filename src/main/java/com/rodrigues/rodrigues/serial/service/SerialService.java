@@ -35,11 +35,13 @@ public class SerialService{
 
 	}
 
-	public void getPortIdentifier() {
+	public Boolean getPortIdentifier() {
 		try {
 			if(cp==null) cp = CommPortIdentifier.getPortIdentifier(portName);
+			return true;
 		} catch (NoSuchPortException e) {
 			System.out.println("Porta não existe! STATUS: " + e.getMessage());
+			return false;
 		}
 	}
 

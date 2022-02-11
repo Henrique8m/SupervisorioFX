@@ -25,7 +25,7 @@ public class SerialController{
 
     public Boolean startCommunication() throws InterruptedException {
 
-        if (readControler==null) readControler = new ReadControler(numGadgets,fxmlController);
+        if (readControler==null) readControler = new ReadControler(numGadgets,fxmlController, this);
         timerInstantiated();
         return true;
     }
@@ -42,5 +42,8 @@ public class SerialController{
             }
         };
         timer.scheduleAtFixedRate(tarefa, 0, 7000);
+    }
+    public void timerCancel(){
+        if(tarefa != null)tarefa.cancel();
     }
 }
