@@ -1,5 +1,6 @@
 package com.rodrigues.rodrigues.gui;
 
+import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -8,9 +9,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import javax.comm.UnsupportedCommOperationException;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,7 +32,14 @@ public class FXMLController implements Initializable {
 	private Boolean comunicationOn;
 	private Timeline timeline;
 	private boolean time;
+	private String strImage = "file:///C:/SupervisorioFx/FundoSupervisorio.png";
+	private String str = "FundoSupervisorio.png";
+	private Image image2;
 
+	@FXML
+	private ImageView imageView;
+	
+	Image image = new Image(strImage);
 	@FXML
 	public Text cf1, cf2, cf3;
 	@FXML
@@ -67,6 +83,18 @@ public class FXMLController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		try {
+			URI urlss= FXMLController.class.getProtectionDomain().getCodeSource().getLocation().toURI();
+			File files2 = new File(urlss);
+			System.out.println(urlss + str);
+			String caminho = urlss + str;
+			System.out.println(caminho);
+			image = new Image(caminho);
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		imageView.setImage(image);
 		try {
 			comunicationOn = controller.startCommunication();
 		} catch (InterruptedException e) {

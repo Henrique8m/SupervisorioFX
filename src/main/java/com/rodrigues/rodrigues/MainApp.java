@@ -1,12 +1,14 @@
 package com.rodrigues.rodrigues;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class MainApp extends Application{
 	private static Stage stage;
@@ -27,6 +29,8 @@ public class MainApp extends Application{
    }
 
    static void setRoot(String fxml, String title) throws IOException {
+	   ImageView image = new ImageView(new Image(MainApp.class.getResourceAsStream("FundoSupervisorioGlendon.png")));
+            
 	   ScrollPane scrollPane = loadFXML(fxml);
        mainScene = new Scene(scrollPane);
        stage.setTitle(" Supervisorio 1.0");
@@ -36,7 +40,8 @@ public class MainApp extends Application{
    }
 
    private static ScrollPane loadFXML(String fxml) throws IOException {
-       FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/"+fxml + ".fxml"));
+       FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(fxml + ".fxml"));
+       
        return fxmlLoader.load();
    }
 
