@@ -31,7 +31,7 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ImageView fx:id="imageView" fitHeight="709.0" fitWidth="1360.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <ImageView fitHeight="709.0" fitWidth="1360.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                               <Text fx:id="vazao" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="795.0" layoutY="666.0" strokeType="OUTSIDE" strokeWidth="0.0" text="13.00" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
                                  <font>
                                     <Font name="Calibri Bold" size="20.0" />
