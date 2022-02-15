@@ -12,6 +12,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -25,6 +26,10 @@ public class MainApp extends Application {
 
 	public static Scene getMainScene() {
 		return mainScene;
+	}
+	
+	public static Stage getStage() {
+		return stage;
 	}
 
 	@Override
@@ -52,7 +57,7 @@ public class MainApp extends Application {
 		imageGlendon.setFitWidth(1360);
 		
 		//Carregar o scrollPane que vai ser a base de tudo
-		ScrollPane scrollPane = loadFXML(fxml);
+		ScrollPane scrollPane = (ScrollPane) loadFXML(fxml);
 		
 		//Navegar ate a imagem para inserir o fundo
 		VBox vbox = (VBox) scrollPane.getContent();
@@ -69,14 +74,15 @@ public class MainApp extends Application {
 		stage.setScene(mainScene);
 		stage.show();
 	}
-
-	public static ScrollPane loadFXML(String fxml) throws IOException {
+	
+	public static synchronized <T> Object loadFXML(String fxml) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(fxml + ".fxml"));
-
 		return fxmlLoader.load();
 	}
 
 	public static void main(String[] args) {
 		launch(args);
 	}
+
+
 }

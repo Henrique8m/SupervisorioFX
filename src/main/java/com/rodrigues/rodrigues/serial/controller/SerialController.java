@@ -1,11 +1,9 @@
 package com.rodrigues.rodrigues.serial.controller;
 
-import com.rodrigues.rodrigues.gui.FXMLController;
-import com.rodrigues.rodrigues.serial.properties.SerialProperties;
-import com.rodrigues.rodrigues.serial.service.SerialService;
-
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.rodrigues.rodrigues.gui.FXMLController;
 
 
 public class SerialController{
