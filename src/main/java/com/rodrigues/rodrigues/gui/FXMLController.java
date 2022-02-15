@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -108,11 +109,11 @@ public class FXMLController implements Initializable {
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title, Stage stageEvent) {
 		try {
 			
-			Pane scrollPane = new Pane((Pane) MainApp.loadFXML(absoluteName));
+			AnchorPane anchorPane = new AnchorPane((AnchorPane) MainApp.loadFXML(absoluteName));
 						
 			stage = new Stage();
 			stage.setTitle(title);
-			stage.setScene(new Scene(scrollPane, 400, 400));
+			stage.setScene(new Scene(anchorPane, 400, 400));
 			stage.setResizable(false);
 			stage.initOwner(stageEvent);
 			stage.initModality(Modality.WINDOW_MODAL);			
