@@ -61,23 +61,22 @@ public class FXMLController implements Initializable {
 	public Text pirometro, pirometro1;
 
 	//@FXML
-	//private MenuItem menuItemportCom;
-
-	//@FXML
 	//private void onMenuItemPortCom(ActionEvent event) throws UnsupportedCommOperationException {
 	//	//loadView("/fxml/" + "portcom" + ".fxml", null);
 	//}
-
+	@FXML
+	private void comPort(ActionEvent event) throws UnsupportedCommOperationException, IOException {
+		loadView("configscene", null, "Configuração Porta Com", MainApp.getStage());
+	}
+	
 	@FXML
 	private void stopComunication(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		loadView("configscene", null, "Configuração Porta Comm", MainApp.getStage());
-		}
+		
+	}
 
 	@FXML
 	private void startComunication(ActionEvent event) throws UnsupportedCommOperationException, InterruptedException {
 		comunicationOn = controller.startCommunication();
-		
-
 	}
 
 	@Override

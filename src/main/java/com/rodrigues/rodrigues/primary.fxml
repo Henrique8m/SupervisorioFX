@@ -20,6 +20,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Config">
                      <items>
+                        <MenuItem mnemonicParsing="false" onAction="#comPort" text="COM Port" />
                         <MenuItem mnemonicParsing="false" onAction="#stopComunication" text="Stop Comunication" />
                         <MenuItem mnemonicParsing="false" onAction="#startComunication" text="Start Comunication" />
                      </items></Menu>
