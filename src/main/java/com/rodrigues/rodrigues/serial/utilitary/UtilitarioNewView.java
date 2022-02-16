@@ -3,11 +3,9 @@ package com.rodrigues.rodrigues.serial.utilitary;
 import java.io.IOException;
 
 import com.rodrigues.rodrigues.MainApp;
-import com.rodrigues.rodrigues.gui.util.Alerts;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;

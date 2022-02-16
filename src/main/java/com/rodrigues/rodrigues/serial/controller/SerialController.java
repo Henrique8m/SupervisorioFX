@@ -4,9 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
-import com.rodrigues.rodrigues.gui.util.Alerts;
-
-import javafx.scene.control.Alert.AlertType;
 
 
 public class SerialController{
@@ -15,7 +12,11 @@ public class SerialController{
         this.readController = new ReadController(fxmlController);
     }
 
-    private PrimaryViewController fxmlController;
+    public SerialController() {
+		// TODO Auto-generated constructor stub
+	}
+
+	private PrimaryViewController fxmlController;
     private Timer timer = new Timer(true);
     private TimerTask tarefa;
     private ReadController readController;

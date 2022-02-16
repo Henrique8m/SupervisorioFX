@@ -18,15 +18,10 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 
 public class PrimaryViewController implements Initializable {
@@ -37,8 +32,10 @@ public class PrimaryViewController implements Initializable {
 	}
 
 	private SerialController controller;
+	@SuppressWarnings("unused")
 	private Boolean comunicationOn;
 	private Timeline timeline;
+	@SuppressWarnings("unused")
 	private boolean time;
 
 	@FXML
@@ -93,6 +90,7 @@ public class PrimaryViewController implements Initializable {
 		controller.startCommunication();
 	}
 
+	@SuppressWarnings("unused")
 	private void beginTimer() {
 		timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(2), ev -> {
 			// sComm.WriteData();
@@ -106,6 +104,7 @@ public class PrimaryViewController implements Initializable {
 
 	}
 
+	@SuppressWarnings("unused")
 	private void cancelTimer() {
 		timeline.stop();
 	}

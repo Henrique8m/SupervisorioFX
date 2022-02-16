@@ -1,26 +1,27 @@
 package com.rodrigues.rodrigues.serial.service;
 
-import javax.comm.*;
-
-import com.rodrigues.rodrigues.gui.PrimaryViewController;
-import com.rodrigues.rodrigues.gui.util.Alerts;
-
-import javafx.scene.control.Alert.AlertType;
-
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.comm.CommPortIdentifier;
+import javax.comm.NoSuchPortException;
+import javax.comm.PortInUseException;
+import javax.comm.SerialPort;
+import javax.comm.UnsupportedCommOperationException;
 
 public class SerialService{
 
 	private final byte[] bufferRead = new byte[7];
 
 	private String display;
-	private final String portName;
+	private String portName;
 
-	private final int baudRate;
-	private final int timeout;
+	private int baudRate;
+	private int timeout;
 
 	private CommPortIdentifier cp;
 	private SerialPort serialPort;
@@ -42,7 +43,13 @@ public class SerialService{
 
 	}
 	
-	public Enumeration<CommPortIdentifier> getPortIdentifiers(){
+	public SerialService() {
+		
+	}
+	
+	
+	@SuppressWarnings({ "unchecked", "static-access" })
+	public Enumeration<CommPortIdentifier> getPortIdentifiers(){		
 		return cp.getPortIdentifiers();
 	}
 

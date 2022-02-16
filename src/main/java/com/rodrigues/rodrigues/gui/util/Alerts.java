@@ -1,7 +1,5 @@
 package com.rodrigues.rodrigues.gui.util;
 
-import com.rodrigues.rodrigues.MainApp;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 

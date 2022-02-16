@@ -28,6 +28,7 @@ public class MainApp extends Application {
 	private static String strForno = "FundoAltoForno";
 	private static String strGlendon = "FundoGlendon";
 	
+	@SuppressWarnings("unused")
 	private static Consumer<?> controller;
 
 	public static Scene getMainScene() {
@@ -51,7 +52,7 @@ public class MainApp extends Application {
 	static void setRoot(String fxml, String title) throws IOException {
 
 		//Teste dimension
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		//Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		//carregar imagens de fundo
 		try {

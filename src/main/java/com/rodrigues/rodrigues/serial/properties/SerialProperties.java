@@ -11,7 +11,11 @@ public class SerialProperties {
         this.porta = porta;
     }
 
-    public String getPorta() {
+    public SerialProperties() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getPorta() {
         return porta;
     }
 

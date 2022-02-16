@@ -8,8 +8,11 @@ import com.rodrigues.rodrigues.serial.utilitary.CalculatorData;
 public class ReadController implements Runnable{
 
     private final SerialProperties properties = new SerialProperties("COM4");
+    
     private PrimaryViewController fxmlController;
+    
     private SerialService service;
+    
     private SerialController controller;
 
     private int lostConection = 0;
@@ -25,7 +28,11 @@ public class ReadController implements Runnable{
         this.fxmlController = fxmlController;
     }
 
-    public void read() throws InterruptedException {if(!thread.isAlive()){thread.run();lostConection = 0;}}
+    public ReadController() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void read() throws InterruptedException {if(!thread.isAlive()){thread.run();lostConection = 0;}}
 
     //Nova thered para não travar o programa quando estiver na tentativa de uma nova leitura
     @Override
