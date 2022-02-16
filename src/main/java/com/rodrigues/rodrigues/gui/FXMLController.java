@@ -40,7 +40,6 @@ public class FXMLController implements Initializable {
 	private Boolean comunicationOn;
 	private Timeline timeline;
 	private boolean time;
-	private Stage stage;
 
 	@FXML
 	public Text cf1, cf2, cf3;
@@ -112,20 +111,7 @@ public class FXMLController implements Initializable {
 
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title, Stage stageEvent) {
 		try {
-			
-			Pane pane = new Pane((Pane) UtilitarioNewView.loadFXML(absoluteName, new PropertiesComController()));
-						
-			stage = new Stage();
-			stage.setTitle(title);
-			stage.setScene(new Scene(pane, 400, 400));
-			stage.setResizable(false);
-			stage.initOwner(stageEvent);
-			stage.initModality(Modality.WINDOW_MODAL);			
-			stage.initStyle(StageStyle.UTILITY);
-			stage.setAlwaysOnTop(true);						
-			stage.showAndWait();
-			
-			
+			UtilitarioNewView.getNewModal(title, (Pane) UtilitarioNewView.loadFXML(absoluteName, new PropertiesComController()), stageEvent);
 		} catch (IOException e) {
 			e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);
