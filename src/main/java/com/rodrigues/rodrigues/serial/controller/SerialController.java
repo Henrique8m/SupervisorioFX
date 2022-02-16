@@ -12,18 +12,18 @@ public class SerialController{
     }
 
     private PrimaryViewController fxmlController;
-    private ReadControler readControler;
+   
 
 
     private int numGadgets=11;
     private Timer timer = new Timer(true);
     private TimerTask tarefa;
+    private ReadController readController = new ReadController(numGadgets,fxmlController, this);
 
     int end = 2;
 
     public Boolean startCommunication() throws InterruptedException {
-
-        if (readControler==null) readControler = new ReadControler(numGadgets,fxmlController, this);
+ 
         timerInstantiated();
         return true;
     }
@@ -33,7 +33,7 @@ public class SerialController{
             @Override
             public void run() {
                 try {
-                    readControler.read();
+                    readController.read();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -43,5 +43,9 @@ public class SerialController{
     }
     public void timerCancel(){
         if(tarefa != null)tarefa.cancel();
+    }
+    
+    public ReadController getReadControler() {
+    	return readController;
     }
 }

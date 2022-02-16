@@ -2,12 +2,16 @@ package com.rodrigues.rodrigues.gui;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.comm.CommPortIdentifier;
 
 import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.serial.Port;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
+import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +22,7 @@ import javafx.scene.text.Text;
 
 public class PropertiesComController implements Initializable {
 	private List<Port> port = new ArrayList<>();
-	private SerialController controller;
+	private SerialProperties serialProperties;
 	private PrimaryViewController primaryViewController;
 
 	public PropertiesComController(PrimaryViewController primaryViewController) {
@@ -39,11 +43,15 @@ public class PropertiesComController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		serialProperties = primaryViewController.getcontroller().getReadControler().getSerialProperties();
+		txBaud.setText(Integer.toString(serialProperties.getBaud()));
+		txParidade.setText(serialProperties.getParidade());
+		txStopBits.setText(Integer.toString(serialProperties.getStopBits()));
+		Enumeration<CommPortIdentifier> enume = CommPortIdentifier.getPortIdentifiers();
+		if(enume.hasMoreElements()) {
+			System.out.println(enume.nextElement().getName());
+		}
+		
+		
 	}
-
-	public void setController(SerialController controller) {
-		this.controller = controller;
-
-	}
-
 }

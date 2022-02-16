@@ -2,6 +2,7 @@ package com.rodrigues.rodrigues.serial.service;
 
 import javax.comm.*;
 import java.io.*;
+import java.util.Enumeration;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -34,8 +35,13 @@ public class SerialService{
 		this.timeout = t;
 
 	}
+	
+	public Enumeration<CommPortIdentifier> getPortIdentifiers(){
+		return cp.getPortIdentifiers();
+	}
 
 	public Boolean getPortIdentifier() {
+		
 		try {
 			if(cp==null) cp = CommPortIdentifier.getPortIdentifier(portName);
 			return true;

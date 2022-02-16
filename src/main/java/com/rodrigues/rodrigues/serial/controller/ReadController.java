@@ -5,7 +5,7 @@ import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.service.SerialService;
 import com.rodrigues.rodrigues.serial.utilitary.CalculatorData;
 
-public class ReadControler implements Runnable{
+public class ReadController implements Runnable{
 
     private final SerialProperties properties = new SerialProperties("COM4");
     private PrimaryViewController fxmlController;
@@ -21,7 +21,7 @@ public class ReadControler implements Runnable{
 
 
 
-    public ReadControler(int num, PrimaryViewController fxmlController, SerialController controller){
+    public ReadController(int num, PrimaryViewController fxmlController, SerialController controller){
         this.numGadgets = new byte[num];
         this.fxmlController = fxmlController;
         this.controller = controller;
@@ -83,5 +83,8 @@ public class ReadControler implements Runnable{
             if(i==10){ fxmlController.vazao.setText(display);}
             if(i==11){ fxmlController.psm.setText(display);}
         }
+    }
+    public SerialProperties getSerialProperties() {
+    	return properties;
     }
 }
