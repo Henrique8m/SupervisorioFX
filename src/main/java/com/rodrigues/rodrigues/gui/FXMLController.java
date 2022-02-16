@@ -10,6 +10,7 @@ import javax.comm.UnsupportedCommOperationException;
 import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.gui.util.Alerts;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
+import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -70,7 +71,7 @@ public class FXMLController implements Initializable {
 	//}
 	@FXML
 	private void comPort(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		loadView("configscene", null, "Configuração Porta Com", MainApp.getStage());
+		loadView("propertiesCom", null, "Configuração Porta Com", MainApp.getStage());
 	}
 	
 	@FXML
@@ -112,7 +113,7 @@ public class FXMLController implements Initializable {
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title, Stage stageEvent) {
 		try {
 			
-			Pane pane = new Pane((Pane) MainApp.loadFXML(absoluteName));
+			Pane pane = new Pane((Pane) UtilitarioNewView.loadFXML(absoluteName, new PropertiesComController()));
 						
 			stage = new Stage();
 			stage.setTitle(title);

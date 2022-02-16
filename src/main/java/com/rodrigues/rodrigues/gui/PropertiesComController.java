@@ -16,11 +16,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 
-public class FXMLController2 implements Initializable {
+public class PropertiesComController implements Initializable {
 	private List<Port> port = new ArrayList<>();
 	private SerialController controller;
 
-	public FXMLController2() {
+	public PropertiesComController() {
 		// TODO Auto-generated constructor stub
 	}
 

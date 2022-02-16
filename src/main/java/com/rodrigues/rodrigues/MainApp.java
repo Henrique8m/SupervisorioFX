@@ -69,7 +69,7 @@ public class MainApp extends Application {
 		imageGlendon.setFitWidth(1360);
 		
 		//Carregar o scrollPane que vai ser a base de tudo
-		ScrollPane scrollPane = (ScrollPane) loadFXML(fxml);
+		ScrollPane scrollPane = (ScrollPane) loadFXML(fxml, new FXMLController());
 		
 		//Navegar ate a imagem para inserir o fundo
 		VBox vbox = (VBox) scrollPane.getContent();
@@ -87,9 +87,9 @@ public class MainApp extends Application {
 		stage.show();
 	}
 	
-	public static synchronized <T> Object loadFXML(String fxml) throws IOException {
+	public static synchronized <T> Object loadFXML(String fxml, Object controller) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(fxml + ".fxml"));
-		fxmlLoader.setController(new FXMLController());
+		fxmlLoader.setController(controller);
 		return fxmlLoader.load();
 	}
 
