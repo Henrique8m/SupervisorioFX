@@ -25,8 +25,9 @@ public class MainApp extends Application {
 	private static Scene mainScene;
 	private static ImageView imageAltoForno;
 	private static ImageView imageGlendon;
-	private static String strForno = "FundoAltoForno.png";
-	private static String strGlendon = "FundoGlendon.png";
+	private static String strForno = "FundoAltoForno";
+	private static String strGlendon = "FundoGlendon";
+	
 	private static Consumer<?> controller;
 
 	public static Scene getMainScene() {
@@ -37,14 +38,10 @@ public class MainApp extends Application {
 		return stage;
 	}
 	
-	public static Consumer<?> getController() {
-		return controller;
-	}
-
 	@Override
 	public void start(Stage s) throws IOException {
 		stage = s;
-		setRoot("primary", "");
+		setRoot("primaryView", "");
 	}
 
 	static void setRoot(String fxml) throws IOException {
@@ -58,8 +55,8 @@ public class MainApp extends Application {
 		
 		//carregar imagens de fundo
 		try {
-			imageAltoForno = new ImageView(new Image(MainApp.class.getResource("FundoAltoForno.png").toString()));
-			imageGlendon = new ImageView(new Image(MainApp.class.getResource("FundoAltoForno.png").toString()));
+			imageAltoForno = new ImageView(new Image(MainApp.class.getResource("gui/resources/" + strForno + ".png").toString()));
+			imageGlendon = new ImageView(new Image(MainApp.class.getResource("gui/resources/" + strGlendon + ".png").toString()));
 		}catch (NullPointerException e){
 			e.printStackTrace();
 		}

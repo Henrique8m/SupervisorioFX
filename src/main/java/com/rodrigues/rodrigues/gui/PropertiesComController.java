@@ -19,9 +19,10 @@ import javafx.scene.text.Text;
 public class PropertiesComController implements Initializable {
 	private List<Port> port = new ArrayList<>();
 	private SerialController controller;
+	private PrimaryViewController primaryViewController;
 
-	public PropertiesComController() {
-		// TODO Auto-generated constructor stub
+	public PropertiesComController(PrimaryViewController primaryViewController) {
+		this.primaryViewController = primaryViewController;
 	}
 
 	@FXML
@@ -38,9 +39,6 @@ public class PropertiesComController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		System.out.println(MainApp.getController());
-	
-
 	}
 
 	public void setController(SerialController controller) {

@@ -92,7 +92,7 @@ public class PrimaryViewController implements Initializable {
 		}
 	}
 
-	public void beginTimer() {
+	private void beginTimer() {
 		timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(2), ev -> {
 			// sComm.WriteData();
 			//sComm.formatDados();
@@ -105,13 +105,13 @@ public class PrimaryViewController implements Initializable {
 
 	}
 
-	public void cancelTimer() {
+	private void cancelTimer() {
 		timeline.stop();
 	}
 
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title, Stage stageEvent) {
 		try {
-			UtilitarioNewView.getNewViewModal(title, (Pane) UtilitarioNewView.loadFXML(absoluteName, new PropertiesComController()), stageEvent);
+			UtilitarioNewView.getNewViewModal(title, (Pane) UtilitarioNewView.loadFXML(absoluteName, new PropertiesComController(this)), stageEvent);
 		} catch (IOException e) {
 			e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);
