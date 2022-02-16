@@ -27,7 +27,7 @@ public class ReadController implements Runnable{
         this.controller = controller;
     }
 
-    public void read() throws InterruptedException {if(!thread.isAlive()){thread.run();}}
+    public void read() throws InterruptedException {if(!thread.isAlive()){thread.run();lostConection = 0;}}
 
     //Nova thered para não travar o programa quando estiver na tentativa de uma nova leitura
     @Override
@@ -36,15 +36,15 @@ public class ReadController implements Runnable{
         if(numGadgets!=null){
             //faz a varredura nos aparelos em ordem crescente
             for(int i=0; i < numGadgets.length; i++){
-                sweep(i+1);
-
+                if(sweep(i+1))
+                	return;
             }
         }
-        thread.stop();
+        thread.interrupt();
     }
 
     //Varredura dos aparelhos
-    private void sweep(int i) {
+    private Boolean sweep(int i) {
         try{
             service = new SerialService(properties.getPorta(), properties.getBaud(),properties.getTimeout());
             bufferRead = CalculatorData.addressRead(i);
@@ -56,33 +56,54 @@ public class ReadController implements Runnable{
                 service.readData();
                 Thread.sleep(300);
                 indicadores(i);
+                return false;
             }
             //em caso de erro na coneção, vamos tentar algumas vezes e depois cancelar a cenecção
-            else{lostConection++; if(lostConection >= attemptToReconnect)thread.interrupt(); controller.timerCancel();}
+            else{
+            	lostConection++;
+            	Thread.sleep(300); 
+            	
+            	if(lostConection <= attemptToReconnect) {
+            		thread.interrupt();
+            		System.out.println(lostConection);
+            		return false;
+            	}else {
+                	controller.timerCancel();
+                	return true;
+            	}
+            } 
 
-        }catch(Exception ex) {System.out.println("Erro na leitura do aparelho de endereço = " + (i) + "STATUS: ");
-            ex.printStackTrace();}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        	return true;
+        }
+		
     }
 
     //Ate desenvolver algo melhor
     //essa vai ser a varredura dos aparelhos
     private void indicadores(int i) {
-        if(service.getDisplay()!=null){
-            String display = service.getDisplay();
-            if(i==1){fxmlController.cq1.setText(display);}
-            if(i==2){ fxmlController.cq2.setText(display);}
-            if(i==3){ fxmlController.cq3.setText(display);}
-            if(i==4){ fxmlController.s1.setText(display);}
-            if(i==5){ fxmlController.s2.setText(display);}
-            if(i==6){ fxmlController.s3.setText(display);}
-            if(i==7){ fxmlController.topoE.setText(display);}
-            if(i==7){ fxmlController.topoD.setText(display);}
-            if(i==8){ fxmlController.coroaE.setText(display);}
-            if(i==8){ fxmlController.coroaD.setText(display);}
-            if(i==9){ fxmlController.ptopo.setText(display);}
-            if(i==10){ fxmlController.vazao.setText(display);}
-            if(i==11){ fxmlController.psm.setText(display);}
-        }
+    	try {
+            if(service.getDisplay()!=null){
+                String display = service.getDisplay();
+                if(i==1){fxmlController.cq1.setText(display);}
+                if(i==2){ fxmlController.cq2.setText(display);}
+                if(i==3){ fxmlController.cq3.setText(display);}
+                if(i==4){ fxmlController.s1.setText(display);}
+                if(i==5){ fxmlController.s2.setText(display);}
+                if(i==6){ fxmlController.s3.setText(display);}
+                if(i==7){ fxmlController.topoE.setText(display);}
+                if(i==7){ fxmlController.topoD.setText(display);}
+                if(i==8){ fxmlController.coroaE.setText(display);}
+                if(i==8){ fxmlController.coroaD.setText(display);}
+                if(i==9){ fxmlController.ptopo.setText(display);}
+                if(i==10){ fxmlController.vazao.setText(display);}
+                if(i==11){ fxmlController.psm.setText(display);}
+            }
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+
     }
     public SerialProperties getSerialProperties() {
     	return properties;

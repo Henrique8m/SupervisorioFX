@@ -1,6 +1,12 @@
 package com.rodrigues.rodrigues.serial.service;
 
 import javax.comm.*;
+
+import com.rodrigues.rodrigues.gui.PrimaryViewController;
+import com.rodrigues.rodrigues.gui.util.Alerts;
+
+import javafx.scene.control.Alert.AlertType;
+
 import java.io.*;
 import java.util.Enumeration;
 import java.util.Timer;
@@ -46,7 +52,7 @@ public class SerialService{
 			if(cp==null) cp = CommPortIdentifier.getPortIdentifier(portName);
 			return true;
 		} catch (NoSuchPortException e) {
-			System.out.println("Porta não existe! STATUS: " + e.getMessage());
+			System.out.println("Porta não existe! STATUS: " + e.getMessage());			
 			return false;
 		}
 	}

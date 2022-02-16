@@ -74,8 +74,8 @@ public class PrimaryViewController implements Initializable {
 	}
 	
 	@FXML
-	private void stopComunication(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		
+	public void stopComunication(ActionEvent event) throws UnsupportedCommOperationException, IOException {
+		alert();
 	}
 
 	@FXML
@@ -85,11 +85,7 @@ public class PrimaryViewController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		try {
-			comunicationOn = controller.startCommunication();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		comunicationOn = controller.startCommunication();
 	}
 
 	private void beginTimer() {
@@ -116,6 +112,10 @@ public class PrimaryViewController implements Initializable {
 			e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);
 		}	
+	}
+
+	public static void alert() {
+		Alerts.showAlert("IO Exception", "Error loading View", "teste do print strack", AlertType.ERROR);
 	}
 }
 

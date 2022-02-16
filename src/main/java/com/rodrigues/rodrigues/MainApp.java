@@ -79,7 +79,6 @@ public class MainApp extends Application {
 		
 		//Preparar a sena e showww
 		stage = UtilitarioNewView.getNewView("Supervisorio 1.0", mainScene = new Scene(scrollPane));
-
 	}
 
 	public static void main(String[] args) {
