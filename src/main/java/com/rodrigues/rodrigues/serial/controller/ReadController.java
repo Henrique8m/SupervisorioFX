@@ -14,17 +14,15 @@ public class ReadController implements Runnable{
 
     private int lostConection = 0;
     private int attemptToReconnect = 5;
-    private byte[] numGadgets;
+    private byte[] numGadgets = new byte[11];
     private byte[] bufferRead= new byte[8];
 
     private Thread thread = new Thread(this);
 
 
 
-    public ReadController(int num, PrimaryViewController fxmlController, SerialController controller){
-        this.numGadgets = new byte[num];
+    public ReadController(PrimaryViewController fxmlController){
         this.fxmlController = fxmlController;
-        this.controller = controller;
     }
 
     public void read() throws InterruptedException {if(!thread.isAlive()){thread.run();lostConection = 0;}}
@@ -56,6 +54,8 @@ public class ReadController implements Runnable{
                 service.readData();
                 Thread.sleep(300);
                 indicadores(i);
+            	fxmlController.txLog.setText("Conection OK");
+            	fxmlController.txLog1.setText("Conection OK");
                 return false;
             }
             //em caso de erro na coneção, vamos tentar algumas vezes e depois cancelar a cenecção
@@ -65,10 +65,11 @@ public class ReadController implements Runnable{
             	
             	if(lostConection <= attemptToReconnect) {
             		thread.interrupt();
-            		System.out.println(lostConection);
-            		return false;
+               		return false;
             	}else {
                 	controller.timerCancel();
+                	fxmlController.txLog.setText("Conection Lost");
+                	fxmlController.txLog1.setText("Conection Lost");
                 	return true;
             	}
             } 
@@ -108,4 +109,9 @@ public class ReadController implements Runnable{
     public SerialProperties getSerialProperties() {
     	return properties;
     }
+
+	public void setSerialController(SerialController serialController) {
+		this.controller = serialController;
+		
+	}
 }

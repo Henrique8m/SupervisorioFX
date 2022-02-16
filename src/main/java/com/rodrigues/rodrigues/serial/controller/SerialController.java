@@ -12,28 +12,28 @@ import javafx.scene.control.Alert.AlertType;
 public class SerialController{
     public SerialController(PrimaryViewController fxmlController){
         this.fxmlController  = fxmlController;
+        this.readController = new ReadController(fxmlController);
     }
 
     private PrimaryViewController fxmlController;
-   
-
-
-    private int numGadgets=11;
     private Timer timer = new Timer(true);
     private TimerTask tarefa;
-    private ReadController readController = new ReadController(numGadgets,fxmlController, this);
+    private ReadController readController;
 
     int end = 2;
 
-    public Boolean startCommunication(){
- 
-        try {
-			timerInstantiated();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        return true;
+    public void startCommunication(){
+    	if(tarefa == null) {
+	    	readController.setSerialController(this);
+	    	fxmlController.txLog.setText("Starting comunication...");
+	    	fxmlController.txLog1.setText("Starting comunication...");
+	        try {
+				timerInstantiated();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
     }
 
     private void timerInstantiated(){
@@ -51,7 +51,10 @@ public class SerialController{
         timer.scheduleAtFixedRate(tarefa, 3000, 7000);
     }
     public void timerCancel(){
-        if(tarefa != null)tarefa.cancel();
+        if(tarefa != null) {
+        	tarefa.cancel();
+        	tarefa = null;
+        }
     }
     
     public ReadController getReadControler() {

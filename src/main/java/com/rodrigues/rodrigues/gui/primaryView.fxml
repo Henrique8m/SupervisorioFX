@@ -6,13 +6,14 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="1359.0">
          <children>
@@ -78,6 +79,7 @@
                                     <Font name="Calibri Bold" size="20.0" />
                                  </font>
                               </Text>
+                              <Text fx:id="txLog" layoutX="1169.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.8033447265625" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -86,7 +88,10 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="709.0" fitWidth="1360.0" pickOnBounds="true" />
+                              <ImageView fitHeight="709.0" fitWidth="1360.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@resources/FundoGlendon.png" />
+                                 </image></ImageView>
                               <Text fx:id="cf1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="358.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
                                  <font>
                                     <Font name="Calibri Bold" size="20.0" />
@@ -192,6 +197,7 @@
                                     <Font name="Calibri Bold" size="20.0" />
                                  </font>
                               </Text>
+                              <Text fx:id="txLog1" layoutX="1170.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.8033447265625" />
                            </children>
                         </AnchorPane>
                      </content></Tab>

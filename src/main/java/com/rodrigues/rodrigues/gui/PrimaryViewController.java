@@ -36,7 +36,7 @@ public class PrimaryViewController implements Initializable {
 		return this.controller;
 	}
 
-	private SerialController controller = new SerialController(this);
+	private SerialController controller;
 	private Boolean comunicationOn;
 	private Timeline timeline;
 	private boolean time;
@@ -63,6 +63,8 @@ public class PrimaryViewController implements Initializable {
 	public Text psm, psm1;
 	@FXML
 	public Text pirometro, pirometro1;
+	@FXML
+	public Text txLog, txLog1;
 
 	//@FXML
 	//private void onMenuItemPortCom(ActionEvent event) throws UnsupportedCommOperationException {
@@ -75,17 +77,20 @@ public class PrimaryViewController implements Initializable {
 	
 	@FXML
 	public void stopComunication(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		alert();
+		controller.timerCancel();
+		txLog.setText("Comunication Stop");
+		txLog1.setText("Comunication Stop");
 	}
 
 	@FXML
 	private void startComunication(ActionEvent event) throws UnsupportedCommOperationException, InterruptedException {
-		comunicationOn = controller.startCommunication();
+		controller.startCommunication();
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		comunicationOn = controller.startCommunication();
+		controller = new SerialController(PrimaryViewController.this);
+		controller.startCommunication();
 	}
 
 	private void beginTimer() {
@@ -112,10 +117,6 @@ public class PrimaryViewController implements Initializable {
 			e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);
 		}	
-	}
-
-	public static void alert() {
-		Alerts.showAlert("IO Exception", "Error loading View", "teste do print strack", AlertType.ERROR);
 	}
 }
 

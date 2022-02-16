@@ -52,7 +52,7 @@ public class SerialService{
 			if(cp==null) cp = CommPortIdentifier.getPortIdentifier(portName);
 			return true;
 		} catch (NoSuchPortException e) {
-			System.out.println("Porta não existe! STATUS: " + e.getMessage());			
+			System.out.println("Porta não existe! STATUS: " + e.getMessage());	
 			return false;
 		}
 	}
