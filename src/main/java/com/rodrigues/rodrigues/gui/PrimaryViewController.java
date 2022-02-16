@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-public class FXMLController implements Initializable {
+public class PrimaryViewController implements Initializable {
 
 //	private SerialService sComm;
 	public final SerialController getcontroller() {
@@ -111,7 +111,7 @@ public class FXMLController implements Initializable {
 
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title, Stage stageEvent) {
 		try {
-			UtilitarioNewView.getNewModal(title, (Pane) UtilitarioNewView.loadFXML(absoluteName, new PropertiesComController()), stageEvent);
+			UtilitarioNewView.getNewViewModal(title, (Pane) UtilitarioNewView.loadFXML(absoluteName, new PropertiesComController()), stageEvent);
 		} catch (IOException e) {
 			e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);

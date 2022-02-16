@@ -3,15 +3,15 @@ package com.rodrigues.rodrigues.serial.controller;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.rodrigues.rodrigues.gui.FXMLController;
+import com.rodrigues.rodrigues.gui.PrimaryViewController;
 
 
 public class SerialController{
-    public SerialController(FXMLController fxmlController){
+    public SerialController(PrimaryViewController fxmlController){
         this.fxmlController  = fxmlController;
     }
 
-    private FXMLController fxmlController;
+    private PrimaryViewController fxmlController;
     private ReadControler readControler;
 
 

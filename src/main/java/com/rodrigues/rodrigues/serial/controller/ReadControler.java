@@ -1,6 +1,6 @@
 package com.rodrigues.rodrigues.serial.controller;
 
-import com.rodrigues.rodrigues.gui.FXMLController;
+import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.service.SerialService;
 import com.rodrigues.rodrigues.serial.utilitary.CalculatorData;
@@ -8,7 +8,7 @@ import com.rodrigues.rodrigues.serial.utilitary.CalculatorData;
 public class ReadControler implements Runnable{
 
     private final SerialProperties properties = new SerialProperties("COM4");
-    private FXMLController fxmlController;
+    private PrimaryViewController fxmlController;
     private SerialService service;
     private SerialController controller;
 
@@ -21,7 +21,7 @@ public class ReadControler implements Runnable{
 
 
 
-    public ReadControler(int num, FXMLController fxmlController, SerialController controller){
+    public ReadControler(int num, PrimaryViewController fxmlController, SerialController controller){
         this.numGadgets = new byte[num];
         this.fxmlController = fxmlController;
         this.controller = controller;

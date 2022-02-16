@@ -5,7 +5,8 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-import com.rodrigues.rodrigues.gui.FXMLController;
+import com.rodrigues.rodrigues.gui.PrimaryViewController;
+import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -69,7 +70,7 @@ public class MainApp extends Application {
 		imageGlendon.setFitWidth(1360);
 		
 		//Carregar o scrollPane que vai ser a base de tudo
-		ScrollPane scrollPane = (ScrollPane) loadFXML(fxml, new FXMLController());
+		ScrollPane scrollPane = (ScrollPane) UtilitarioNewView.loadFXML(fxml, new PrimaryViewController());
 		
 		//Navegar ate a imagem para inserir o fundo
 		VBox vbox = (VBox) scrollPane.getContent();
@@ -80,17 +81,8 @@ public class MainApp extends Application {
 		anchorGlendons.getChildren().add(0, imageGlendon);
 		
 		//Preparar a sena e showww
-		mainScene = new Scene(scrollPane);
-		stage.setMaximized(true);
-		stage.setTitle(" Supervisorio 1.0");
-		stage.setScene(mainScene);
-		stage.show();
-	}
-	
-	public static synchronized <T> Object loadFXML(String fxml, Object controller) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(fxml + ".fxml"));
-		fxmlLoader.setController(controller);
-		return fxmlLoader.load();
+		stage = UtilitarioNewView.getNewView("Supervisorio 1.0", mainScene = new Scene(scrollPane));
+
 	}
 
 	public static void main(String[] args) {

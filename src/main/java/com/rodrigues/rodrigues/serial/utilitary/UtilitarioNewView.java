@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class UtilitarioNewView {
-	private static Stage stage;
 	
 	public static synchronized <T> Object loadFXML(String fxml, Object controller) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("gui/" + fxml + ".fxml"));
@@ -22,8 +21,8 @@ public class UtilitarioNewView {
 		return fxmlLoader.load();
 	}
 
-	public static void getNewModal(String title, Pane pane, Stage stageEvent){
-		stage = new Stage();
+	public static void getNewViewModal(String title, Pane pane, Stage stageEvent){
+		Stage stage = new Stage();
 		stage.setTitle(title);
 		stage.setScene(new Scene(pane, 400, 400));
 		stage.setResizable(false);
@@ -32,6 +31,15 @@ public class UtilitarioNewView {
 		stage.initStyle(StageStyle.UTILITY);
 		stage.setAlwaysOnTop(true);						
 		stage.showAndWait();
+	}
+	
+	public static Stage getNewView(String title, Scene mainScene){
+		Stage stage = new Stage();
+		stage.setMaximized(true);
+		stage.setTitle(title);
+		stage.setScene(mainScene);
+		stage.show();
+		return stage;
 	}
 
 }
