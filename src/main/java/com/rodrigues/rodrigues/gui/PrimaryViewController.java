@@ -10,6 +10,7 @@ import javax.comm.UnsupportedCommOperationException;
 import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.gui.util.Alerts;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
+import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
 import javafx.animation.Animation;
@@ -86,7 +87,10 @@ public class PrimaryViewController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		controller = new SerialController(PrimaryViewController.this);
+		DependencyInjection.setPrimaryViewController(this);
+		controller = DependencyInjection.getSerialController();
+		//controller.setFxmlController(this);
+		//controller = new SerialController(PrimaryViewController.this);
 		controller.startCommunication();
 	}
 

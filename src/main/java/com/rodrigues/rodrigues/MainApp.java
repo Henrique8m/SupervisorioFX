@@ -1,7 +1,5 @@
 package com.rodrigues.rodrigues;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.function.Consumer;
 
@@ -9,14 +7,12 @@ import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 

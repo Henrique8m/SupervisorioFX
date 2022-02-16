@@ -4,30 +4,27 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
+import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 
 public class SerialController{
-    public SerialController(PrimaryViewController fxmlController){
-        this.fxmlController  = fxmlController;
-        this.readController = new ReadController(fxmlController);
-    }
 
-    public SerialController() {
-		// TODO Auto-generated constructor stub
-	}
-
-	private PrimaryViewController fxmlController;
+    public SerialController() {	}
+    
+    private ReadController readController;
+	private PrimaryViewController primaryViewController;
+	
     private Timer timer = new Timer(true);
     private TimerTask tarefa;
-    private ReadController readController;
+
 
     int end = 2;
 
     public void startCommunication(){
-    	if(tarefa == null) {
-	    	readController.setSerialController(this);
-	    	fxmlController.txLog.setText("Starting comunication...");
-	    	fxmlController.txLog1.setText("Starting comunication...");
+    	instanciates();
+    	if(tarefa == null) {    		
+	    	primaryViewController.txLog.setText("Starting comunication...");
+	    	primaryViewController.txLog1.setText("Starting comunication...");
 	        try {
 				timerInstantiated();
 			} catch (Exception e) {
@@ -37,7 +34,9 @@ public class SerialController{
     	}
     }
 
-    private void timerInstantiated(){
+
+
+	private void timerInstantiated(){
         tarefa = new TimerTask() {
             @Override
             public void run() {
@@ -60,5 +59,10 @@ public class SerialController{
     
     public ReadController getReadControler() {
     	return readController;
-    }
+    }  
+    
+    private void instanciates() {
+		if(readController==null)readController = DependencyInjection.getReadController();
+		if(primaryViewController==null)primaryViewController = DependencyInjection.getPrimaryViewController();
+	}
 }

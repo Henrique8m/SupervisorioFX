@@ -14,12 +14,14 @@ import javax.comm.SerialPort;
 import javax.comm.UnsupportedCommOperationException;
 
 public class SerialService{
-
+	
+	public SerialService() {}
+	
 	private final byte[] bufferRead = new byte[7];
 
 	private String display;
+	
 	private String portName;
-
 	private int baudRate;
 	private int timeout;
 
@@ -36,16 +38,6 @@ public class SerialService{
 		return display;
 	}
 
-	public SerialService(String p, int b, int t) {
-		this.portName = p;
-		this.baudRate = b;
-		this.timeout = t;
-
-	}
-	
-	public SerialService() {
-		
-	}
 	
 	
 	@SuppressWarnings({ "unchecked", "static-access" })
@@ -120,5 +112,17 @@ public class SerialService{
 		} else {
 			this.display = Integer.toString(Byte.toUnsignedInt(this.bufferRead[4]));
 		}
+	}
+	
+	public void setPortName(String portName) {
+		this.portName = portName;
+	}
+
+	public void setBaudRate(int baudRate) {
+		this.baudRate = baudRate;
+	}
+
+	public void setTimeout(int timeout) {
+		this.timeout = timeout;
 	}
 }
