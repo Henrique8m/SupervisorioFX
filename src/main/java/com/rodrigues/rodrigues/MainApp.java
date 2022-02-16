@@ -3,6 +3,9 @@ package com.rodrigues.rodrigues;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.util.function.Consumer;
+
+import com.rodrigues.rodrigues.gui.FXMLController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +26,7 @@ public class MainApp extends Application {
 	private static ImageView imageGlendon;
 	private static String strForno = "FundoAltoForno.png";
 	private static String strGlendon = "FundoGlendon.png";
+	private static Consumer<?> controller;
 
 	public static Scene getMainScene() {
 		return mainScene;
@@ -30,6 +34,10 @@ public class MainApp extends Application {
 	
 	public static Stage getStage() {
 		return stage;
+	}
+	
+	public static Consumer<?> getController() {
+		return controller;
 	}
 
 	@Override
@@ -43,13 +51,17 @@ public class MainApp extends Application {
 	}
 
 	static void setRoot(String fxml, String title) throws IOException {
+
 		//Teste dimension
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		//carregar imagens de fundo
-		imageAltoForno = new ImageView(new Image(MainApp.class.getResource(strForno).toString()));
-		imageGlendon = new ImageView(new Image(MainApp.class.getResource(strGlendon).toString()));
-		
+		try {
+			imageAltoForno = new ImageView(new Image(MainApp.class.getResource("FundoAltoForno.png").toString()));
+			imageGlendon = new ImageView(new Image(MainApp.class.getResource("FundoAltoForno.png").toString()));
+		}catch (NullPointerException e){
+			e.printStackTrace();
+		}
 		//definir tamanho para manter a dimension
 		imageAltoForno.setFitHeight(709);
 		imageAltoForno.setFitWidth(1360);
@@ -77,6 +89,7 @@ public class MainApp extends Application {
 	
 	public static synchronized <T> Object loadFXML(String fxml) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(fxml + ".fxml"));
+		fxmlLoader.setController(new FXMLController());
 		return fxmlLoader.load();
 	}
 

@@ -31,8 +31,11 @@ import javafx.stage.StageStyle;
 public class FXMLController implements Initializable {
 
 //	private SerialService sComm;
+	public final SerialController getcontroller() {
+		return this.controller;
+	}
 
-	private final SerialController controller = new SerialController(this);
+	private SerialController controller = new SerialController(this);
 	private Boolean comunicationOn;
 	private Timeline timeline;
 	private boolean time;
@@ -109,11 +112,11 @@ public class FXMLController implements Initializable {
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title, Stage stageEvent) {
 		try {
 			
-			AnchorPane anchorPane = new AnchorPane((AnchorPane) MainApp.loadFXML(absoluteName));
+			Pane pane = new Pane((Pane) MainApp.loadFXML(absoluteName));
 						
 			stage = new Stage();
 			stage.setTitle(title);
-			stage.setScene(new Scene(anchorPane, 400, 400));
+			stage.setScene(new Scene(pane, 400, 400));
 			stage.setResizable(false);
 			stage.initOwner(stageEvent);
 			stage.initModality(Modality.WINDOW_MODAL);			
@@ -121,7 +124,9 @@ public class FXMLController implements Initializable {
 			stage.setAlwaysOnTop(true);						
 			stage.showAndWait();
 			
+			
 		} catch (IOException e) {
+			e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);
 		}	
 	}

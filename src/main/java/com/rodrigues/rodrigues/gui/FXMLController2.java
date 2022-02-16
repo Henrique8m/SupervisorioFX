@@ -1,11 +1,13 @@
 package com.rodrigues.rodrigues.gui;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-
+import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.serial.Port;
+import com.rodrigues.rodrigues.serial.controller.SerialController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,31 +16,36 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 
-
 public class FXMLController2 implements Initializable {
-	private Port port;
-	
-	public FXMLController2(Port port) {
-		this.port = port;
+	private List<Port> port = new ArrayList<>();
+	private SerialController controller;
+
+	public FXMLController2() {
+		// TODO Auto-generated constructor stub
 	}
-	
+
 	@FXML
-	private Text txBaud, txParidade, txStopBits;	
+	private Text txBaud, txParidade, txStopBits;
 	@FXML
-	private ComboBox<Port> comboBoxPort;	
+	private ComboBox<Port> comboBoxPort;
 	@FXML
 	private Button btSave;
-	
+
 	@FXML
 	public void onBtSaveAction(ActionEvent event) {
 
 	}
-	
+
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		
+		System.out.println(MainApp.getController());
+	
 
 	}
 
+	public void setController(SerialController controller) {
+		this.controller = controller;
+
+	}
 
 }
