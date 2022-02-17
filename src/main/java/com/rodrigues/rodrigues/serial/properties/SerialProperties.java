@@ -1,10 +1,10 @@
 package com.rodrigues.rodrigues.serial.properties;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 
 import com.rodrigues.rodrigues.MainApp;
 
@@ -14,6 +14,8 @@ public class SerialProperties {
     private int timeout = 500;
     private int stopBits = 1;
     private String paridade = "None";
+    private String pathToProperties = null;
+    private String properties = "SerialProperties";
     
     
     public SerialProperties(String porta){
@@ -21,36 +23,25 @@ public class SerialProperties {
     }
 
     public SerialProperties(){
-		String pathToProperties = null;
     	try {
-    		pathToProperties = MainApp.class.getResource("Test.csv").getPath().toString();
+    		pathToProperties = getClass().getResource(properties + ".csv").getPath();
     	}catch(NullPointerException e) {
-    		System.out.println(MainApp.class.getResource(MainApp.class.getSimpleName() + ".java").getPath().toString() );
-    		/*
-    		try (BufferedWriter bw1 = new BufferedWriter(new FileWriter(MainApp.class.getPackageName()))){
-    			for(ProductFile x : controler.reader) {
-    				bw1.write(x.toString());
-    				bw1.newLine();
-    			}
-    		}
-    		catch (IOException e ) {
-    			e.printStackTrace();
-    		}
-    		*/
-    		
+    		System.out.println("Falta o arquivo de propriedades!");
     	}
+    	if(pathToProperties!=null)
     	try(BufferedReader br = new BufferedReader(new FileReader(pathToProperties) ) ){
 			
 		String itemsCsv = br.readLine();
-
 			while(itemsCsv != null) {				
 				String[] line = itemsCsv.split(",");
-				System.out.println(itemsCsv);								
+				System.out.println(line[1]);								
 				itemsCsv = br.readLine();
 			}	
 		}
 		catch (IOException e) {
 			System.out.println(e.getMessage());
+		}catch(NullPointerException e) {
+			System.out.println("Falha no caminho do arquivo de propriedades!");
 		}
     	
     	/*
