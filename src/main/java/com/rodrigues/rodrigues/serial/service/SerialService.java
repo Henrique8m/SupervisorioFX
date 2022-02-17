@@ -86,15 +86,17 @@ public class SerialService{
 				timerTask = new TimerTask() {
 				@Override
 				public void run() {serialPort.close();}}; timer.schedule(timerTask,100);
-			serialPort.setInputBufferSize(7);
-			entrada = serialPort.getInputStream();
-			entrada.read(bufferRead);
-			formatData();
-
-		} catch (IOException e) {
-			System.out.println("Erro na leitura dos dados! STATUS: ");
-			timerTask.cancel();
-		}
+				serialPort.setInputBufferSize(7);
+				entrada = serialPort.getInputStream();
+				entrada.read(bufferRead);
+				formatData();
+	
+			} catch (IOException e) {
+				System.out.println("Erro na leitura dos dados! STATUS: " + e.getMessage());
+				this.display = "Error";
+				timerTask.cancel();
+			}
+		
 		serialPort.close();
 		timerTask.cancel();
 		return true;

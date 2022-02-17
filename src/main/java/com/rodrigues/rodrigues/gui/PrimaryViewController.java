@@ -2,9 +2,13 @@ package com.rodrigues.rodrigues.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
+import javax.comm.CommPortIdentifier;
 import javax.comm.UnsupportedCommOperationException;
 
 import com.rodrigues.rodrigues.MainApp;
@@ -38,6 +42,8 @@ public class PrimaryViewController implements Initializable {
 	private Timeline timeline;
 	@SuppressWarnings("unused")
 	private boolean time;
+	
+	private List<String> portName;
 
 	@FXML
 	public Text cf1, cf2, cf3;
@@ -87,10 +93,21 @@ public class PrimaryViewController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		
+		portName = new ArrayList<>();
+		@SuppressWarnings("unchecked")
+		Enumeration<CommPortIdentifier> enume = CommPortIdentifier.getPortIdentifiers();		
+		while(enume.hasMoreElements()) {
+			portName.add(enume.nextElement().getName());		
+		}
+		DependencyInjection.setPortName(portName);
+		System.out.println(portName);
+		
 		DependencyInjection.setPrimaryViewController(this);
 		controller = DependencyInjection.getSerialController();
 		//controller.setFxmlController(this);
 		//controller = new SerialController(PrimaryViewController.this);
+		
 		controller.startCommunication();
 	}
 

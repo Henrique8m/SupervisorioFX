@@ -15,7 +15,7 @@ public class ReadController implements Runnable{
 
     private int lostConection = 0;
     private int attemptToReconnect = 5;
-    private byte[] numGadgets = new byte[11];
+    private byte[] numGadgets = new byte[17];
     private byte[] bufferRead= new byte[8];
 
     private Thread thread = new Thread(this);
@@ -92,19 +92,43 @@ public class ReadController implements Runnable{
     	try {
             if(serialService.getDisplay()!=null){
                 String display = serialService.getDisplay();
+                System.out.println(i + "  =  " + display);
                 if(i==1){primaryViewController.cq1.setText(display);}
                 if(i==2){ primaryViewController.cq2.setText(display);}
                 if(i==3){ primaryViewController.cq3.setText(display);}
-                if(i==4){ primaryViewController.s1.setText(display);}
-                if(i==5){ primaryViewController.s2.setText(display);}
-                if(i==6){ primaryViewController.s3.setText(display);}
-                if(i==7){ primaryViewController.topoE.setText(display);}
-                if(i==7){ primaryViewController.topoD.setText(display);}
-                if(i==8){ primaryViewController.coroaE.setText(display);}
-                if(i==8){ primaryViewController.coroaD.setText(display);}
-                if(i==9){ primaryViewController.ptopo.setText(display);}
-                if(i==10){ primaryViewController.vazao.setText(display);}
-                if(i==11){ primaryViewController.psm.setText(display);}
+                
+                if(i==4){ primaryViewController.cm1.setText(display);}
+                if(i==5){ primaryViewController.cm2.setText(display);}
+                if(i==6){ primaryViewController.cm3.setText(display);}
+                
+                if(i==7){ primaryViewController.s1.setText(display);}
+                if(i==8){ primaryViewController.s2.setText(display);}
+                if(i==9){ primaryViewController.s3.setText(display);}
+                
+                if(i==10){ primaryViewController.topoE.setText(display);}
+                if(i==10){ primaryViewController.topoD.setText(display);}
+                
+                if(i==11){ primaryViewController.coroaE.setText(display);}
+                if(i==11){ primaryViewController.coroaD.setText(display);}
+                
+                if(i==12){ primaryViewController.topoE1.setText(display);}
+                if(i==12){ primaryViewController.topoD1.setText(display);}
+                
+                if(i==13){ primaryViewController.coroaE1.setText(display);}
+                if(i==13){ primaryViewController.coroaD1.setText(display);}
+                
+                if(i==14){ primaryViewController.ptopo.setText(display);}
+                if(i==14){ primaryViewController.ptopo1.setText(display);}
+                
+                if(i==15){ primaryViewController.vazao.setText(display);}
+                if(i==15){ primaryViewController.vazao1.setText(display);}
+                
+                if(i==16){ primaryViewController.psm.setText(display);}
+                if(i==16){ primaryViewController.psm1.setText(display);}
+                
+                if(i==17){ primaryViewController.pirometro.setText(display);}
+                if(i==17){ primaryViewController.pirometro1.setText(display);}
+                
             }
     	}catch(Exception e) {
     		e.printStackTrace();

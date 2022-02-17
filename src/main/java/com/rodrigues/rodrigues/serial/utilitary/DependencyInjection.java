@@ -1,5 +1,7 @@
 package com.rodrigues.rodrigues.serial.utilitary;
 
+import java.util.List;
+
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.controller.ReadController;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
@@ -8,12 +10,14 @@ import com.rodrigues.rodrigues.serial.service.ReadService;
 import com.rodrigues.rodrigues.serial.service.SerialService;
 
 public class DependencyInjection {
-	private static ReadController readController = new ReadController();
-	private static SerialController serialController = new SerialController();
-	private static ReadService readService = new ReadService();
-	private static SerialService serialService = new SerialService();
-	private static SerialProperties serialProperties = new SerialProperties();
+	
+	private static final ReadController readController = new ReadController();
+	private static final SerialController serialController = new SerialController();
+	private static final ReadService readService = new ReadService();
+	private static final SerialService serialService = new SerialService();
+	private static final SerialProperties serialProperties = new SerialProperties();
 	private static PrimaryViewController primaryViewController;
+	private static List<String> portName;
 	
 	public DependencyInjection() {
 	}
@@ -41,12 +45,16 @@ public class DependencyInjection {
 	public static PrimaryViewController getPrimaryViewController() {
 		return primaryViewController;
 	}
-
+	
 	public static void setPrimaryViewController(PrimaryViewController primaryViewController) {
 		DependencyInjection.primaryViewController = primaryViewController;
 	}
 	
+	public static List<String> getPortName() {
+		return portName;
+	}
 	
-
-	
+	public static void setPortName(List<String> portName) {
+		DependencyInjection.portName = portName;
+	}
 }

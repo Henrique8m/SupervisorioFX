@@ -8,7 +8,10 @@ import javax.comm.CommPortIdentifier;
 
 import com.rodrigues.rodrigues.serial.Port;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
+import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,27 +30,29 @@ public class PropertiesComController implements Initializable {
 	@FXML
 	private Text txBaud, txParidade, txStopBits;
 	@FXML
-	private ComboBox<Port> comboBoxPort;
+	private ComboBox<String> comboBoxPort;
 	@FXML
 	private Button btSave;
 
 	@FXML
 	public void onBtSaveAction(ActionEvent event) {
+		
+
+	}
+	
+	@FXML
+	public void getPortName(ActionEvent event) {
+		System.out.println(comboBoxPort.getValue());
 
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		comboBoxPort.setItems(FXCollections.observableList(DependencyInjection.getPortName()));
+		
 		serialProperties = primaryViewController.getcontroller().getReadControler().getSerialProperties();
 		txBaud.setText(Integer.toString(serialProperties.getBaud()));
 		txParidade.setText(serialProperties.getParidade());
 		txStopBits.setText(Integer.toString(serialProperties.getStopBits()));
-		@SuppressWarnings("unchecked")
-		Enumeration<CommPortIdentifier> enume = CommPortIdentifier.getPortIdentifiers();
-		if(enume.hasMoreElements()) {
-			System.out.println(enume.nextElement().getName());
-		}
-		
-		
 	}
 }
