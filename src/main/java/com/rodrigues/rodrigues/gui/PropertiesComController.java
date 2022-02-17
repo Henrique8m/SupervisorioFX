@@ -41,7 +41,7 @@ public class PropertiesComController implements Initializable {
 	}
 	
 	@FXML
-	public void getPortName(ActionEvent event) {
+	public void onComboBoxAction(ActionEvent event) {
 		System.out.println(comboBoxPort.getValue());
 
 	}
@@ -49,8 +49,9 @@ public class PropertiesComController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		comboBoxPort.setItems(FXCollections.observableList(DependencyInjection.getPortName()));
+
+		serialProperties = DependencyInjection.getSerialProperties();
 		
-		serialProperties = primaryViewController.getcontroller().getReadControler().getSerialProperties();
 		txBaud.setText(Integer.toString(serialProperties.getBaud()));
 		txParidade.setText(serialProperties.getParidade());
 		txStopBits.setText(Integer.toString(serialProperties.getStopBits()));

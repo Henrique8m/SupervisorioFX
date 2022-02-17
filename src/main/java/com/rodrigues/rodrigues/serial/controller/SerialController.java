@@ -53,8 +53,10 @@ public class SerialController{
     public void timerCancel(){
         if(tarefa != null) {
         	tarefa.cancel();
+        	readController.threadCancel();
         	tarefa = null;
-        }
+        }else
+        readController.threadCancel();
     }
     
     public ReadController getReadControler() {

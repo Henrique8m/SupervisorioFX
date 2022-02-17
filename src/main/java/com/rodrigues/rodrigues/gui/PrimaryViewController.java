@@ -14,6 +14,7 @@ import javax.comm.UnsupportedCommOperationException;
 import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.gui.util.Alerts;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
+import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
@@ -31,12 +32,9 @@ import javafx.stage.Stage;
 
 public class PrimaryViewController implements Initializable {
 
-//	private SerialService sComm;
-	public final SerialController getcontroller() {
-		return this.controller;
-	}
-
-	private SerialController controller;
+	private static final Object port = "COM4";
+	private SerialController serialController;
+	private SerialProperties serialProperties;
 	@SuppressWarnings("unused")
 	private Boolean comunicationOn;
 	private Timeline timeline;
@@ -81,18 +79,19 @@ public class PrimaryViewController implements Initializable {
 	
 	@FXML
 	public void stopComunication(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		controller.timerCancel();
+		serialController.timerCancel();
 		txLog.setText("Comunication Stop");
 		txLog1.setText("Comunication Stop");
 	}
 
 	@FXML
 	private void startComunication(ActionEvent event) throws UnsupportedCommOperationException, InterruptedException {
-		controller.startCommunication();
+		serialController.startCommunication();
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		instanciates();
 		
 		portName = new ArrayList<>();
 		@SuppressWarnings("unchecked")
@@ -101,14 +100,16 @@ public class PrimaryViewController implements Initializable {
 			portName.add(enume.nextElement().getName());		
 		}
 		DependencyInjection.setPortName(portName);
-		System.out.println(portName);
+		for(String e : portName)
+			if(e.equals(port))
+				serialProperties.setPorta("COM4");
 		
 		DependencyInjection.setPrimaryViewController(this);
-		controller = DependencyInjection.getSerialController();
+		serialController = DependencyInjection.getSerialController();
 		//controller.setFxmlController(this);
 		//controller = new SerialController(PrimaryViewController.this);
 		
-		controller.startCommunication();
+		serialController.startCommunication();
 	}
 
 	@SuppressWarnings("unused")
@@ -137,6 +138,11 @@ public class PrimaryViewController implements Initializable {
 			e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);
 		}	
+	}
+	
+    private void instanciates() {
+    	if(serialController==null)serialController = DependencyInjection.getSerialController();
+		if(serialProperties==null)serialProperties = DependencyInjection.getSerialProperties();
 	}
 }
 

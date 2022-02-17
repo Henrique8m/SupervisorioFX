@@ -8,7 +8,7 @@ import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 public class ReadController implements Runnable{
 
-    private final SerialProperties properties = new SerialProperties("COM4");
+    private SerialProperties serialProperties;
     private PrimaryViewController primaryViewController;
     private SerialService serialService;
     private SerialController serialController;
@@ -37,19 +37,23 @@ public class ReadController implements Runnable{
     public void run() {
         if(numGadgets!=null){
             for(int i=0; i < numGadgets.length; i++){
-                if(sweep(i+1))
-                	return;
+            	if(thread.isInterrupted()) {
+                	primaryViewController.txLog.setText("Conection Lost");
+                	primaryViewController.txLog1.setText("Conection Lost");
+            		return;
+            	}                	
+                sweep(i+1);
+                
             }
-        }
-        thread.interrupt();
+        }else threadCancel();        
     }
 
-    private Boolean sweep(int i) {
+    private void sweep(int i) {
         try{
         	
-            serialService.setPortName(properties.getPorta());
-            serialService.setBaudRate(properties.getBaud());
-            serialService.setTimeout(properties.getTimeout());
+            serialService.setPortName(serialProperties.getPorta());
+            serialService.setBaudRate(serialProperties.getBaud());
+            serialService.setTimeout(serialProperties.getTimeout());
             
             bufferRead = CalculatorData.addressRead(i);
 
@@ -62,7 +66,6 @@ public class ReadController implements Runnable{
                 indicadores(i);
             	primaryViewController.txLog.setText("Conection OK");
             	primaryViewController.txLog1.setText("Conection OK");
-                return false;
             }
             else{
             	lostConection++;
@@ -70,18 +73,14 @@ public class ReadController implements Runnable{
             	
             	if(lostConection <= attemptToReconnect) {
             		thread.interrupt();
-               		return false;
             	}else {
                 	serialController.timerCancel();
-                	primaryViewController.txLog.setText("Conection Lost");
-                	primaryViewController.txLog1.setText("Conection Lost");
-                	return true;
             	}
             } 
 
         }catch(Exception e) {
         	e.printStackTrace();
-        	return true;
+        	threadCancel();
         }
 		
     }
@@ -135,13 +134,22 @@ public class ReadController implements Runnable{
     	}
 
     }
-    public SerialProperties getSerialProperties() {
-    	return properties;
-    }
     
     private void instanciates() {
     	if(serialService==null)serialService = DependencyInjection.getSerialService();
 		if(serialController==null)serialController = DependencyInjection.getSerialController();
 		if(primaryViewController==null)primaryViewController = DependencyInjection.getPrimaryViewController();
+		if(serialProperties==null)serialProperties = DependencyInjection.getSerialProperties();
+	}
+
+	@SuppressWarnings("deprecation")
+	public void threadCancel() {
+		
+    	primaryViewController.txLog.setText("Conection Lost");
+    	primaryViewController.txLog1.setText("Conection Lost");
+    	
+		if(!thread.isInterrupted()) {
+			thread.interrupt();
+		}	
 	}
 }
