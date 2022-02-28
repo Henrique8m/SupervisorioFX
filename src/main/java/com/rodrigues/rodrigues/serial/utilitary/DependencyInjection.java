@@ -2,7 +2,9 @@ package com.rodrigues.rodrigues.serial.utilitary;
 
 import java.util.List;
 
+import com.rodrigues.rodrigues.gui.CheckLicenseController;
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
+import com.rodrigues.rodrigues.gui.PropertiesComController;
 import com.rodrigues.rodrigues.serial.controller.ReadController;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
@@ -16,6 +18,8 @@ public class DependencyInjection {
 	private static final ReadService readService = new ReadService();
 	private static final SerialService serialService = new SerialService();
 	private static final SerialProperties serialProperties = new SerialProperties();
+	private static final PropertiesComController propertiesComController = new PropertiesComController();
+	private static final CheckLicenseController checkLicenseController = new CheckLicenseController();
 	private static PrimaryViewController primaryViewController;
 	private static List<String> portName;
 	
@@ -44,6 +48,13 @@ public class DependencyInjection {
 
 	public static PrimaryViewController getPrimaryViewController() {
 		return primaryViewController;
+	}
+	
+	public static PropertiesComController getPropertiesComController() {
+		return propertiesComController;
+	}
+	public static CheckLicenseController getCheckLicenseController() {
+		return checkLicenseController;
 	}
 	
 	public static void setPrimaryViewController(PrimaryViewController primaryViewController) {

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -74,8 +75,14 @@ public class PrimaryViewController implements Initializable {
 	//}
 	@FXML
 	private void comPort(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		loadView("propertiesCom", null, "Configuração Porta Com", MainApp.getStage());
+		loadView("propertiesCom", null, "Configuração Porta Com", MainApp.getStage(),DependencyInjection.getPropertiesComController());
 	}
+	
+	@FXML
+	private void checkLicense(ActionEvent event) throws UnsupportedCommOperationException, IOException {
+		loadView("checkLicense", null, "Status License", MainApp.getStage(), DependencyInjection.getCheckLicenseController());
+	}
+	
 	
 	@FXML
 	public void stopComunication(ActionEvent event) throws UnsupportedCommOperationException, IOException {
@@ -131,9 +138,9 @@ public class PrimaryViewController implements Initializable {
 		timeline.stop();
 	}
 
-	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title, Stage stageEvent) {
+	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title, Stage stageEvent, Object controller) {
 		try {
-			UtilitarioNewView.getNewViewModal(title, (Pane) UtilitarioNewView.loadFXML(absoluteName, new PropertiesComController(this)), stageEvent);
+			UtilitarioNewView.getNewViewModal(title, (Pane) UtilitarioNewView.loadFXML(absoluteName, controller), stageEvent);
 		} catch (IOException e) {
 			e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);

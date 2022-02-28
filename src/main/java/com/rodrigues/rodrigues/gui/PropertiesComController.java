@@ -21,11 +21,6 @@ import javafx.scene.text.Text;
 
 public class PropertiesComController implements Initializable {
 	private SerialProperties serialProperties;
-	private PrimaryViewController primaryViewController;
-
-	public PropertiesComController(PrimaryViewController primaryViewController) {
-		this.primaryViewController = primaryViewController;
-	}
 
 	@FXML
 	private Text txBaud, txParidade, txStopBits;
