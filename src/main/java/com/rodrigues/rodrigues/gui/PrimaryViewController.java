@@ -14,6 +14,7 @@ import javax.comm.UnsupportedCommOperationException;
 
 import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.gui.util.Alerts;
+import com.rodrigues.rodrigues.securit.EncryptionAES;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;

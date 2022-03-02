@@ -5,6 +5,8 @@ import java.util.List;
 import com.rodrigues.rodrigues.gui.CheckLicenseController;
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.gui.PropertiesComController;
+import com.rodrigues.rodrigues.securit.EncryptionAES;
+import com.rodrigues.rodrigues.securit.SerialMotherboard;
 import com.rodrigues.rodrigues.serial.controller.ReadController;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
@@ -20,6 +22,8 @@ public class DependencyInjection {
 	private static final SerialProperties serialProperties = new SerialProperties();
 	private static final PropertiesComController propertiesComController = new PropertiesComController();
 	private static final CheckLicenseController checkLicenseController = new CheckLicenseController();
+	private static final SerialMotherboard serialMotherboard = new SerialMotherboard();
+	private static final EncryptionAES encryptionAES = new EncryptionAES();
 	private static PrimaryViewController primaryViewController;
 	private static List<String> portName;
 	
@@ -55,8 +59,16 @@ public class DependencyInjection {
 	}
 	public static CheckLicenseController getCheckLicenseController() {
 		return checkLicenseController;
-	}
+	} 
 	
+	public static SerialMotherboard getSerialmotherboard() {
+		return serialMotherboard;
+	}
+
+	public static EncryptionAES getEncryptionaes() {
+		return encryptionAES;
+	}
+
 	public static void setPrimaryViewController(PrimaryViewController primaryViewController) {
 		DependencyInjection.primaryViewController = primaryViewController;
 	}
