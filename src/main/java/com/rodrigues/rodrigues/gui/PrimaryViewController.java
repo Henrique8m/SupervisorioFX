@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -14,7 +13,7 @@ import javax.comm.UnsupportedCommOperationException;
 
 import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.gui.util.Alerts;
-import com.rodrigues.rodrigues.securit.EncryptionAES;
+import com.rodrigues.rodrigues.securit.DataSecurit;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
@@ -43,6 +42,7 @@ public class PrimaryViewController implements Initializable {
 	private Timeline timeline;
 	@SuppressWarnings("unused")
 	private boolean time;
+	DataSecurit securit;
 	
 	private List<String> avaliablePorts;
 
@@ -88,40 +88,57 @@ public class PrimaryViewController implements Initializable {
 	
 	@FXML
 	public void stopComunication(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		serialController.timerCancel();
-		txLog.setText("Comunication Stop");
-		txLog1.setText("Comunication Stop");
+		
+		if(securit.validateData()) {
+				serialController.timerCancel();
+				txLog.setText("Comunication Stop");
+				txLog1.setText("Comunication Stop");
+		}else {
+			showError();
+		}
+
 	}
 
 	@FXML
 	private void startComunication(ActionEvent event) throws UnsupportedCommOperationException, InterruptedException {
-		serialController.startCommunication();
+		if(securit.validateData()) {
+			serialController.startCommunication();
+		}else {
+			showError();
+		}		
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		instanciates();
+		securit = new DataSecurit();
 		
-		avaliablePorts = new ArrayList<>();
-		@SuppressWarnings("unchecked")
-		Enumeration<CommPortIdentifier> enume = CommPortIdentifier.getPortIdentifiers();		
-		while(enume.hasMoreElements()) {
-			avaliablePorts.add(enume.nextElement().getName());		
-		}
-		DependencyInjection.setAvaliablePortsNames(avaliablePorts);
-		
-		for(String e : avaliablePorts)
-			if(e.equals(defautPort))
-				serialProperties.setPorta("COM4");
-			else if(e.equals(lastPort))
-			serialProperties.setPorta(lastPort);
-		
-		DependencyInjection.setPrimaryViewController(this);
-		serialController = DependencyInjection.getSerialController();
-		//controller.setFxmlController(this);
-		//controller = new SerialController(PrimaryViewController.this);
-		
-		serialController.startCommunication();
+			if(securit.validateData()) {
+				instanciates();
+				
+				avaliablePorts = new ArrayList<>();
+				@SuppressWarnings("unchecked")
+				Enumeration<CommPortIdentifier> enume = CommPortIdentifier.getPortIdentifiers();		
+				while(enume.hasMoreElements()) {
+					avaliablePorts.add(enume.nextElement().getName());		
+				}
+				DependencyInjection.setAvaliablePortsNames(avaliablePorts);
+				
+				for(String e : avaliablePorts)
+					if(e.equals(defautPort))
+						serialProperties.setPorta("COM4");
+					else if(e.equals(lastPort))
+					serialProperties.setPorta(lastPort);
+				
+				DependencyInjection.setPrimaryViewController(this);
+				serialController = DependencyInjection.getSerialController();
+				//controller.setFxmlController(this);
+				//controller = new SerialController(PrimaryViewController.this);
+				
+				serialController.startCommunication();
+			}else {
+				showError();
+			}
+
 	}
 
 	@SuppressWarnings("unused")
@@ -156,6 +173,9 @@ public class PrimaryViewController implements Initializable {
     	if(serialController==null)serialController = DependencyInjection.getSerialController();
 		if(serialProperties==null)serialProperties = DependencyInjection.getSerialProperties();
 	}
+    private void showError() {
+    	Alerts.showAlert("Securit", "Error, validação da licença ", "Erro ao validar a licença, entre em contato com o adim", AlertType.ERROR);
+    }
 }
 
 /*	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) {

@@ -10,7 +10,7 @@ public class DataSecurit {
 		SimpleDateFormat formatarDate = new SimpleDateFormat("yyyyMMdd");
 		int dataInt = Integer.parseInt(formatarDate.format(data));
 		System.out.println(dataInt);
-		if(dataInt > 20220306)
+		if(dataInt > 20220302)
 			return false;
 		return true;
 	}
