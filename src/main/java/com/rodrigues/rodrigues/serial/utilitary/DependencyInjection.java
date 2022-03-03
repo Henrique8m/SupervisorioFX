@@ -25,7 +25,7 @@ public class DependencyInjection {
 	private static final SerialMotherboard serialMotherboard = new SerialMotherboard();
 	private static final EncryptionAES encryptionAES = new EncryptionAES();
 	private static PrimaryViewController primaryViewController;
-	private static List<String> portName;
+	private static List<String> avaliablePorts;
 	
 	public DependencyInjection() {
 	}
@@ -74,10 +74,10 @@ public class DependencyInjection {
 	}
 	
 	public static List<String> getPortName() {
-		return portName;
+		return avaliablePorts;
 	}
 	
-	public static void setPortName(List<String> portName) {
-		DependencyInjection.portName = portName;
+	public static void setAvaliablePortsNames(List<String> avaliablePorts) {
+		DependencyInjection.avaliablePorts = avaliablePorts;
 	}
 }

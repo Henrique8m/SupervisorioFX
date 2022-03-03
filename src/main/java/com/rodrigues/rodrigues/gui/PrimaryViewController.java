@@ -34,7 +34,8 @@ import javafx.stage.Stage;
 
 public class PrimaryViewController implements Initializable {
 
-	private static final Object port = "COM4";
+	private static final Object defautPort = "COM4";
+	private String lastPort = "";
 	private SerialController serialController;
 	private SerialProperties serialProperties;
 	@SuppressWarnings("unused")
@@ -43,7 +44,7 @@ public class PrimaryViewController implements Initializable {
 	@SuppressWarnings("unused")
 	private boolean time;
 	
-	private List<String> portName;
+	private List<String> avaliablePorts;
 
 	@FXML
 	public Text cf1, cf2, cf3;
@@ -101,16 +102,19 @@ public class PrimaryViewController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		instanciates();
 		
-		portName = new ArrayList<>();
+		avaliablePorts = new ArrayList<>();
 		@SuppressWarnings("unchecked")
 		Enumeration<CommPortIdentifier> enume = CommPortIdentifier.getPortIdentifiers();		
 		while(enume.hasMoreElements()) {
-			portName.add(enume.nextElement().getName());		
+			avaliablePorts.add(enume.nextElement().getName());		
 		}
-		DependencyInjection.setPortName(portName);
-		for(String e : portName)
-			if(e.equals(port))
+		DependencyInjection.setAvaliablePortsNames(avaliablePorts);
+		
+		for(String e : avaliablePorts)
+			if(e.equals(defautPort))
 				serialProperties.setPorta("COM4");
+			else if(e.equals(lastPort))
+			serialProperties.setPorta(lastPort);
 		
 		DependencyInjection.setPrimaryViewController(this);
 		serialController = DependencyInjection.getSerialController();

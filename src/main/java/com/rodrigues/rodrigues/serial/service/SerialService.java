@@ -81,7 +81,7 @@ public class SerialService{
 		}
 	}
 
-	public Boolean readData(){
+	public byte[] readData(){
 		try {
 				timerTask = new TimerTask() {
 				@Override
@@ -89,7 +89,6 @@ public class SerialService{
 				serialPort.setInputBufferSize(7);
 				entrada = serialPort.getInputStream();
 				entrada.read(bufferRead);
-				formatData();
 	
 			} catch (IOException e) {
 				System.out.println("Erro na leitura dos dados! STATUS: " + e.getMessage());
@@ -99,22 +98,9 @@ public class SerialService{
 		
 		serialPort.close();
 		timerTask.cancel();
-		return true;
+		return bufferRead;
 	}
 
-	public void formatData() {
-		if (Byte.toUnsignedInt(this.bufferRead[3]) > 0) {
-			try {
-				this.display = Integer
-						.toString(Byte.toUnsignedInt(bufferRead[4]) + (Byte.toUnsignedInt(bufferRead[3]) * 256));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		} else {
-			this.display = Integer.toString(Byte.toUnsignedInt(this.bufferRead[4]));
-		}
-	}
 	
 	public void setPortName(String portName) {
 		this.portName = portName;
