@@ -127,28 +127,28 @@ public class ReadController implements Runnable{
             if(i==9){ primaryViewController.s3.setText(display);}
             
             if(i==10){ primaryViewController.topoE.setText(display);}
-            if(i==10){ primaryViewController.topoD.setText(display);}
+            if(i==11){ primaryViewController.topoD.setText(display);}
             
-            if(i==11){ primaryViewController.coroaE.setText(display);}
-            if(i==11){ primaryViewController.coroaD.setText(display);}
+            if(i==13){ primaryViewController.coroaE.setText(display);}
+            if(i==14){ primaryViewController.coroaD.setText(display);}
             
-            if(i==12){ primaryViewController.topoE1.setText(display);}
-            if(i==12){ primaryViewController.topoD1.setText(display);}
+            if(i==10){ primaryViewController.topoE1.setText(display);}
+            if(i==11){ primaryViewController.topoD1.setText(display);}
             
             if(i==13){ primaryViewController.coroaE1.setText(display);}
-            if(i==13){ primaryViewController.coroaD1.setText(display);}
+            if(i==14){ primaryViewController.coroaD1.setText(display);}
             
-            if(i==14){ primaryViewController.ptopo.setText(display);}
-            if(i==14){ primaryViewController.ptopo1.setText(display);}
+            if(i==12){ primaryViewController.ptopo.setText(display);}
+            if(i==12){ primaryViewController.ptopo1.setText(display);}
             
-            if(i==15){ primaryViewController.vazao.setText(display);}
-            if(i==15){ primaryViewController.vazao1.setText(display);}
+            if(i==17){ primaryViewController.vazao.setText(display);}
+            if(i==17){ primaryViewController.vazao1.setText(display);}
             
-            if(i==16){ primaryViewController.psm.setText(display);}
-            if(i==16){ primaryViewController.psm1.setText(display);}
+            if(i==18){ primaryViewController.psm.setText(display);}
+            if(i==18){ primaryViewController.psm1.setText(display);}
             
-            if(i==17){ primaryViewController.pirometro.setText(display);}
-            if(i==17){ primaryViewController.pirometro1.setText(display);}
+            if(i==16){ primaryViewController.pirometro.setText(display);}
+            if(i==16){ primaryViewController.pirometro1.setText(display);}
 
     	}catch(Exception e) {
     		e.printStackTrace();
