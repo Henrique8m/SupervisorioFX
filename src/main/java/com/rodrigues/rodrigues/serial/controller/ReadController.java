@@ -72,9 +72,10 @@ public class ReadController implements Runnable{
             if(serialService.getPortIdentifier()) {
                 serialService.openPort();
                 serialService.writeData(bufferWrite);
-                Thread.sleep(100);
+                //Thread.sleep(100);
                 bufferRead = serialService.readData();
-	                if(bufferRead != null) {                
+                
+                if(bufferRead != null) {                
 	                if((i >= 1 )&&(i<=11)||(i==13 || i==14))
 	                	display = formatData.formatData(bufferRead, "N1540", "int");
 	                else if (i==12 || i==17||i==18)
@@ -83,10 +84,9 @@ public class ReadController implements Runnable{
 	                	display = formatData.formatData(bufferRead, "N2000", "int");
 	                }else {
 	                	display = "Error";
-	                }
-	                indicadores(i);
-	                System.out.println("Aparelho end = " + i + " Pv = " + display);
-                Thread.sleep(300);
+	            }
+                
+                Thread.sleep(200); 
                 indicadores(i);
             	primaryViewController.txLog.setText("Conection OK");
             	primaryViewController.txLog1.setText("Conection OK");
@@ -113,7 +113,6 @@ public class ReadController implements Runnable{
     //essa vai ser a varredura dos aparelhos
     private void indicadores(int i) {
     	try {        
-            System.out.println(i + "  =  " + display);
             if(i==1){primaryViewController.cq1.setText(display);}
             if(i==2){ primaryViewController.cq2.setText(display);}
             if(i==3){ primaryViewController.cq3.setText(display);}
@@ -140,6 +139,9 @@ public class ReadController implements Runnable{
             
             if(i==12){ primaryViewController.ptopo.setText(display);}
             if(i==12){ primaryViewController.ptopo1.setText(display);}
+            
+            if(i==15){ primaryViewController.pcoroa.setText(display);}
+            if(i==15){ primaryViewController.pcoroa1.setText(display);}
             
             if(i==17){ primaryViewController.vazao.setText(display);}
             if(i==17){ primaryViewController.vazao1.setText(display);}

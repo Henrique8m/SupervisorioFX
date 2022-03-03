@@ -91,7 +91,6 @@ public class SerialService{
 				entrada.read(bufferRead);
 	
 			} catch (IOException e) {
-				System.out.println("Erro na leitura dos dados! STATUS: " + e.getMessage());
 				timerTask.cancel();
 				return null;
 			}
