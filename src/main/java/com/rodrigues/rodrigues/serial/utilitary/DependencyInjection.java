@@ -10,6 +10,7 @@ import com.rodrigues.rodrigues.securit.SerialMotherboard;
 import com.rodrigues.rodrigues.serial.controller.ReadController;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
+import com.rodrigues.rodrigues.serial.service.FormatData;
 import com.rodrigues.rodrigues.serial.service.ReadService;
 import com.rodrigues.rodrigues.serial.service.SerialService;
 
@@ -24,6 +25,7 @@ public class DependencyInjection {
 	private static final CheckLicenseController checkLicenseController = new CheckLicenseController();
 	private static final SerialMotherboard serialMotherboard = new SerialMotherboard();
 	private static final EncryptionAES encryptionAES = new EncryptionAES();
+	private static final FormatData formatData = new FormatData();
 	private static PrimaryViewController primaryViewController;
 	private static List<String> avaliablePorts;
 	
@@ -79,5 +81,9 @@ public class DependencyInjection {
 	
 	public static void setAvaliablePortsNames(List<String> avaliablePorts) {
 		DependencyInjection.avaliablePorts = avaliablePorts;
+	}
+
+	public static FormatData getFormatData() {
+		return formatData;
 	}
 }

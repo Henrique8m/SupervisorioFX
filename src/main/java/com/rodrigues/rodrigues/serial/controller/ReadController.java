@@ -2,6 +2,7 @@ package com.rodrigues.rodrigues.serial.controller;
 
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
+import com.rodrigues.rodrigues.serial.service.FormatData;
 import com.rodrigues.rodrigues.serial.service.SerialService;
 import com.rodrigues.rodrigues.serial.utilitary.CalculatorData;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
@@ -12,12 +13,16 @@ public class ReadController implements Runnable{
     private PrimaryViewController primaryViewController;
     private SerialService serialService;
     private SerialController serialController;
+    private FormatData formatData;
 
     private int lostConection = 0;
     private int attemptToReconnect = 5;
-    private byte[] numGadgets = new byte[17];
-    private byte[] bufferRead= new byte[8];
-
+    private byte[] numGadgets = new byte[18];
+    private byte[] bufferWrite= new byte[8];
+    private byte[] bufferRead = new byte[7];
+    
+    private String display;
+    
     private Thread thread = new Thread(this);
 
     public ReadController() {
@@ -35,8 +40,15 @@ public class ReadController implements Runnable{
 
     @Override
     public void run() {
+    	try {
+			thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         if(numGadgets!=null){
             for(int i=0; i < numGadgets.length; i++){
+
             	if(thread.isInterrupted()) {
                 	primaryViewController.txLog.setText("Conection Lost");
                 	primaryViewController.txLog1.setText("Conection Lost");
@@ -55,13 +67,25 @@ public class ReadController implements Runnable{
             serialService.setBaudRate(serialProperties.getBaud());
             serialService.setTimeout(serialProperties.getTimeout());
             
-            bufferRead = CalculatorData.addressRead(i);
+            bufferWrite = CalculatorData.addressRead(i);
 
             if(serialService.getPortIdentifier()) {
                 serialService.openPort();
-                serialService.writeData(bufferRead);
+                serialService.writeData(bufferWrite);
                 Thread.sleep(100);
-                serialService.readData();
+                bufferRead = serialService.readData();
+	                if(bufferRead != null) {                
+	                if((i >= 1 )&&(i<=11)||(i==13 || i==14))
+	                	display = formatData.formatData(bufferRead, "N1540", "int");
+	                else if (i==12 || i==17||i==18)
+	                	display = formatData.formatData(bufferRead, "N1540_4_a_20", "double");
+	                else if (i==15||i==16)
+	                	display = formatData.formatData(bufferRead, "N2000", "int");
+	                }else {
+	                	display = "Error";
+	                }
+	                indicadores(i);
+	                System.out.println("Aparelho end = " + i + " Pv = " + display);
                 Thread.sleep(300);
                 indicadores(i);
             	primaryViewController.txLog.setText("Conection OK");
@@ -88,47 +112,44 @@ public class ReadController implements Runnable{
     //Ate desenvolver algo melhor
     //essa vai ser a varredura dos aparelhos
     private void indicadores(int i) {
-    	try {
-            if(serialService.getDisplay()!=null){
-                String display = serialService.getDisplay();
-                System.out.println(i + "  =  " + display);
-                if(i==1){primaryViewController.cq1.setText(display);}
-                if(i==2){ primaryViewController.cq2.setText(display);}
-                if(i==3){ primaryViewController.cq3.setText(display);}
-                
-                if(i==4){ primaryViewController.cm1.setText(display);}
-                if(i==5){ primaryViewController.cm2.setText(display);}
-                if(i==6){ primaryViewController.cm3.setText(display);}
-                
-                if(i==7){ primaryViewController.s1.setText(display);}
-                if(i==8){ primaryViewController.s2.setText(display);}
-                if(i==9){ primaryViewController.s3.setText(display);}
-                
-                if(i==10){ primaryViewController.topoE.setText(display);}
-                if(i==10){ primaryViewController.topoD.setText(display);}
-                
-                if(i==11){ primaryViewController.coroaE.setText(display);}
-                if(i==11){ primaryViewController.coroaD.setText(display);}
-                
-                if(i==12){ primaryViewController.topoE1.setText(display);}
-                if(i==12){ primaryViewController.topoD1.setText(display);}
-                
-                if(i==13){ primaryViewController.coroaE1.setText(display);}
-                if(i==13){ primaryViewController.coroaD1.setText(display);}
-                
-                if(i==14){ primaryViewController.ptopo.setText(display);}
-                if(i==14){ primaryViewController.ptopo1.setText(display);}
-                
-                if(i==15){ primaryViewController.vazao.setText(display);}
-                if(i==15){ primaryViewController.vazao1.setText(display);}
-                
-                if(i==16){ primaryViewController.psm.setText(display);}
-                if(i==16){ primaryViewController.psm1.setText(display);}
-                
-                if(i==17){ primaryViewController.pirometro.setText(display);}
-                if(i==17){ primaryViewController.pirometro1.setText(display);}
-                
-            }
+    	try {        
+            System.out.println(i + "  =  " + display);
+            if(i==1){primaryViewController.cq1.setText(display);}
+            if(i==2){ primaryViewController.cq2.setText(display);}
+            if(i==3){ primaryViewController.cq3.setText(display);}
+            
+            if(i==4){ primaryViewController.cm1.setText(display);}
+            if(i==5){ primaryViewController.cm2.setText(display);}
+            if(i==6){ primaryViewController.cm3.setText(display);}
+            
+            if(i==7){ primaryViewController.s1.setText(display);}
+            if(i==8){ primaryViewController.s2.setText(display);}
+            if(i==9){ primaryViewController.s3.setText(display);}
+            
+            if(i==10){ primaryViewController.topoE.setText(display);}
+            if(i==10){ primaryViewController.topoD.setText(display);}
+            
+            if(i==11){ primaryViewController.coroaE.setText(display);}
+            if(i==11){ primaryViewController.coroaD.setText(display);}
+            
+            if(i==12){ primaryViewController.topoE1.setText(display);}
+            if(i==12){ primaryViewController.topoD1.setText(display);}
+            
+            if(i==13){ primaryViewController.coroaE1.setText(display);}
+            if(i==13){ primaryViewController.coroaD1.setText(display);}
+            
+            if(i==14){ primaryViewController.ptopo.setText(display);}
+            if(i==14){ primaryViewController.ptopo1.setText(display);}
+            
+            if(i==15){ primaryViewController.vazao.setText(display);}
+            if(i==15){ primaryViewController.vazao1.setText(display);}
+            
+            if(i==16){ primaryViewController.psm.setText(display);}
+            if(i==16){ primaryViewController.psm1.setText(display);}
+            
+            if(i==17){ primaryViewController.pirometro.setText(display);}
+            if(i==17){ primaryViewController.pirometro1.setText(display);}
+
     	}catch(Exception e) {
     		e.printStackTrace();
     	}
@@ -140,6 +161,7 @@ public class ReadController implements Runnable{
 		if(serialController==null)serialController = DependencyInjection.getSerialController();
 		if(primaryViewController==null)primaryViewController = DependencyInjection.getPrimaryViewController();
 		if(serialProperties==null)serialProperties = DependencyInjection.getSerialProperties();
+		if(formatData==null)formatData = DependencyInjection.getFormatData();
 	}
 
 	@SuppressWarnings("deprecation")

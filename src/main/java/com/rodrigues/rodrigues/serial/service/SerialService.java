@@ -92,15 +92,14 @@ public class SerialService{
 	
 			} catch (IOException e) {
 				System.out.println("Erro na leitura dos dados! STATUS: " + e.getMessage());
-				this.display = "Error";
 				timerTask.cancel();
+				return null;
 			}
 		
 		serialPort.close();
 		timerTask.cancel();
 		return bufferRead;
 	}
-
 	
 	public void setPortName(String portName) {
 		this.portName = portName;
