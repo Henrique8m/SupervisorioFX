@@ -67,7 +67,9 @@ public class ReadController implements Runnable{
             serialService.setBaudRate(serialProperties.getBaud());
             serialService.setTimeout(serialProperties.getTimeout());
             
-            bufferWrite = CalculatorData.addressRead(i);
+            if(i==15)
+            	bufferWrite = CalculatorData.addressRead(i,2);
+            bufferWrite = CalculatorData.addressRead(i,1);
 
             if(serialService.getPortIdentifier()) {
                 serialService.openPort();
