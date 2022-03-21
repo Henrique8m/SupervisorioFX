@@ -20,7 +20,26 @@ public class SerialController{
 
     int end = 2;
 
+    public void stopCommunication(){
+    	readController.setWhileRead(false);
+    }
+    
     public void startCommunication(){
+    	instanciates();
+    	
+    	try {
+			readController.read();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+    	
+    }
+    	
+    	/*
     	instanciates();
     	if(tarefa == null) {    		
 	    	primaryViewController.txLog.setText("Starting comunication...");
@@ -33,8 +52,8 @@ public class SerialController{
 			}
     	}
     }
-
-
+*/
+/*
 
 	private void timerInstantiated(){
         tarefa = new TimerTask() {
@@ -58,6 +77,9 @@ public class SerialController{
         }else
         readController.threadCancel();
     }
+    
+    *
+    */
     
     public ReadController getReadControler() {
     	return readController;

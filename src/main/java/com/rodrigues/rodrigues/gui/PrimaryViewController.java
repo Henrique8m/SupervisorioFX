@@ -90,9 +90,10 @@ public class PrimaryViewController implements Initializable {
 	public void stopComunication(ActionEvent event) throws UnsupportedCommOperationException, IOException {
 		
 		if(securit.validateData()) {
-				serialController.timerCancel();
-				txLog.setText("Comunication Stop");
-				txLog1.setText("Comunication Stop");
+			serialController.stopCommunication();
+			//serialController.timerCancel();
+			txLog.setText("Comunication Stop");
+			txLog1.setText("Comunication Stop");
 		}else {
 			showError();
 		}
@@ -140,7 +141,7 @@ public class PrimaryViewController implements Initializable {
 			}
 
 	}
-
+/*
 	@SuppressWarnings("unused")
 	private void beginTimer() {
 		timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(2), ev -> {
@@ -153,7 +154,7 @@ public class PrimaryViewController implements Initializable {
 		timeline.play();
 		time = true;
 
-	}
+	}*/
 
 	@SuppressWarnings("unused")
 	private void cancelTimer() {

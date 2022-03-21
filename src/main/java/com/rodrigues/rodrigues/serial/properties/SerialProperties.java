@@ -10,7 +10,7 @@ import com.rodrigues.rodrigues.MainApp;
 
 public class SerialProperties {
     private String porta;
-    private int baud = 9600;
+    private int baud = 19200;
     private int timeout = 500;
     private int stopBits = 1;
     private String paridade = "None";

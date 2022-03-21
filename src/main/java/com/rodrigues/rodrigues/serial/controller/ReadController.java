@@ -1,7 +1,5 @@
 package com.rodrigues.rodrigues.serial.controller;
 
-import java.io.InputStream;
-
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.service.FormatData;
@@ -19,14 +17,17 @@ public class ReadController implements Runnable{
 
     private int lostConection = 0;
     private int attemptToReconnect = 5;
-    private byte[] numGadgets = new byte[18];
+    private byte[] numGadgets = new byte[19];
     private byte[] bufferWrite= new byte[8];
     private byte[] bufferRead = new byte[7];
-    
+    private byte[] bufferReadAlfa = new byte[17];
+     
     private String display;
-    private String[] displayVetor = new String[18];
+    private String[] displayVetor = new String[19];
     
     private Thread thread = new Thread(this);
+    
+    private Boolean whileRead = false;
 
     public ReadController() {
 		// TODO Auto-generated constructor stub
@@ -37,6 +38,7 @@ public class ReadController implements Runnable{
 		instanciates();
 		if(!thread.isAlive()){
 			thread.run();
+			 whileRead = true;
 			lostConection = 0;
 			}
 		}
@@ -44,12 +46,12 @@ public class ReadController implements Runnable{
     @Override
     public void run() {
     	try {
-			thread.sleep(1000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        if(numGadgets!=null){
+    	while(whileRead) {
             for(int i=0; i < numGadgets.length; i++){
 
             	if(thread.isInterrupted()) {
@@ -58,9 +60,8 @@ public class ReadController implements Runnable{
             		return;
             	}                	
                 sweep(i+1);
-                
-            }
-        }else threadCancel();        
+           }
+    	}
     }
 
     private void sweep(int i) {
@@ -71,44 +72,50 @@ public class ReadController implements Runnable{
             serialService.setTimeout(serialProperties.getTimeout());
             serialService.setStopBits(serialProperties.getStopBits());
             
-            if(i==15)
-            	bufferWrite = CalculatorData.addressRead(i,2);
-            bufferWrite = CalculatorData.addressRead(i,1);
+            if(i==19)
+            	bufferWrite = CalculatorData.addressReadAlfa(i,80,6);            
+            else if(i==15)
+            	bufferWrite = CalculatorData.addressRead(i,2);            
+            else bufferWrite = CalculatorData.addressRead(i,1);
+            
 
             if(serialService.getPortIdentifier()) {
                 serialService.openPort();
                 serialService.writeData(bufferWrite);
-                //Thread.sleep(100);
-                bufferRead = serialService.readData();
                 
-                if(bufferRead != null) {                
-	                if((i >= 1 )&&(i<=11)||(i==13 || i==14))
-	                	displayVetor[i-1] = formatData.formatData(bufferRead, "N1540", "int");
-	                else if (i==12 || i==17||i==18)
-	                	displayVetor[i-1] = formatData.formatData(bufferRead, "N1540_4_a_20", "double");
-	                else if (i==15||i==16)
-	                	displayVetor[i-1] = formatData.formatData(bufferRead, "N2000", "int");
-	                }else {
-	                	displayVetor[i-1] = "Error";
+				if(i==19)
+	            	bufferReadAlfa = serialService.readDataAlfa();
+	            else bufferRead = serialService.readData();
+	                
+	                if(bufferRead != null) {                
+		                if((i >= 1 )&&(i<=11)||(i==13 || i==14))
+		                	displayVetor[i-1] = formatData.formatData(bufferRead, "N1540", "int");
+		                else if (i==12 || i==17||i==18)
+		                	displayVetor[i-1] = formatData.formatData(bufferRead, "N1540_4_a_20", "double");
+		                else if (i==15||i==16)
+		                	displayVetor[i-1] = formatData.formatData(bufferRead, "N2000", "int");
+		                }else if(i==19) {
+		                	displayVetor[i-1] = formatData.formatDataAlfa(bufferReadAlfa);
+		                }else {
+		                	displayVetor[i-1] = "Error";
+		            }
+	                
+	                indicadores(i);
+	                
+	            	primaryViewController.txLog.setText("Conection OK");
+	            	primaryViewController.txLog1.setText("Conection OK");
 	            }
-                
-                //indicadores(i);
-                
-                System.out.println(displayVetor[i-1]);
-                
-            	primaryViewController.txLog.setText("Conection OK");
-            	primaryViewController.txLog1.setText("Conection OK");
-            }
-            else{
-            	lostConection++;
-            	Thread.sleep(300); 
-            	
-            	if(lostConection <= attemptToReconnect) {
-            		thread.interrupt();
-            	}else {
-                	serialController.timerCancel();
-            	}
-            } 
+	            else{
+	            	lostConection++;
+	            	Thread.sleep(300); 
+	            	
+	            	if(lostConection <= attemptToReconnect) {
+	            		thread.interrupt();
+	            	}else {
+	                	//serialController.timerCancel();
+	            		whileRead = false;
+	            	}
+	            } 
 
         }catch(Exception e) {
         	e.printStackTrace();
@@ -174,7 +181,6 @@ public class ReadController implements Runnable{
 		if(formatData==null)formatData = DependencyInjection.getFormatData();
 	}
 
-	@SuppressWarnings("deprecation")
 	public void threadCancel() {
 		
     	primaryViewController.txLog.setText("Conection Lost");
@@ -183,5 +189,14 @@ public class ReadController implements Runnable{
 		if(!thread.isInterrupted()) {
 			thread.interrupt();
 		}	
+		whileRead = false;
+	}
+	
+	public Boolean getWhileRead() {
+		return this.whileRead;
+	}
+	
+	public void setWhileRead(Boolean status) {
+		this.whileRead = status;
 	}
 }

@@ -18,6 +18,8 @@ public class SerialService{
 	public SerialService() {}
 	
 	private byte[] bufferRead = new byte[7];
+	private byte[] bufferReadAlfa = new byte[17];
+
 
 	private String display;
 	
@@ -95,6 +97,34 @@ public class SerialService{
 					}}; 
 			timer.schedule(timerTask,50);
 			entrada.read(bufferRead);
+			
+			timerTask.cancel();	
+			serialPort.close();
+
+			} catch (IOException e) {				
+				return null;
+			} catch(NullPointerException e) {
+				return null;
+			}
+		
+		return bufferRead;
+	}
+	
+	public byte[] readDataAlfa(){
+		try {
+			serialPort.setInputBufferSize(17);
+			entrada = serialPort.getInputStream();
+				
+			timerTask = new TimerTask() {
+				@Override
+				public void run() {
+					serialPort.close(); 
+					}}; 
+			timer.schedule(timerTask,50);
+
+			entrada.read(bufferReadAlfa);
+
+			
 			timerTask.cancel();	
 			serialPort.close();
 
@@ -104,7 +134,7 @@ public class SerialService{
 				return null;
 			}
 
-		return bufferRead;
+		return bufferReadAlfa;
 	}
 	
 	public void setPortName(String portName) {
