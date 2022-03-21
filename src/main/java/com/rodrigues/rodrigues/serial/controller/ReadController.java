@@ -1,5 +1,7 @@
 package com.rodrigues.rodrigues.serial.controller;
 
+import java.io.InputStream;
+
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.service.FormatData;
@@ -22,6 +24,7 @@ public class ReadController implements Runnable{
     private byte[] bufferRead = new byte[7];
     
     private String display;
+    private String[] displayVetor = new String[18];
     
     private Thread thread = new Thread(this);
 
@@ -66,6 +69,7 @@ public class ReadController implements Runnable{
             serialService.setPortName(serialProperties.getPorta());
             serialService.setBaudRate(serialProperties.getBaud());
             serialService.setTimeout(serialProperties.getTimeout());
+            serialService.setStopBits(serialProperties.getStopBits());
             
             if(i==15)
             	bufferWrite = CalculatorData.addressRead(i,2);
@@ -79,17 +83,19 @@ public class ReadController implements Runnable{
                 
                 if(bufferRead != null) {                
 	                if((i >= 1 )&&(i<=11)||(i==13 || i==14))
-	                	display = formatData.formatData(bufferRead, "N1540", "int");
+	                	displayVetor[i-1] = formatData.formatData(bufferRead, "N1540", "int");
 	                else if (i==12 || i==17||i==18)
-	                	display = formatData.formatData(bufferRead, "N1540_4_a_20", "double");
+	                	displayVetor[i-1] = formatData.formatData(bufferRead, "N1540_4_a_20", "double");
 	                else if (i==15||i==16)
-	                	display = formatData.formatData(bufferRead, "N2000", "int");
+	                	displayVetor[i-1] = formatData.formatData(bufferRead, "N2000", "int");
 	                }else {
-	                	display = "Error";
+	                	displayVetor[i-1] = "Error";
 	            }
                 
-                Thread.sleep(200); 
-                indicadores(i);
+                //indicadores(i);
+                
+                System.out.println(displayVetor[i-1]);
+                
             	primaryViewController.txLog.setText("Conection OK");
             	primaryViewController.txLog1.setText("Conection OK");
             }

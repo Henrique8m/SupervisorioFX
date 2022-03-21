@@ -17,14 +17,15 @@ public class SerialService{
 	
 	public SerialService() {}
 	
-	private final byte[] bufferRead = new byte[7];
+	private byte[] bufferRead = new byte[7];
 
 	private String display;
 	
 	private String portName;
 	private int baudRate;
 	private int timeout;
-
+	private int stopBits;
+	
 	private CommPortIdentifier cp;
 	private SerialPort serialPort;
 
@@ -61,7 +62,7 @@ public class SerialService{
 
 		try {
 			serialPort = (SerialPort) cp.open("SerialService", timeout);
-			serialPort.setSerialPortParams(baudRate, serialPort.DATABITS_8, serialPort.STOPBITS_2, serialPort.PARITY_NONE);
+			serialPort.setSerialPortParams(baudRate, serialPort.DATABITS_8, stopBits, serialPort.PARITY_NONE);
 		}
 		catch (PortInUseException e) {System.out.println("Erro ao abrir a porta! STATUS: " + e.getMessage());}
 		catch (UnsupportedCommOperationException e) {System.out.println("Erro com os parametros da porta! STATUS: " + e.getMessage());}
@@ -70,10 +71,11 @@ public class SerialService{
 	public void writeData(byte[] bufferWrite) {
 
 		try {
+			Thread.sleep(150);
 			serialPort.setOutputBufferSize(8);
 			saida = serialPort.getOutputStream();
 			saida.write(bufferWrite);
-			Thread.sleep(200);
+			Thread.sleep(10);
 			saida.flush();
 			saida.close();
 		} catch (IOException e) {System.out.println("Erro ao enviar os dados! STATUS: ");e.printStackTrace();} catch (InterruptedException e) {
@@ -83,20 +85,25 @@ public class SerialService{
 
 	public byte[] readData(){
 		try {
-				timerTask = new TimerTask() {
+			serialPort.setInputBufferSize(7);
+			entrada = serialPort.getInputStream();
+				
+			timerTask = new TimerTask() {
 				@Override
-				public void run() {serialPort.close();}}; timer.schedule(timerTask,100);
-				serialPort.setInputBufferSize(7);
-				entrada = serialPort.getInputStream();
-				entrada.read(bufferRead);
-	
-			} catch (IOException e) {
-				timerTask.cancel();
+				public void run() {
+					serialPort.close(); 
+					}}; 
+			timer.schedule(timerTask,50);
+			entrada.read(bufferRead);
+			timerTask.cancel();	
+			serialPort.close();
+
+			} catch (IOException e) {				
+				return null;
+			} catch(NullPointerException e) {
 				return null;
 			}
-		
-		serialPort.close();
-		timerTask.cancel();
+
 		return bufferRead;
 	}
 	
@@ -110,5 +117,9 @@ public class SerialService{
 
 	public void setTimeout(int timeout) {
 		this.timeout = timeout;
+	}
+	
+	public void setStopBits(int stopBits) {
+		this.stopBits = stopBits;
 	}
 }
