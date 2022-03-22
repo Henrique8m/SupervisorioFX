@@ -73,11 +73,11 @@ public class SerialService{
 	public void writeData(byte[] bufferWrite) {
 
 		try {
-			Thread.sleep(150);
+			Thread.sleep(250);
 			serialPort.setOutputBufferSize(8);
 			saida = serialPort.getOutputStream();
 			saida.write(bufferWrite);
-			Thread.sleep(10);
+			Thread.sleep(50);
 			saida.flush();
 			saida.close();
 		} catch (IOException e) {System.out.println("Erro ao enviar os dados! STATUS: ");e.printStackTrace();} catch (InterruptedException e) {
@@ -95,7 +95,7 @@ public class SerialService{
 				public void run() {
 					serialPort.close(); 
 					}}; 
-			timer.schedule(timerTask,50);
+			timer.schedule(timerTask,100);
 			entrada.read(bufferRead);
 			
 			timerTask.cancel();	
@@ -120,7 +120,7 @@ public class SerialService{
 				public void run() {
 					serialPort.close(); 
 					}}; 
-			timer.schedule(timerTask,50);
+			timer.schedule(timerTask,100);
 
 			entrada.read(bufferReadAlfa);
 
@@ -129,9 +129,9 @@ public class SerialService{
 			serialPort.close();
 
 			} catch (IOException e) {				
-				return null;
+				return bufferReadAlfa;
 			} catch(NullPointerException e) {
-				return null;
+				return bufferReadAlfa;
 			}
 
 		return bufferReadAlfa;

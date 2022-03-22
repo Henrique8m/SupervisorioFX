@@ -20,7 +20,7 @@ public class ReadController implements Runnable{
     private byte[] numGadgets = new byte[28];
     private byte[] bufferWrite= new byte[8];
     private byte[] bufferRead = new byte[7];
-    private byte[] bufferReadAlfa = new byte[28];
+    private byte[] bufferReadAlfa = new byte[17];
      
     private String display;
     private String[] displayVetor = new String[29];
@@ -77,7 +77,7 @@ public class ReadController implements Runnable{
             serialService.setTimeout(serialProperties.getTimeout());
             serialService.setStopBits(serialProperties.getStopBits());
             
-            if(i==19)
+            if(i>=19)
             	bufferWrite = CalculatorData.addressReadAlfa(i,80,6);            
             else if(i==15)
             	bufferWrite = CalculatorData.addressRead(i,2);            
@@ -88,23 +88,28 @@ public class ReadController implements Runnable{
                 serialService.openPort();
                 serialService.writeData(bufferWrite);
                 
-				if(i==19)
+				if(i>=19)
 	            	bufferReadAlfa = serialService.readDataAlfa();
 	            else bufferRead = serialService.readData();
 	                
 	                if(bufferRead != null) {                
 		                if((i >= 1 )&&(i<=11)||(i==13 || i==14))
-		                	displayVetor[i-1] = formatData.formatData(bufferRead, "N1540", "int");
+		                	//displayVetor[i-1] 
+		                	display = formatData.formatData(bufferRead, "N1540", "int");
 		                else if (i==12 || i==17||i==18)
-		                	displayVetor[i-1] = formatData.formatData(bufferRead, "N1540_4_a_20", "double");
+		                	//displayVetor[i-1]
+		                	display= formatData.formatData(bufferRead, "N1540_4_a_20", "double");
 		                else if (i==15||i==16)
-		                	displayVetor[i-1] = formatData.formatData(bufferRead, "N2000", "int");
-		                }else if(i==19) {
-		                	displayVetor[i-1] = formatData.formatDataAlfa(bufferReadAlfa);
+		                	//displayVetor[i-1]
+		                	display	= formatData.formatData(bufferRead, "N2000", "int");
+		                }else if(i>=19) {
+		                	//displayVetor[i-1]
+		                	display	= formatData.formatDataAlfa(bufferReadAlfa);
 		                }else {
-		                	displayVetor[i-1] = "Error";
+		                	//displayVetor[i-1]
+		                	display	= "Error";
 		            }
-	                display = displayVetor[i-1];
+	                //display = displayVetor[i-1];
 	                indicadores(i);
 
 	            	primaryViewController.txLog.setText("Conection OK");

@@ -59,10 +59,13 @@ public class FormatData {
 				
 			} else {
 
-				valueDouble = (Byte.toUnsignedInt(bufferRead[10])) / division;
+				valueDouble = (Byte.toUnsignedInt(bufferRead[10]));
 			}
 			
-		}else System.out.println("buffer Read null na classe FormatDataAlda");
+		}else {
+			System.out.println("buffer Read null na classe FormatDataAlda");
+			return "1.02";
+		}
 
 		return Double.toString(valueDouble/10);
 	}
