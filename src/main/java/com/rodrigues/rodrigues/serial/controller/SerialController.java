@@ -21,7 +21,7 @@ public class SerialController{
     int end = 2;
 
     public void stopCommunication(){
-    	readController.setWhileRead(false);
+    	readController.threadCancel();
     }
     
     public void startCommunication(){

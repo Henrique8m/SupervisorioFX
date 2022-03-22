@@ -70,6 +70,10 @@ public class PrimaryViewController implements Initializable {
 	public Text pirometro, pirometro1;
 	@FXML
 	public Text txLog, txLog1;
+	@FXML
+	public Text Balanca01, Balanca02, Balanca03, Balanca04, Balanca05;
+	@FXML
+	public Text Balanca06, Balanca07, Balanca08, Balanca09, Balanca10;
 
 	//@FXML
 	//private void onMenuItemPortCom(ActionEvent event) throws UnsupportedCommOperationException {

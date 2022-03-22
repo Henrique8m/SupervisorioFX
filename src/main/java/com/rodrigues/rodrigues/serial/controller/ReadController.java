@@ -17,13 +17,13 @@ public class ReadController implements Runnable{
 
     private int lostConection = 0;
     private int attemptToReconnect = 5;
-    private byte[] numGadgets = new byte[19];
+    private byte[] numGadgets = new byte[28];
     private byte[] bufferWrite= new byte[8];
     private byte[] bufferRead = new byte[7];
-    private byte[] bufferReadAlfa = new byte[17];
+    private byte[] bufferReadAlfa = new byte[28];
      
     private String display;
-    private String[] displayVetor = new String[19];
+    private String[] displayVetor = new String[29];
     
     private Thread thread = new Thread(this);
     
@@ -37,10 +37,15 @@ public class ReadController implements Runnable{
 		
 		instanciates();
 		if(!thread.isAlive()){
-			thread.run();
-			 whileRead = true;
+			whileRead = true;
 			lostConection = 0;
+			thread.start();
+			}	
+			else {
+				whileRead = true;
+				thread.resume();
 			}
+			
 		}
 
     @Override
@@ -99,9 +104,9 @@ public class ReadController implements Runnable{
 		                }else {
 		                	displayVetor[i-1] = "Error";
 		            }
-	                
+	                display = displayVetor[i-1];
 	                indicadores(i);
-	                
+
 	            	primaryViewController.txLog.setText("Conection OK");
 	            	primaryViewController.txLog1.setText("Conection OK");
 	            }
@@ -113,7 +118,7 @@ public class ReadController implements Runnable{
 	            		thread.interrupt();
 	            	}else {
 	                	//serialController.timerCancel();
-	            		whileRead = false;
+	            		threadCancel();
 	            	}
 	            } 
 
@@ -166,6 +171,28 @@ public class ReadController implements Runnable{
             
             if(i==16){ primaryViewController.pirometro.setText(display);}
             if(i==16){ primaryViewController.pirometro1.setText(display);}
+            
+            if(i==19){ primaryViewController.Balanca01.setText(display);}
+            
+            if(i==20){ primaryViewController.Balanca02.setText(display);}
+            
+            if(i==21){ primaryViewController.Balanca03.setText(display);}
+            
+            if(i==22){ primaryViewController.Balanca04.setText(display);}
+            
+            if(i==23){ primaryViewController.Balanca05.setText(display);}
+            
+            if(i==24){ primaryViewController.Balanca06.setText(display);}
+            
+            if(i==25){ primaryViewController.Balanca07.setText(display);}
+            
+            if(i==26){ primaryViewController.Balanca08.setText(display);}
+            
+            if(i==27){ primaryViewController.Balanca09.setText(display);}
+            
+            if(i==28){ primaryViewController.Balanca10.setText(display);}
+            
+            
 
     	}catch(Exception e) {
     		e.printStackTrace();
@@ -187,16 +214,12 @@ public class ReadController implements Runnable{
     	primaryViewController.txLog1.setText("Conection Lost");
     	
 		if(!thread.isInterrupted()) {
-			thread.interrupt();
+			thread.suspend();
 		}	
 		whileRead = false;
 	}
 	
 	public Boolean getWhileRead() {
 		return this.whileRead;
-	}
-	
-	public void setWhileRead(Boolean status) {
-		this.whileRead = status;
 	}
 }
