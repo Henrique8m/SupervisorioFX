@@ -102,30 +102,32 @@ public class ReadController implements Runnable{
 		                else if (i==15||i==16)
 		                	//displayVetor[i-1]
 		                	display	= formatData.formatData(bufferRead, "N2000", "int");
-		                }else if(i>=19) {
+	                }else if(bufferReadAlfa != null){
+	                	if(i>=19)
 		                	//displayVetor[i-1]
 		                	display	= formatData.formatDataAlfa(bufferReadAlfa);
-		                }else {
-		                	//displayVetor[i-1]
-		                	display	= "Error";
+	                }else {
+	                	//displayVetor[i-1]
+	                	display	= "Error";
 		            }
 	                //display = displayVetor[i-1];
-	                indicadores(i);
-
-	            	primaryViewController.txLog.setText("Conection OK");
-	            	primaryViewController.txLog1.setText("Conection OK");
-	            }
-	            else{
-	            	lostConection++;
-	            	Thread.sleep(300); 
-	            	
-	            	if(lostConection <= attemptToReconnect) {
-	            		thread.interrupt();
-	            	}else {
-	                	//serialController.timerCancel();
-	            		threadCancel();
-	            	}
-	            } 
+	                indicadores(i, display);
+	                bufferRead = null;
+	                bufferReadAlfa = null;
+            	primaryViewController.txLog.setText("Conection OK");
+            	primaryViewController.txLog1.setText("Conection OK");
+            }
+            else{
+            	lostConection++;
+            	Thread.sleep(300); 
+            	
+            	if(lostConection <= attemptToReconnect) {
+            		thread.interrupt();
+            	}else {
+                	//serialController.timerCancel();
+            		threadCancel();
+            	}
+            } 
 
         }catch(Exception e) {
         	e.printStackTrace();
@@ -136,7 +138,7 @@ public class ReadController implements Runnable{
 
     //Ate desenvolver algo melhor
     //essa vai ser a varredura dos aparelhos
-    private void indicadores(int i) {
+    private void indicadores(int i, String display) {
     	try {        
             if(i==1){primaryViewController.cq1.setText(display);}
             if(i==2){ primaryViewController.cq2.setText(display);}

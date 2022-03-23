@@ -19,17 +19,21 @@ import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 
 public class PrimaryViewController implements Initializable {
 
@@ -43,7 +47,7 @@ public class PrimaryViewController implements Initializable {
 	@SuppressWarnings("unused")
 	private boolean time;
 	DataSecurit securit;
-	
+
 	private List<String> avaliablePorts;
 
 	@FXML
@@ -74,31 +78,35 @@ public class PrimaryViewController implements Initializable {
 	public Text Balanca01, Balanca02, Balanca03, Balanca04, Balanca05;
 	@FXML
 	public Text Balanca06, Balanca07, Balanca08, Balanca09, Balanca10;
+	@FXML
+	public LineChart<String, Integer> lineChart;
 
-	//@FXML
-	//private void onMenuItemPortCom(ActionEvent event) throws UnsupportedCommOperationException {
-	//	//loadView("/fxml/" + "portcom" + ".fxml", null);
-	//}
+	// @FXML
+	// private void onMenuItemPortCom(ActionEvent event) throws
+	// UnsupportedCommOperationException {
+	// //loadView("/fxml/" + "portcom" + ".fxml", null);
+	// }
 	@FXML
 	private void comPort(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		loadView("propertiesCom", null, "Configuração Porta Com", MainApp.getStage(),DependencyInjection.getPropertiesComController());
+		loadView("propertiesCom", null, "Configuração Porta Com", MainApp.getStage(),
+				DependencyInjection.getPropertiesComController());
 	}
-	
+
 	@FXML
 	private void checkLicense(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		loadView("checkLicense", null, "Status License", MainApp.getStage(), DependencyInjection.getCheckLicenseController());
+		loadView("checkLicense", null, "Status License", MainApp.getStage(),
+				DependencyInjection.getCheckLicenseController());
 	}
-	
-	
+
 	@FXML
 	public void stopComunication(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		
-		if(securit.validateData()) {
+
+		if (securit.validateData()) {
 			serialController.stopCommunication();
-			//serialController.timerCancel();
+			// serialController.timerCancel();
 			txLog.setText("Comunication Stop");
 			txLog1.setText("Comunication Stop");
-		}else {
+		} else {
 			showError();
 		}
 
@@ -106,11 +114,11 @@ public class PrimaryViewController implements Initializable {
 
 	@FXML
 	private void startComunication(ActionEvent event) throws UnsupportedCommOperationException, InterruptedException {
-		if(securit.validateData()) {
+		if (securit.validateData()) {
 			serialController.startCommunication();
-		}else {
+		} else {
 			showError();
-		}		
+		}
 	}
 
 	@Override
@@ -143,61 +151,148 @@ public class PrimaryViewController implements Initializable {
 			}else {
 				showError();
 			}
-
+			LineChartSample();
 	}
-/*
-	@SuppressWarnings("unused")
-	private void beginTimer() {
-		timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(2), ev -> {
-			// sComm.WriteData();
-			//sComm.formatDados();
-			//lblOut.setText(sComm.getDisplay());
-		}));
-
-		timeline.setCycleCount(Animation.INDEFINITE);
-		timeline.play();
-		time = true;
-
-	}*/
+	/*
+	 * @SuppressWarnings("unused") private void beginTimer() { timeline = new
+	 * Timeline(new KeyFrame(javafx.util.Duration.seconds(2), ev -> { //
+	 * sComm.WriteData(); //sComm.formatDados();
+	 * //lblOut.setText(sComm.getDisplay()); }));
+	 * 
+	 * timeline.setCycleCount(Animation.INDEFINITE); timeline.play(); time = true;
+	 * 
+	 * }
+	 */
 
 	@SuppressWarnings("unused")
 	private void cancelTimer() {
 		timeline.stop();
 	}
 
-	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title, Stage stageEvent, Object controller) {
+	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title,
+			Stage stageEvent, Object controller) {
 		try {
-			UtilitarioNewView.getNewViewModal(title, (Pane) UtilitarioNewView.loadFXML(absoluteName, controller), stageEvent);
+			UtilitarioNewView.getNewViewModal(title, (Pane) UtilitarioNewView.loadFXML(absoluteName, controller),
+					stageEvent);
 		} catch (IOException e) {
 			e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);
-		}	
+		}
 	}
-	
-    private void instanciates() {
-    	if(serialController==null)serialController = DependencyInjection.getSerialController();
-		if(serialProperties==null)serialProperties = DependencyInjection.getSerialProperties();
+
+	private void instanciates() {
+		if (serialController == null)
+			serialController = DependencyInjection.getSerialController();
+		if (serialProperties == null)
+			serialProperties = DependencyInjection.getSerialProperties();
 	}
-    private void showError() {
-    	Alerts.showAlert("Securit", "Error, validação da licença ", "Erro ao validar a licença, entre em contato com o adim", AlertType.ERROR);
-    }
+
+	private void showError() {
+		Alerts.showAlert("Securit", "Error, validação da licença ",
+				"Erro ao validar a licença, entre em contato com o adim", AlertType.ERROR);
+	}
+
+	public void LineChartSample() {
+		
+		lineChart.setTitle("Grafico Ativo");
+		
+		//lineChart.setVisible(true);
+		Series<String, Integer> series = new XYChart.Series<>();
+		series.setName("Pressao da Coroa");
+        
+        series.getData().add(new Data<String, Integer>("10:10", 23));
+        series.getData().add(new Data<String, Integer>("11:10", 14));
+        series.getData().add(new Data<String, Integer>("12:10", 15));
+        series.getData().add(new Data<String, Integer>("13:10", 24));
+        series.getData().add(new Data<String, Integer>("14:10", 34));
+        series.getData().add(new Data<String, Integer>("15:10", 36));
+        series.getData().add(new Data<String, Integer>("16:10", 22));
+        series.getData().add(new Data<String, Integer>("17:10", 45));
+        series.getData().add(new Data<String, Integer>("18:10", 43));
+        series.getData().add(new Data<String, Integer>("19:10", 17));
+        series.getData().add(new Data<String, Integer>("20:10", 29));
+        series.getData().add(new Data<String, Integer>("21:10", 100));
+		
+		lineChart.getData().add(series);
+		
+		
+		/*
+
+		CategoryAxis xAxis = new CategoryAxis();
+
+		NumberAxis yAxis = new NumberAxis();
+
+		xAxis.setLabel("Month");
+
+		LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
+
+		lineChart.setTitle("Stock Monitoring, 2010");
+
+		XYChart.Series series1 = new XYChart.Series();
+		series1.setName("Portfolio 1");
+
+		series1.getData().add(new XYChart.Data("Jan", 23));
+		series1.getData().add(new XYChart.Data("Feb", 14));
+		series1.getData().add(new XYChart.Data("Mar", 15));
+		series1.getData().add(new XYChart.Data("Apr", 24));
+		series1.getData().add(new XYChart.Data("May", 34));
+		series1.getData().add(new XYChart.Data("Jun", 36));
+		series1.getData().add(new XYChart.Data("Jul", 22));
+		series1.getData().add(new XYChart.Data("Aug", 45));
+		series1.getData().add(new XYChart.Data("Sep", 43));
+		series1.getData().add(new XYChart.Data("Oct", 17));
+		series1.getData().add(new XYChart.Data("Nov", 29));
+		series1.getData().add(new XYChart.Data("Dec", 25));
+
+		XYChart.Series series2 = new XYChart.Series();
+		series2.setName("Portfolio 2");
+		series2.getData().add(new XYChart.Data("Jan", 33));
+		series2.getData().add(new XYChart.Data("Feb", 34));
+		series2.getData().add(new XYChart.Data("Mar", 25));
+		series2.getData().add(new XYChart.Data("Apr", 44));
+		series2.getData().add(new XYChart.Data("May", 39));
+		series2.getData().add(new XYChart.Data("Jun", 16));
+		series2.getData().add(new XYChart.Data("Jul", 55));
+		series2.getData().add(new XYChart.Data("Aug", 54));
+		series2.getData().add(new XYChart.Data("Sep", 48));
+		series2.getData().add(new XYChart.Data("Oct", 27));
+		series2.getData().add(new XYChart.Data("Nov", 37));
+		series2.getData().add(new XYChart.Data("Dec", 29));
+
+		XYChart.Series series3 = new XYChart.Series();
+		series3.setName("Portfolio 3");
+		series3.getData().add(new XYChart.Data("Jan", 44));
+		series3.getData().add(new XYChart.Data("Feb", 35));
+		series3.getData().add(new XYChart.Data("Mar", 36));
+		series3.getData().add(new XYChart.Data("Apr", 33));
+		series3.getData().add(new XYChart.Data("May", 31));
+		series3.getData().add(new XYChart.Data("Jun", 26));
+		series3.getData().add(new XYChart.Data("Jul", 22));
+		series3.getData().add(new XYChart.Data("Aug", 25));
+		series3.getData().add(new XYChart.Data("Sep", 43));
+		series3.getData().add(new XYChart.Data("Oct", 44));
+		series3.getData().add(new XYChart.Data("Nov", 45));
+		series3.getData().add(new XYChart.Data("Dec", 44));
+
+		lineChart.getData().addAll(series1, series2, series3);
+*/
+	}
+
 }
 
-/*	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) {
-	try {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-		VBox newVBox = loader.load();
-		Scene mainScene = MainApp.getMainScene();
-		VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
-
-		Node mainMenu = mainVBox.getChildren().get(0);
-		mainVBox.getChildren().clear();
-		mainVBox.getChildren().add(mainMenu);
-		mainVBox.getChildren().addAll(newVBox.getChildren());
-
-		// T controller = loader.getController();
-		// initializingAction.accept(controller);
-	} catch (IOException e) {
-		Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);
-	}	
-}*/
+/*
+ * private synchronized <T> void loadView(String absoluteName, Consumer<T>
+ * initializingAction) { try { FXMLLoader loader = new
+ * FXMLLoader(getClass().getResource(absoluteName)); VBox newVBox =
+ * loader.load(); Scene mainScene = MainApp.getMainScene(); VBox mainVBox =
+ * (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
+ * 
+ * Node mainMenu = mainVBox.getChildren().get(0);
+ * mainVBox.getChildren().clear(); mainVBox.getChildren().add(mainMenu);
+ * mainVBox.getChildren().addAll(newVBox.getChildren());
+ * 
+ * // T controller = loader.getController(); //
+ * initializingAction.accept(controller); } catch (IOException e) {
+ * Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(),
+ * AlertType.ERROR); } }
+ */

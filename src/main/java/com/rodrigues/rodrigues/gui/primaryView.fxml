@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -42,7 +45,10 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="709.0" fitWidth="1360.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <ImageView fitHeight="709.0" fitWidth="1360.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@resources/FundoAltoForno.png" />
+                                 </image></ImageView>
                               <Text fx:id="vazao" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="795.0" layoutY="666.0" strokeType="OUTSIDE" strokeWidth="0.0" text="13.00" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
                                  <font>
                                     <Font name="Calibri Bold" size="20.0" />
@@ -89,6 +95,14 @@
                                  </font>
                               </Text>
                               <Text fx:id="txLog" layoutX="1169.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.8033447265625" />
+                              <LineChart fx:id="lineChart" layoutX="23.0" layoutY="150.0" prefHeight="445.0" prefWidth="777.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" style="-fx-background-color: ffff;" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" style="-fx-background-color: ffff;" />
+                                </yAxis>
+                              </LineChart>
                            </children>
                         </AnchorPane>
                      </content>
@@ -214,7 +228,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: ffff;">
                            <children>
-                              <GridPane alignment="CENTER" prefHeight="710.0" prefWidth="1449.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <GridPane alignment="CENTER" prefHeight="709.0" prefWidth="1360.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columnConstraints>
                                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
