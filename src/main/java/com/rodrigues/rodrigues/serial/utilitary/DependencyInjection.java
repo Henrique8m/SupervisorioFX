@@ -9,6 +9,7 @@ import com.rodrigues.rodrigues.securit.EncryptionAES;
 import com.rodrigues.rodrigues.securit.SerialMotherboard;
 import com.rodrigues.rodrigues.serial.controller.ReadController;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
+import com.rodrigues.rodrigues.serial.dao.WriteSetPoints;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.service.FormatData;
 import com.rodrigues.rodrigues.serial.service.ReadService;
@@ -26,6 +27,7 @@ public class DependencyInjection {
 	private static final SerialMotherboard serialMotherboard = new SerialMotherboard();
 	private static final EncryptionAES encryptionAES = new EncryptionAES();
 	private static final FormatData formatData = new FormatData();
+	private static final WriteSetPoints writeSetPoints = new WriteSetPoints();
 	private static PrimaryViewController primaryViewController;
 	private static List<String> avaliablePorts;
 	
@@ -85,5 +87,9 @@ public class DependencyInjection {
 
 	public static FormatData getFormatData() {
 		return formatData;
+	}
+
+	public static WriteSetPoints getWritesetpoints() {
+		return writeSetPoints;
 	}
 }

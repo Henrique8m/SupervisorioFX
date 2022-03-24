@@ -84,6 +84,21 @@ public class SerialService{
 			e.printStackTrace();
 		}
 	}
+	
+	public void writeDataAlfa(byte[] bufferWrite) {
+
+		try {
+			serialPort.setOutputBufferSize(27);
+			saida = serialPort.getOutputStream();
+			saida.write(bufferWrite);
+			Thread.sleep(10);
+			saida.flush();
+			saida.close();
+			serialPort.close();
+		} catch (IOException e) {System.out.println("Erro ao enviar os dados! STATUS: ");e.printStackTrace();} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public byte[] readData(){
 		try {

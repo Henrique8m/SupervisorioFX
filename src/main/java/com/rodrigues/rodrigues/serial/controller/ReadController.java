@@ -1,6 +1,7 @@
 package com.rodrigues.rodrigues.serial.controller;
 
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
+import com.rodrigues.rodrigues.serial.dao.WriteSetPoints;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.service.FormatData;
 import com.rodrigues.rodrigues.serial.service.SerialService;
@@ -14,6 +15,7 @@ public class ReadController implements Runnable{
     private SerialService serialService;
     private SerialController serialController;
     private FormatData formatData;
+    private WriteSetPoints writeSetPoints;
 
     private int lostConection = 0;
     private int attemptToReconnect = 5;
@@ -29,6 +31,11 @@ public class ReadController implements Runnable{
     
     private Boolean whileRead = false;
 
+    
+    private Boolean teste;
+    
+    
+    
     public ReadController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -56,6 +63,7 @@ public class ReadController implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	teste = true;
     	while(whileRead) {
             for(int i=0; i < numGadgets.length; i++){
 
@@ -83,7 +91,18 @@ public class ReadController implements Runnable{
             	bufferWrite = CalculatorData.addressRead(i,2);            
             else bufferWrite = CalculatorData.addressRead(i,1);
             
-
+            if (teste) 
+            if(serialService.getPortIdentifier()){
+            	//serialService.openPort();
+            	//serialService.writeDataAlfa(writeSetPoints.seletroraWrite(19));
+            	//Thread.sleep(500);
+            	//serialService.getPortIdentifier();
+            	serialService.openPort();
+            	serialService.writeDataAlfa(writeSetPoints.Write(19));
+            	teste = false;
+            	Thread.sleep(5000);
+            }
+            	
             if(serialService.getPortIdentifier()) {
                 serialService.openPort();
                 serialService.writeData(bufferWrite);
@@ -213,6 +232,7 @@ public class ReadController implements Runnable{
 		if(primaryViewController==null)primaryViewController = DependencyInjection.getPrimaryViewController();
 		if(serialProperties==null)serialProperties = DependencyInjection.getSerialProperties();
 		if(formatData==null)formatData = DependencyInjection.getFormatData();
+		if(writeSetPoints==null)writeSetPoints = DependencyInjection.getWritesetpoints();
 	}
 
 	public void threadCancel() {
