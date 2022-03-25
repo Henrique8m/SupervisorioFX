@@ -27,6 +27,9 @@ public class ReadController implements Runnable{
     private byte[] bufferWrite= new byte[8];
     private byte[] bufferRead = new byte[7];
     private byte[] bufferReadAlfa = new byte[17];
+    
+    private int bufferSizeRead;
+    private int bufferSizeWrite;
      
     private String display;
     private String[] displayVetor = new String[29];
@@ -36,14 +39,11 @@ public class ReadController implements Runnable{
     private Boolean whileRead = false;
 
     
-    private Boolean teste;
-    
-    
-    
     public ReadController() {
 		// TODO Auto-generated constructor stub
 	}
 
+	@SuppressWarnings("removal")
 	public void read() throws InterruptedException {
 		
 		instanciates();
@@ -89,44 +89,60 @@ public class ReadController implements Runnable{
         	serial = serialService.enablePortCom(serialProperties.getPorta(), serialProperties.getBaud(), serialProperties.getTimeout(), serialProperties.getStopBits());
         	
             
-            if(i>=19)
-            	bufferWrite = CalculatorData.addressReadAlfa(i,80,6);            
-            else if(i==15)
-            	bufferWrite = CalculatorData.addressRead(i,2);            
-            else bufferWrite = CalculatorData.addressRead(i,1);
+   	           
+           
+ 
             
             	
-            if(serial != null) {
-                serialService.writeData(bufferWrite, serial);
+            if(serial != null) {               
                 
-				if(i>=19)
-	            	bufferReadAlfa = serialService.readDataAlfa();
-	            else bufferRead = serialService.readData();
+				if(i>=19) {
+					bufferWrite = CalculatorData.addressReadAlfa(i,80,6); 
+					bufferSizeRead = 17;
+					bufferSizeWrite = 27;
+					serialService.writeData(bufferWrite, serial, bufferSizeWrite);
+	            	bufferReadAlfa = serialService.readData(serial, bufferSizeRead);
+	            	
+				}  
+				else {
+					if(i==15)
+						bufferWrite = CalculatorData.addressRead(i,2);
+				
+		            else 
+		            	bufferWrite = CalculatorData.addressRead(i,1);
+		            
+					
+	            	bufferSizeRead = 7;
+	            	bufferSizeWrite = 8;
+	            	serialService.writeData(bufferWrite, serial, bufferSizeWrite);
+	            	bufferRead = serialService.readData(serial, bufferSizeRead);
+	            	
+		        }
 	                
-	                if(bufferRead != null) {                
-		                if((i >= 1 )&&(i<=11)||(i==13 || i==14))
-		                	//displayVetor[i-1] 
-		                	display = formatData.formatData(bufferRead, "N1540", "int");
-		                else if (i==12 || i==17||i==18)
-		                	//displayVetor[i-1]
-		                	display= formatData.formatData(bufferRead, "N1540_4_a_20", "double");
-		                else if (i==15||i==16)
-		                	//displayVetor[i-1]
-		                	display	= formatData.formatData(bufferRead, "N2000", "int");
-	                }else if(bufferReadAlfa != null){
-	                	if(i>=19)
-		                	//displayVetor[i-1]
-		                	display	= formatData.formatDataAlfa(bufferReadAlfa);
-	                }else {
+                if(bufferRead != null) {                
+	                if((i >= 1 )&&(i<=11)||(i==13 || i==14))
+	                	//displayVetor[i-1] 
+	                	display = formatData.formatData(bufferRead, "N1540", "int");
+	                else if (i==12 || i==17||i==18)
 	                	//displayVetor[i-1]
-	                	display	= "Error";
-		            }
-	                //display = displayVetor[i-1];
-	                viewService.writeText(i, display);
-	                
-	                
-	                bufferRead = null;
-	                bufferReadAlfa = null;
+	                	display= formatData.formatData(bufferRead, "N1540_4_a_20", "double");
+	                else if (i==15||i==16)
+	                	//displayVetor[i-1]
+	                	display	= formatData.formatData(bufferRead, "N2000", "int");
+                }else if(bufferReadAlfa != null){
+                	if(i>=19)
+	                	//displayVetor[i-1]
+	                	display	= formatData.formatDataAlfa(bufferReadAlfa);
+                }else {
+                	//displayVetor[i-1]
+                	display	= "Error";
+	            }
+                //display = displayVetor[i-1];
+                viewService.writeText(i, display);
+                
+                
+                bufferRead = null;
+                bufferReadAlfa = null;
             	primaryViewController.txLog.setText("Conection OK");
             	primaryViewController.txLog1.setText("Conection OK");
             }

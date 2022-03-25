@@ -131,5 +131,15 @@ public void timerCancel(){
 	 * Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(),
 	 * AlertType.ERROR); } }
 	 */
+	
+	
+	
+	
+//	@SuppressWarnings({ "unchecked", "static-access" })
+//	public Enumeration<CommPortIdentifier> getPortIdentifiers(){		
+//		return cp.getPortIdentifiers();
+//	}
+	
+	
 
 }
