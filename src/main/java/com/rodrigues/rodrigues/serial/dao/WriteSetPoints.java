@@ -86,7 +86,7 @@ public class WriteSetPoints {
 		return bufferWrite;
 	}
 	
-	public byte[] Write(int endereco) {
+	public byte[] Write(int endereco, int sp_1, int sp_2, int sp_3, int vazia) {
 		int registradorInicial = 30;
 		int totalRegistradores = 9;
 		int bytesEsperados = 18;
