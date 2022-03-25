@@ -10,7 +10,7 @@ public class DataSecurit {
 		Date data = new Date(System.currentTimeMillis()); 
 		SimpleDateFormat formatarDate = new SimpleDateFormat("yyyyMMdd");
 		int dataInt = Integer.parseInt(formatarDate.format(data));
-		System.out.println(dataInt);
+		//System.out.println(dataInt);
 		if(dataInt > dataSpired)
 			return false;
 		return true;

@@ -5,6 +5,7 @@ import java.util.List;
 import com.rodrigues.rodrigues.gui.CheckLicenseController;
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.gui.PropertiesComController;
+import com.rodrigues.rodrigues.gui.SetPointController;
 import com.rodrigues.rodrigues.gui.service.PrimaryViewService;
 import com.rodrigues.rodrigues.securit.DataSecurit;
 import com.rodrigues.rodrigues.securit.EncryptionAES;
@@ -32,6 +33,7 @@ public class DependencyInjection {
 	private static final WriteSetPoints writeSetPoints = new WriteSetPoints();
 	private static final PrimaryViewService primaryViewService = new PrimaryViewService();
 	private static final DataSecurit dataSecurit = new DataSecurit();
+	private static final SetPointController setPointController = new SetPointController();
 	private static PrimaryViewController primaryViewController;
 	private static List<String> avaliablePorts;
 	
@@ -103,5 +105,9 @@ public class DependencyInjection {
 
 	public static DataSecurit getDataSecurit() {
 		return dataSecurit;
+	}
+
+	public static SetPointController getSetPointController() {
+		return setPointController;
 	}
 }

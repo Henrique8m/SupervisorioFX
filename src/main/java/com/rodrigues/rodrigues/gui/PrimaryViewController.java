@@ -85,18 +85,22 @@ public class PrimaryViewController implements Initializable {
 
 	@FXML
 	private void comPort(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		loadView("propertiesCom", null, "Configuração Porta Com", MainApp.getStage(),
-				DependencyInjection.getPropertiesComController());
+		loadView("propertiesCom", null, "Configuração de Set Points", MainApp.getStage(),
+				DependencyInjection.getSetPointController());
 	}
 
 	@FXML
-	private void checkLicense(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		Integer data = securit.getSpiredData();
-		
-		loadView("checkLicense", null, "Status License", MainApp.getStage(),
+	private void SetPointB1(ActionEvent event) throws UnsupportedCommOperationException, IOException {
+		loadView("setPointConfigView", null, "Status License", MainApp.getStage(),
 				DependencyInjection.getCheckLicenseController());
 		
 
+	}
+	
+	@FXML
+	private void checkLicense(ActionEvent event) throws UnsupportedCommOperationException, IOException {
+		loadView("checkLicense", null, "Status License", MainApp.getStage(),
+				DependencyInjection.getCheckLicenseController());
 	}
 
 	@FXML
