@@ -14,6 +14,7 @@ import com.rodrigues.rodrigues.serial.controller.ReadController;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
 import com.rodrigues.rodrigues.serial.dao.WriteSetPoints;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
+import com.rodrigues.rodrigues.serial.resources.PortComResurce;
 import com.rodrigues.rodrigues.serial.service.FormatData;
 import com.rodrigues.rodrigues.serial.service.ReadService;
 import com.rodrigues.rodrigues.serial.service.SerialService;
@@ -34,6 +35,7 @@ public class DependencyInjection {
 	private static final PrimaryViewService primaryViewService = new PrimaryViewService();
 	private static final DataSecurit dataSecurit = new DataSecurit();
 	private static final SetPointController setPointController = new SetPointController();
+	private static final PortComResurce portComResurces = new PortComResurce();
 	private static PrimaryViewController primaryViewController;
 	private static List<String> avaliablePorts;
 	
@@ -109,5 +111,9 @@ public class DependencyInjection {
 
 	public static SetPointController getSetPointController() {
 		return setPointController;
+	}
+
+	public static PortComResurce getPortComResurce() {
+		return portComResurces;
 	}
 }

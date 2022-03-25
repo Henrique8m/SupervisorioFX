@@ -8,12 +8,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.comm.CommPortIdentifier;
-import javax.comm.NoSuchPortException;
-import javax.comm.PortInUseException;
 import javax.comm.SerialPort;
-import javax.comm.UnsupportedCommOperationException;
+
+import com.rodrigues.rodrigues.serial.resources.PortComResurce;
 
 public class SerialService{
+	private PortComResurce resurce = new PortComResurce();
+	
 	
 	public SerialService() {}
 	
@@ -23,14 +24,6 @@ public class SerialService{
 
 	private String display;
 	
-	private String portName;
-	private int baudRate;
-	private int timeout;
-	private int stopBits;
-	
-	private CommPortIdentifier cp;
-	private SerialPort serialPort;
-
 	private OutputStream saida;
 	private InputStream entrada;
 
@@ -48,29 +41,9 @@ public class SerialService{
 		return cp.getPortIdentifiers();
 	}
 
-	public Boolean getPortIdentifier() {
-		
-		try {
-			if(cp==null) cp = CommPortIdentifier.getPortIdentifier(portName);
-			return true;
-		} catch (NoSuchPortException e) {
-			System.out.println("Porta não existe! STATUS: " + e.getMessage());	
-			return false;
-		}
-	}
 
-	@SuppressWarnings("static-access")
-	public void openPort() {
 
-		try {
-			serialPort = (SerialPort) cp.open("SerialService", timeout);
-			serialPort.setSerialPortParams(baudRate, serialPort.DATABITS_8, stopBits, serialPort.PARITY_NONE);
-		}
-		catch (PortInUseException e) {System.out.println("Erro ao abrir a porta! STATUS: " + e.getMessage());}
-		catch (UnsupportedCommOperationException e) {System.out.println("Erro com os parametros da porta! STATUS: " + e.getMessage());}
-	}
-
-	public void writeData(byte[] bufferWrite) {
+	public void writeData(byte[] bufferWrite, SerialPort serialPort) {
 
 		try {
 			Thread.sleep(200);
@@ -152,19 +125,16 @@ public class SerialService{
 		return bufferReadAlfa;
 	}
 	
-	public void setPortName(String portName) {
-		this.portName = portName;
+
+
+
+	public SerialPort enablePortCom(String porta, int baud, int timeout, int stopBits) {
+		SerialPort serial;
+		if(resurce.getPortIdentifier(porta)) {
+			serial = resurce.openPort(baud, timeout, stopBits);
+		}else return null;
+		
+		return serial;
 	}
 
-	public void setBaudRate(int baudRate) {
-		this.baudRate = baudRate;
-	}
-
-	public void setTimeout(int timeout) {
-		this.timeout = timeout;
-	}
-	
-	public void setStopBits(int stopBits) {
-		this.stopBits = stopBits;
-	}
 }

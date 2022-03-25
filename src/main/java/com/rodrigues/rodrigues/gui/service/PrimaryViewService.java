@@ -4,10 +4,10 @@ import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 public class PrimaryViewService {
-    private PrimaryViewController primaryViewController = DependencyInjection.getPrimaryViewController();;
+    private PrimaryViewController primaryViewController;
 	
 	public void writeText(int end, String display) {
-				
+		instanciates();
 		try {        
             if(end==1){primaryViewController.cq1.setText(display);}
             if(end==2){ primaryViewController.cq2.setText(display);}
@@ -73,8 +73,10 @@ public class PrimaryViewService {
     	}catch(Exception e) {
     		e.printStackTrace();
     	}
-
-		
+	}
+	
+	private void instanciates() {
+		if(primaryViewController == null)primaryViewController = DependencyInjection.getPrimaryViewController();
 	}
 
 }

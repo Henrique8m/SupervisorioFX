@@ -1,5 +1,7 @@
 package com.rodrigues.rodrigues.serial.controller;
 
+import javax.comm.SerialPort;
+
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.gui.service.PrimaryViewService;
 import com.rodrigues.rodrigues.serial.dao.WriteSetPoints;
@@ -80,12 +82,12 @@ public class ReadController implements Runnable{
     }
 
     private void sweep(int i) {
-        try{
+        SerialPort serial;
+    	
+    	try{
         	
-            serialService.setPortName(serialProperties.getPorta());
-            serialService.setBaudRate(serialProperties.getBaud());
-            serialService.setTimeout(serialProperties.getTimeout());
-            serialService.setStopBits(serialProperties.getStopBits());
+        	serial = serialService.enablePortCom(serialProperties.getPorta(), serialProperties.getBaud(), serialProperties.getTimeout(), serialProperties.getStopBits());
+        	
             
             if(i>=19)
             	bufferWrite = CalculatorData.addressReadAlfa(i,80,6);            
@@ -94,9 +96,8 @@ public class ReadController implements Runnable{
             else bufferWrite = CalculatorData.addressRead(i,1);
             
             	
-            if(serialService.getPortIdentifier()) {
-                serialService.openPort();
-                serialService.writeData(bufferWrite);
+            if(serial != null) {
+                serialService.writeData(bufferWrite, serial);
                 
 				if(i>=19)
 	            	bufferReadAlfa = serialService.readDataAlfa();

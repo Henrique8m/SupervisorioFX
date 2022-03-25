@@ -23,15 +23,12 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Side;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -83,18 +80,12 @@ public class PrimaryViewController implements Initializable {
 	@FXML
 	public LineChart<String, Integer> lineChart;
 
+
+
 	@FXML
 	private void comPort(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		loadView("propertiesCom", null, "Configuração de Set Points", MainApp.getStage(),
-				DependencyInjection.getSetPointController());
-	}
-
-	@FXML
-	private void SetPointB1(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		loadView("setPointConfigView", null, "Status License", MainApp.getStage(),
+		loadView("propertiesCom", null, "Status License", MainApp.getStage(),
 				DependencyInjection.getCheckLicenseController());
-		
-
 	}
 	
 	@FXML
@@ -125,11 +116,17 @@ public class PrimaryViewController implements Initializable {
 			showError();
 		}
 	}
+	
+	@FXML
+	private void SetPointB1(MouseEvent event) throws UnsupportedCommOperationException, IOException {
+		loadView("setPointConfigView", null, "Configuração de Set Points", MainApp.getStage(),
+				DependencyInjection.getSetPointController());
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		instanciates();
-	
+		DependencyInjection.setPrimaryViewController(this);
 		if(securit.validateData()) {
 			
 			
@@ -147,7 +144,7 @@ public class PrimaryViewController implements Initializable {
 				else if(e.equals(lastPort))
 				serialProperties.setPorta(lastPort);
 			
-			DependencyInjection.setPrimaryViewController(this);
+			
 			serialController = DependencyInjection.getSerialController();
 			//controller.setFxmlController(this);
 			//controller = new SerialController(PrimaryViewController.this);
