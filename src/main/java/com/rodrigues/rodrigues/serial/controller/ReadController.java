@@ -9,6 +9,7 @@ import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.service.FormatData;
 import com.rodrigues.rodrigues.serial.service.SerialService;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
+import com.rodrigues.rodrigues.serial.utilitary.Teste;
 import com.rodrigues.rodrigues.serial.utilitary.calc.CalculatorData;
 
 public class ReadController implements Runnable{
@@ -70,7 +71,8 @@ public class ReadController implements Runnable{
 	                	primaryViewController.txLog.setText("Conection Lost");
 	                	primaryViewController.txLog1.setText("Conection Lost");
 	            		return;
-	            	}                	
+	            	}
+	            	//System.out.println(Teste.valueOf("ALFA").getDivisao() + "  " + Teste.ALFA.getBufferWrite() + "   "  +  Teste.ALFA.getBufferRead());
 	                sweep(i+1);
 	           }
 	    	}
@@ -85,16 +87,13 @@ public class ReadController implements Runnable{
         SerialPort serial;
     	
     	try{
-        	
-        	serial = serialService.enablePortCom(serialProperties.getPorta(), serialProperties.getBaud(), serialProperties.getTimeout(), serialProperties.getStopBits());
-        	
-            
-   	           
-           
- 
-            
-            	
-            if(serial != null) {               
+        	serial = serialService.enablePortCom(
+        			serialProperties.getPorta(),
+        			serialProperties.getBaud(),
+        			serialProperties.getTimeout(),
+        			serialProperties.getStopBits());
+
+        	if(serial != null) {               
                 
 				if(i>=19) {
 					bufferWrite = CalculatorData.addressReadAlfa(i,80,6); 

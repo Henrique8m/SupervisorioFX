@@ -1,7 +1,7 @@
 package com.rodrigues.rodrigues.serial.utilitary;
 
-public enum Gadgets {	
-	N2000(1, 8, 7, 0, 4, 3),
+public enum Teste {
+	N2000(1, 8, 7),
 	N1500(1, 8, 7),
 	N1540(10, 8, 7),
 	N1500_4_a_20(1, 8, 7),
@@ -12,18 +12,12 @@ public enum Gadgets {
 	int divisao;
 	int bufferWrite;
 	int bufferRead;
-	int bufferRead1Ms;
-	int bufferReadMs;
-	int bufferReadLs;
 
 	
-	Gadgets(int divisao, int bufferWrite, int bufferRead, int bufferRead1Ms, int bufferRead1Ms, int bufferReadLs ) {
+	Teste(int divisao, int bufferWrite, int bufferRead) {
 		this.divisao = divisao;
 		this.bufferWrite = bufferWrite;
 		this.bufferRead = bufferRead;
-		this.bufferRead1Ms;
-		this.bufferRead1Ms;
-		this.bufferReadLs;
 	}
 
 

@@ -9,7 +9,7 @@ public class FormatData {
 	
 	public String formatData(byte[] bufferRead, String gatgets, String format) {
 		try {
-		division = Gadgets.valueOf(gatgets).getValor();	
+		division = Gadgets.valueOf(gatgets).getDivisao();
 		if(bufferRead != null ) {			
 			if (Byte.toUnsignedInt(bufferRead[3]) > 0) {
 				if(format == "int")
