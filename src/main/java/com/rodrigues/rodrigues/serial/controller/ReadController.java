@@ -5,8 +5,8 @@ import com.rodrigues.rodrigues.serial.dao.WriteSetPoints;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.service.FormatData;
 import com.rodrigues.rodrigues.serial.service.SerialService;
-import com.rodrigues.rodrigues.serial.utilitary.CalculatorData;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
+import com.rodrigues.rodrigues.serial.utilitary.calc.CalculatorData;
 
 public class ReadController implements Runnable{
 

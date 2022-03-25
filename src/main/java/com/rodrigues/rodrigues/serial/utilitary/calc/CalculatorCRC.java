@@ -1,4 +1,4 @@
-package com.rodrigues.rodrigues.serial.utilitary;
+package com.rodrigues.rodrigues.serial.utilitary.calc;
 
 public class CalculatorCRC {
 	

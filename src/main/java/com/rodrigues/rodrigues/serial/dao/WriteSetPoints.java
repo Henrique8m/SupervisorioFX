@@ -1,6 +1,6 @@
 package com.rodrigues.rodrigues.serial.dao;
 
-import com.rodrigues.rodrigues.serial.utilitary.CalculatorCRC;
+import com.rodrigues.rodrigues.serial.utilitary.calc.CalculatorCRC;
 
 public class WriteSetPoints {
 	private byte[] bufferWrite = new byte[27];
