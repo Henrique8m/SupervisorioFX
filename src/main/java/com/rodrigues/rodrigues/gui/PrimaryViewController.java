@@ -31,6 +31,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -46,9 +47,10 @@ public class PrimaryViewController implements Initializable {
 	private Timeline timeline;
 	@SuppressWarnings("unused")
 	private boolean time;
-	DataSecurit securit;
+	private DataSecurit securit;
 
 	private List<String> avaliablePorts;
+	
 
 	@FXML
 	public Text cf1, cf2, cf3;
@@ -81,11 +83,6 @@ public class PrimaryViewController implements Initializable {
 	@FXML
 	public LineChart<String, Integer> lineChart;
 
-	// @FXML
-	// private void onMenuItemPortCom(ActionEvent event) throws
-	// UnsupportedCommOperationException {
-	// //loadView("/fxml/" + "portcom" + ".fxml", null);
-	// }
 	@FXML
 	private void comPort(ActionEvent event) throws UnsupportedCommOperationException, IOException {
 		loadView("propertiesCom", null, "Configuração Porta Com", MainApp.getStage(),
@@ -94,8 +91,12 @@ public class PrimaryViewController implements Initializable {
 
 	@FXML
 	private void checkLicense(ActionEvent event) throws UnsupportedCommOperationException, IOException {
+		Integer data = securit.getSpiredData();
+		
 		loadView("checkLicense", null, "Status License", MainApp.getStage(),
 				DependencyInjection.getCheckLicenseController());
+		
+
 	}
 
 	@FXML
@@ -123,35 +124,35 @@ public class PrimaryViewController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		securit = new DataSecurit();
-		
-			if(securit.validateData()) {
-				instanciates();
-				
-				avaliablePorts = new ArrayList<>();
-				@SuppressWarnings("unchecked")
-				Enumeration<CommPortIdentifier> enume = CommPortIdentifier.getPortIdentifiers();		
-				while(enume.hasMoreElements()) {
-					avaliablePorts.add(enume.nextElement().getName());		
-				}
-				DependencyInjection.setAvaliablePortsNames(avaliablePorts);
-				
-				for(String e : avaliablePorts)
-					if(e.equals(defautPort))
-						serialProperties.setPorta("COM4");
-					else if(e.equals(lastPort))
-					serialProperties.setPorta(lastPort);
-				
-				DependencyInjection.setPrimaryViewController(this);
-				serialController = DependencyInjection.getSerialController();
-				//controller.setFxmlController(this);
-				//controller = new SerialController(PrimaryViewController.this);
-				
-				serialController.startCommunication();
-			}else {
-				showError();
+		instanciates();
+	
+		if(securit.validateData()) {
+			
+			
+			avaliablePorts = new ArrayList<>();
+			@SuppressWarnings("unchecked")
+			Enumeration<CommPortIdentifier> enume = CommPortIdentifier.getPortIdentifiers();		
+			while(enume.hasMoreElements()) {
+				avaliablePorts.add(enume.nextElement().getName());		
 			}
-			LineChartSample();
+			DependencyInjection.setAvaliablePortsNames(avaliablePorts);
+			
+			for(String e : avaliablePorts)
+				if(e.equals(defautPort))
+					serialProperties.setPorta("COM4");
+				else if(e.equals(lastPort))
+				serialProperties.setPorta(lastPort);
+			
+			DependencyInjection.setPrimaryViewController(this);
+			serialController = DependencyInjection.getSerialController();
+			//controller.setFxmlController(this);
+			//controller = new SerialController(PrimaryViewController.this);
+			
+			serialController.startCommunication();
+		}else {
+			showError();
+		}
+		LineChartSample();
 	}
 	/*
 	 * @SuppressWarnings("unused") private void beginTimer() { timeline = new
@@ -185,6 +186,8 @@ public class PrimaryViewController implements Initializable {
 			serialController = DependencyInjection.getSerialController();
 		if (serialProperties == null)
 			serialProperties = DependencyInjection.getSerialProperties();
+		if (securit == null)
+			securit = DependencyInjection.getDataSecurit();
 	}
 
 	private void showError() {
@@ -214,85 +217,9 @@ public class PrimaryViewController implements Initializable {
         series.getData().add(new Data<String, Integer>("21:10", 100));
 		
 		lineChart.getData().add(series);
-		
-		
-		/*
 
-		CategoryAxis xAxis = new CategoryAxis();
-
-		NumberAxis yAxis = new NumberAxis();
-
-		xAxis.setLabel("Month");
-
-		LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
-
-		lineChart.setTitle("Stock Monitoring, 2010");
-
-		XYChart.Series series1 = new XYChart.Series();
-		series1.setName("Portfolio 1");
-
-		series1.getData().add(new XYChart.Data("Jan", 23));
-		series1.getData().add(new XYChart.Data("Feb", 14));
-		series1.getData().add(new XYChart.Data("Mar", 15));
-		series1.getData().add(new XYChart.Data("Apr", 24));
-		series1.getData().add(new XYChart.Data("May", 34));
-		series1.getData().add(new XYChart.Data("Jun", 36));
-		series1.getData().add(new XYChart.Data("Jul", 22));
-		series1.getData().add(new XYChart.Data("Aug", 45));
-		series1.getData().add(new XYChart.Data("Sep", 43));
-		series1.getData().add(new XYChart.Data("Oct", 17));
-		series1.getData().add(new XYChart.Data("Nov", 29));
-		series1.getData().add(new XYChart.Data("Dec", 25));
-
-		XYChart.Series series2 = new XYChart.Series();
-		series2.setName("Portfolio 2");
-		series2.getData().add(new XYChart.Data("Jan", 33));
-		series2.getData().add(new XYChart.Data("Feb", 34));
-		series2.getData().add(new XYChart.Data("Mar", 25));
-		series2.getData().add(new XYChart.Data("Apr", 44));
-		series2.getData().add(new XYChart.Data("May", 39));
-		series2.getData().add(new XYChart.Data("Jun", 16));
-		series2.getData().add(new XYChart.Data("Jul", 55));
-		series2.getData().add(new XYChart.Data("Aug", 54));
-		series2.getData().add(new XYChart.Data("Sep", 48));
-		series2.getData().add(new XYChart.Data("Oct", 27));
-		series2.getData().add(new XYChart.Data("Nov", 37));
-		series2.getData().add(new XYChart.Data("Dec", 29));
-
-		XYChart.Series series3 = new XYChart.Series();
-		series3.setName("Portfolio 3");
-		series3.getData().add(new XYChart.Data("Jan", 44));
-		series3.getData().add(new XYChart.Data("Feb", 35));
-		series3.getData().add(new XYChart.Data("Mar", 36));
-		series3.getData().add(new XYChart.Data("Apr", 33));
-		series3.getData().add(new XYChart.Data("May", 31));
-		series3.getData().add(new XYChart.Data("Jun", 26));
-		series3.getData().add(new XYChart.Data("Jul", 22));
-		series3.getData().add(new XYChart.Data("Aug", 25));
-		series3.getData().add(new XYChart.Data("Sep", 43));
-		series3.getData().add(new XYChart.Data("Oct", 44));
-		series3.getData().add(new XYChart.Data("Nov", 45));
-		series3.getData().add(new XYChart.Data("Dec", 44));
-
-		lineChart.getData().addAll(series1, series2, series3);
-*/
 	}
 
 }
 
-/*
- * private synchronized <T> void loadView(String absoluteName, Consumer<T>
- * initializingAction) { try { FXMLLoader loader = new
- * FXMLLoader(getClass().getResource(absoluteName)); VBox newVBox =
- * loader.load(); Scene mainScene = MainApp.getMainScene(); VBox mainVBox =
- * (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
- * 
- * Node mainMenu = mainVBox.getChildren().get(0);
- * mainVBox.getChildren().clear(); mainVBox.getChildren().add(mainMenu);
- * mainVBox.getChildren().addAll(newVBox.getChildren());
- * 
- * // T controller = loader.getController(); //
- * initializingAction.accept(controller); } catch (IOException e) {
- * Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(),
- * AlertType.ERROR); } }
- */
+
