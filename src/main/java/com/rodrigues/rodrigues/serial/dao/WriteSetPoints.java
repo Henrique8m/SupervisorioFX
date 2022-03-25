@@ -13,34 +13,8 @@ public class WriteSetPoints {
 		int seletoraMs = 4;
 		int seletoraLs = 64;
 		
-		//SetPoint 1 e 4
-		//primeiro vezes o segundo vezes o terceiro, vezes o quarto
-		int DsWord1_SP_1_e_4 = 0;
-		int LsWord1_SP_1_e_4 = 0;
-		int DsWord0_SP_1_e_4 = 0;
-		int LsWord0_SP_1_e_4 = 0;
-		
-		//SetPoint 2 e 5
-		int DsWord1_SP_2_e_5 = 0;
-		int LsWord1_SP_2_e_5 = 0;
-		int DsWord0_SP_2_e_5 = 0;
-		int LsWord0_SP_2_e_5 = 0;
-		
-		//SetPoint 3 e 6
-		int DsWord1_SP_3_e_6 = 0;
-		int LsWord1_SP_3_e_6 = 0;
-		int DsWord0_SP_3_e_6 = 0;
-		int LsWord0_SP_3_e_6 = 0;
-		
-		//SetPoint Vazia e 7
-		int DsWord1_SP_V_e_7 = 0;
-		int LsWord1_SP_V_e_7 = 0;
-		int DsWord0_SP_V_e_7 = 0;
-		int LsWord0_SP_V_e_7 = 0;
-		
-		
 		bufferWrite[0] = (byte) endereco;
-		bufferWrite[1] = (byte) 16; // Metodo de escrita
+		bufferWrite[1] = (byte) 16;
 		
 		bufferWrite[2] = (byte) 0;
 		bufferWrite[3] = (byte) registradorInicial;
@@ -50,78 +24,28 @@ public class WriteSetPoints {
 		
 		bufferWrite[6] = (byte) bytesEsperados;		
 		
-		//Seletora de SetPoints, tambem abilita a escrita
 		bufferWrite[7] = (byte) seletoraMs;		
 		bufferWrite[8] = (byte) seletoraLs;
 		
-		//Escrita nos SerPoints
-		//1 e 4
-		bufferWrite[9] = (byte) DsWord1_SP_1_e_4;		
-		bufferWrite[10] = (byte) LsWord1_SP_1_e_4;
-		bufferWrite[11] = (byte) DsWord0_SP_1_e_4;		
-		bufferWrite[12] = (byte) LsWord0_SP_1_e_4;
+		bufferWrite[9] =  0;		bufferWrite[10] =  0;		bufferWrite[11] =  0;		bufferWrite[12] =  0;
+		bufferWrite[13] =  0;		bufferWrite[14] =  0;		bufferWrite[15] =  0;		bufferWrite[16] =  0;
+		bufferWrite[17] =  0;		bufferWrite[18] =  0;		bufferWrite[19] =  0;		bufferWrite[20] =  0;
+		bufferWrite[21] =  0;		bufferWrite[22] =  0;		bufferWrite[23] =  0;		bufferWrite[24] =  0;
 		
-		//2 e 5
-		bufferWrite[13] = (byte) DsWord1_SP_2_e_5;		
-		bufferWrite[14] = (byte) LsWord1_SP_2_e_5;
-		bufferWrite[15] = (byte) DsWord0_SP_2_e_5;		
-		bufferWrite[16] = (byte) LsWord0_SP_2_e_5;
-		
-		//3 e 6
-		bufferWrite[17] = (byte) DsWord1_SP_3_e_6;		
-		bufferWrite[18] = (byte) LsWord1_SP_3_e_6;
-		bufferWrite[19] = (byte) DsWord0_SP_3_e_6;		
-		bufferWrite[20] = (byte) LsWord0_SP_3_e_6;
-		
-		//Vazia e 7
-		bufferWrite[21] = (byte) DsWord1_SP_V_e_7;		
-		bufferWrite[22] = (byte) LsWord1_SP_V_e_7;
-		bufferWrite[23] = (byte) DsWord0_SP_V_e_7;		
-		bufferWrite[24] = (byte) LsWord0_SP_V_e_7;
-		
-		int[] crc = CalculatorCRC.calculateCRC(bufferWrite, 0, 6); //calcular o crc
+		int[] crc = CalculatorCRC.calculateCRC(bufferWrite, 0, 6);
 		bufferWrite[25] = (byte) crc[0];
 		bufferWrite[26] = (byte) crc[1];
 		
 		return bufferWrite;
 	}
 	
-	public byte[] Write(int endereco, int sp_1, int sp_2, int sp_3, int vazia) {
+	public byte[] Write(int endereco, byte[] sp_1, byte[] sp_2, byte[] sp_3, byte[] vazia) {
 		int registradorInicial = 30;
 		int totalRegistradores = 9;
 		int bytesEsperados = 18;
 		
-		int seletoraMs = 0;
-		int seletoraLs = 0;
-		
-		//SetPoint 1 e 4
-		//primeiro vezes o segundo vezes o terceiro, vezes o quarto
-		int DsWord1_SP_1_e_4 = 0;
-		int LsWord1_SP_1_e_4 = 0;
-		int DsWord0_SP_1_e_4 = 0;
-		int LsWord0_SP_1_e_4 = 110;
-		
-		//SetPoint 2 e 5
-		int DsWord1_SP_2_e_5 = 0;
-		int LsWord1_SP_2_e_5 = 0;
-		int DsWord0_SP_2_e_5 = 0;
-		int LsWord0_SP_2_e_5 = 210;
-		
-		//SetPoint 3 e 6
-		int DsWord1_SP_3_e_6 = 0;
-		int LsWord1_SP_3_e_6 = 0;
-		int DsWord0_SP_3_e_6 = 1;
-		int LsWord0_SP_3_e_6 = 54;
-		
-		//SetPoint Vazia e 7
-		int DsWord1_SP_V_e_7 = 0;
-		int LsWord1_SP_V_e_7 = 0;
-		int DsWord0_SP_V_e_7 = 0;
-		int LsWord0_SP_V_e_7 = 123;
-		
-		
 		bufferWrite[0] = (byte) endereco;
-		bufferWrite[1] = (byte) 16; // Metodo de escrita
+		bufferWrite[1] = (byte) 16;
 		
 		bufferWrite[2] = (byte) 0;
 		bufferWrite[3] = (byte) registradorInicial;
@@ -131,64 +55,18 @@ public class WriteSetPoints {
 		
 		bufferWrite[6] = (byte) bytesEsperados;		
 		
-		//Seletora de SetPoints, tambem abilita a escrita
-		bufferWrite[7] = (byte) seletoraMs;		
-		bufferWrite[8] = (byte) seletoraLs;
+		bufferWrite[7] = (byte) 0;		
+		bufferWrite[8] = (byte) 0;
 		
-		//Escrita nos SerPoints
-		//1 e 4
-		bufferWrite[9] = (byte) DsWord1_SP_1_e_4;		
-		bufferWrite[10] = (byte) LsWord1_SP_1_e_4;
-		bufferWrite[11] = (byte) DsWord0_SP_1_e_4;		
-		bufferWrite[12] = (byte) LsWord0_SP_1_e_4;
+		bufferWrite[9] = sp_1[3];		bufferWrite[10] = sp_1[2];	bufferWrite[11] = sp_1[1];		bufferWrite[12] = sp_1[0];
+		bufferWrite[13] = sp_2[3]; 		bufferWrite[14] = sp_2[2];	bufferWrite[15] = sp_2[1];		bufferWrite[16] = sp_2[0];
+		bufferWrite[17] = sp_3[3];		bufferWrite[18] = sp_3[2];	bufferWrite[19] = sp_3[1];		bufferWrite[20] = sp_3[0];
+		bufferWrite[21] = vazia[3];		bufferWrite[22] = vazia[2];	bufferWrite[23] = vazia[1];		bufferWrite[24] = vazia[0];
 		
-		//2 e 5
-		bufferWrite[13] = (byte) DsWord1_SP_2_e_5;		
-		bufferWrite[14] = (byte) LsWord1_SP_2_e_5;
-		bufferWrite[15] = (byte) DsWord0_SP_2_e_5;		
-		bufferWrite[16] = (byte) LsWord0_SP_2_e_5;
-		
-		//3 e 6
-		bufferWrite[17] = (byte) DsWord1_SP_3_e_6;		
-		bufferWrite[18] = (byte) LsWord1_SP_3_e_6;
-		bufferWrite[19] = (byte) DsWord0_SP_3_e_6;		
-		bufferWrite[20] = (byte) LsWord0_SP_3_e_6;
-		
-		//Vazia e 7
-		bufferWrite[21] = (byte) DsWord1_SP_V_e_7;		
-		bufferWrite[22] = (byte) LsWord1_SP_V_e_7;
-		bufferWrite[23] = (byte) DsWord0_SP_V_e_7;		
-		bufferWrite[24] = (byte) LsWord0_SP_V_e_7;
-		
-		int[] crc = CalculatorCRC.calculateCRC(bufferWrite, 0, 25); //calcular o crc
+		int[] crc = CalculatorCRC.calculateCRC(bufferWrite, 0, 25);
 		bufferWrite[25] = (byte) crc[0];
 		bufferWrite[26] = (byte) crc[1];
 		
 		return bufferWrite;
 	}
-	
-	
-	
 }
-
-/*
-static byte[] addressReadAlfa(int endereco, int registrador, int totalRegistradores) {
-	byte[] bufferWrite = new byte[8];
-	if ((endereco > 0) && (endereco < 256)) {
-		bufferWrite[0] = (byte) endereco;
-		bufferWrite[1] = (byte) 3; // Metodo de escrita
-		bufferWrite[2] = (byte) 0;
-		bufferWrite[3] = (byte) registrador;
-		bufferWrite[4] = (byte) 0;
-		bufferWrite[5] = (byte) totalRegistradores; // registrador
-		
-		int[] crc = CalculatorCRC.calculateCRC(bufferWrite, 0, 6); //calcular o crc
-		
-		bufferWrite[6] = (byte) crc[0];
-		bufferWrite[7] = (byte) crc[1];
-
-	} else {
-		System.out.println("Endereço fora da faixa");
-	}
-	return bufferWrite;
-}*/
