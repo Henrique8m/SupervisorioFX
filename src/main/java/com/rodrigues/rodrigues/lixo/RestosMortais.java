@@ -140,6 +140,43 @@ public void timerCancel(){
 //		return cp.getPortIdentifiers();
 //	}
 	
+
+	
+	
+	
+	
+	/*
+	bufferWrite = CalculatorData.addressReadAlfa(19,Gadgets.ALFA_LEI_SETPOINTS.getRegistrador(),Gadgets.ALFA_LEI_SETPOINTS.getTotalRegistradores()); 
+	bufferSizeRead = Gadgets.ALFA_LEI_SETPOINTS.getBufferRead();
+	bufferSizeWrite = Gadgets.ALFA_LEI_SETPOINTS.getBufferWrite();
+	serialService.writeData(bufferWrite, serial, bufferSizeWrite);
+	bufferReadAlfa = serialService.readData(serial, bufferSizeRead);
+	System.out.println(
+			formatData.formatDataAlfaGeneric(
+			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+			Gadgets.ALFA_FORMAT_SETPOINTS_VAZIA.getFormatDataLs(),
+			Gadgets.ALFA_FORMAT_SETPOINTS_VAZIA.getFormatDataMs()));
+	System.out.println(
+			formatData.formatDataAlfaGeneric(
+			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+			Gadgets.ALFA_FORMAT_SETPOINTS_1_4.getFormatDataLs(),
+			Gadgets.ALFA_FORMAT_SETPOINTS_1_4.getFormatDataMs()));
+	System.out.println(
+			formatData.formatDataAlfaGeneric(
+			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+			Gadgets.ALFA_FORMAT_SETPOINTS_2_5.getFormatDataLs(),
+			Gadgets.ALFA_FORMAT_SETPOINTS_2_5.getFormatDataMs()));
+	System.out.println(
+			formatData.formatDataAlfaGeneric(
+			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+			Gadgets.ALFA_FORMAT_SETPOINTS_3_6.getFormatDataLs(),
+			Gadgets.ALFA_FORMAT_SETPOINTS_3_6.getFormatDataMs()));
+	
+	Thread.sleep(5000);
+*/
+	
+	
+	
 	
 
 }

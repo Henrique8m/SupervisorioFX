@@ -69,4 +69,32 @@ public class FormatData {
 
 		return Double.toString(valueDouble/10);
 	}
+	
+	@SuppressWarnings("unused")
+	public String formatDataAlfaGeneric(String gadgets , byte[] bufferRead, int ls1 , int ms1) {
+		//Primeiro endereço
+		//Segundo Registrador
+		
+		//do quarto ao nono dados
+		//Quarto byte, bit 4 = 1 balança em movimento
+		
+		//sexto e setimo peso = sexto = msword, setimo = lsword
+		
+		if(bufferRead != null ) {			
+			if (Byte.toUnsignedInt(bufferRead[ms1]) > 0) {
+			
+				valueDouble = (Byte.toUnsignedInt(bufferRead[ls1])) + ((Byte.toUnsignedInt(bufferRead[ms1]) * 256)) ;
+				
+			} else {
+
+				valueDouble = (Byte.toUnsignedInt(bufferRead[ls1]));
+			}
+			
+		}else {
+			System.out.println("buffer Read null na classe FormatDataAlda");
+			return "1.02";
+		}
+
+		return Double.toString(valueDouble/Gadgets.valueOf(gadgets).getDivisao());
+	}
 }

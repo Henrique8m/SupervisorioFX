@@ -1,13 +1,17 @@
 package com.rodrigues.rodrigues.gui.service;
 
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
+import com.rodrigues.rodrigues.gui.SetPointController;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 public class PrimaryViewService {
     private PrimaryViewController primaryViewController;
+    private SetPointController setPointController;
 	
 	public void writeText(int end, String display) {
 		instanciates();
+		
+		
 		try {        
             if(end==1){primaryViewController.cq1.setText(display);}
             if(end==2){ primaryViewController.cq2.setText(display);}
@@ -75,8 +79,19 @@ public class PrimaryViewService {
     	}
 	}
 	
+	public void writeTextSetPoints(int balança, String[] setPoints) {
+		if(balança == 19) {
+			setPointController.setPointVazia.setText(setPoints[0]);
+			setPointController.setPoint01.setText(setPoints[1]);
+			setPointController.setPoint02.setText(setPoints[2]);
+			setPointController.setPoint03.setText(setPoints[3]);
+		}
+		
+	}
+	
 	private void instanciates() {
 		if(primaryViewController == null)primaryViewController = DependencyInjection.getPrimaryViewController();
+		if(setPointController == null)setPointController = DependencyInjection.getSetPointController();
 	}
 
 }

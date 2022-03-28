@@ -9,7 +9,7 @@ import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.service.FormatData;
 import com.rodrigues.rodrigues.serial.service.SerialService;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
-import com.rodrigues.rodrigues.serial.utilitary.Teste;
+import com.rodrigues.rodrigues.serial.utilitary.Gadgets;
 import com.rodrigues.rodrigues.serial.utilitary.calc.CalculatorData;
 
 public class ReadController implements Runnable{
@@ -33,11 +33,12 @@ public class ReadController implements Runnable{
     private int bufferSizeWrite;
      
     private String display;
-    private String[] displayVetor = new String[29];
-    
+
     private Thread thread = new Thread(this);
     
     private Boolean whileRead = false;
+    private Boolean readSetPoints = false;
+    private int readSetPointsEnd;
 
     
     public ReadController() {
@@ -73,7 +74,12 @@ public class ReadController implements Runnable{
 	            		return;
 	            	}
 	            	//System.out.println(Teste.valueOf("ALFA").getDivisao() + "  " + Teste.ALFA.getBufferWrite() + "   "  +  Teste.ALFA.getBufferRead());
-	                sweep(i+1);
+	                if(readSetPoints) {
+	                	readSetPoints(readSetPointsEnd);
+	                	readSetPoints = false;
+	                }
+	            	
+	            	sweep(i+1, serialService.enablePortCom());
 	           }
 	    	}
 	    	
@@ -83,24 +89,22 @@ public class ReadController implements Runnable{
 		}
     }
 
-    private void sweep(int i) {
-        SerialPort serial;
+    
+    private void sweep(int i, SerialPort serial) {
+
     	
     	try{
-        	serial = serialService.enablePortCom(
-        			serialProperties.getPorta(),
-        			serialProperties.getBaud(),
-        			serialProperties.getTimeout(),
-        			serialProperties.getStopBits());
-
+ 
+    		
         	if(serial != null) {               
                 
 				if(i>=19) {
-					bufferWrite = CalculatorData.addressReadAlfa(i,80,6); 
-					bufferSizeRead = 17;
-					bufferSizeWrite = 27;
+					bufferWrite = CalculatorData.addressReadAlfa(i,Gadgets.ALFA.getRegistrador(),Gadgets.ALFA.getTotalRegistradores()); 
+					bufferSizeRead = Gadgets.ALFA.getBufferRead();
+					bufferSizeWrite = Gadgets.ALFA.getBufferWrite();
 					serialService.writeData(bufferWrite, serial, bufferSizeWrite);
 	            	bufferReadAlfa = serialService.readData(serial, bufferSizeRead);
+	            	
 	            	
 				}  
 				else {
@@ -111,8 +115,8 @@ public class ReadController implements Runnable{
 		            	bufferWrite = CalculatorData.addressRead(i,1);
 		            
 					
-	            	bufferSizeRead = 7;
-	            	bufferSizeWrite = 8;
+	            	bufferSizeRead = Gadgets.N1500.getBufferRead();
+	            	bufferSizeWrite = Gadgets.N1500.getBufferWrite();
 	            	serialService.writeData(bufferWrite, serial, bufferSizeWrite);
 	            	bufferRead = serialService.readData(serial, bufferSizeRead);
 	            	
@@ -187,4 +191,45 @@ public class ReadController implements Runnable{
 	public Boolean getWhileRead() {
 		return this.whileRead;
 	}
+	
+	public void setReadSetPoints(Boolean readSetPoints, int readSetPointsEnd) {
+		this.readSetPoints = readSetPoints;
+		this.readSetPointsEnd = readSetPointsEnd;
+	}
+	
+	private void readSetPoints(int readSetPointsEnd) {
+		SerialPort serial = serialService.enablePortCom();
+    	String[] setPoints = new String[4];
+		
+		bufferWrite = CalculatorData.addressReadAlfa(readSetPointsEnd,Gadgets.ALFA_LEI_SETPOINTS.getRegistrador(),Gadgets.ALFA_LEI_SETPOINTS.getTotalRegistradores()); 
+    	bufferSizeRead = Gadgets.ALFA_LEI_SETPOINTS.getBufferRead();
+    	bufferSizeWrite = Gadgets.ALFA_LEI_SETPOINTS.getBufferWrite();
+    	serialService.writeData(bufferWrite, serial, bufferSizeWrite);
+    	bufferReadAlfa = serialService.readData(serial, bufferSizeRead);
+    	
+    	
+    	setPoints[0] = formatData.formatDataAlfaGeneric(
+    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+    			Gadgets.ALFA_FORMAT_SETPOINTS_VAZIA.getFormatDataLs(),
+    			Gadgets.ALFA_FORMAT_SETPOINTS_VAZIA.getFormatDataMs());
+    	setPoints[1] =
+    			formatData.formatDataAlfaGeneric(
+    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+    			Gadgets.ALFA_FORMAT_SETPOINTS_1_4.getFormatDataLs(),
+    			Gadgets.ALFA_FORMAT_SETPOINTS_1_4.getFormatDataMs());
+    	setPoints[2] =
+    			formatData.formatDataAlfaGeneric(
+    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+    			Gadgets.ALFA_FORMAT_SETPOINTS_2_5.getFormatDataLs(),
+    			Gadgets.ALFA_FORMAT_SETPOINTS_2_5.getFormatDataMs());
+    	setPoints[3] =
+    			formatData.formatDataAlfaGeneric(
+    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+    			Gadgets.ALFA_FORMAT_SETPOINTS_3_6.getFormatDataLs(),
+    			Gadgets.ALFA_FORMAT_SETPOINTS_3_6.getFormatDataMs());
+    	
+    	viewService.writeTextSetPoints(readSetPointsEnd, setPoints);
+
+	}
+	
 }

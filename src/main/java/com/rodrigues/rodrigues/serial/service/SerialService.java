@@ -4,12 +4,15 @@ import javax.comm.SerialPort;
 
 import com.rodrigues.rodrigues.serial.dao.ReadGenericData;
 import com.rodrigues.rodrigues.serial.dao.WriteGenericData;
+import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.resources.PortComResurce;
+import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 public class SerialService{
 	private PortComResurce resurce = new PortComResurce();
 	private WriteGenericData write = new WriteGenericData();
 	private ReadGenericData read = new ReadGenericData();
+	private SerialProperties serialProperties;
 		
 	
 
@@ -20,10 +23,11 @@ public class SerialService{
 	}
 	
 
-	public SerialPort enablePortCom(String porta, int baud, int timeout, int stopBits) {
+	public SerialPort enablePortCom() {
+		if(serialProperties==null)serialProperties = DependencyInjection.getSerialProperties();
 		SerialPort serial;
-		if(resurce.getPortIdentifier(porta)) {
-			serial = resurce.openPort(baud, timeout, stopBits);
+		if(resurce.getPortIdentifier(serialProperties.getPorta())) {
+			serial = resurce.openPort(serialProperties.getBaud(), serialProperties.getTimeout(), serialProperties.getStopBits());
 		}else return null;
 		
 		return serial;
@@ -39,5 +43,5 @@ public class SerialService{
 	public byte[] readData(SerialPort serial, int bufferSize) {
 		return read.readData(serial, bufferSize);
 	}
-
+	
 }
