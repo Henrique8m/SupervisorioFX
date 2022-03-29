@@ -39,6 +39,11 @@
                       <MenuItem mnemonicParsing="false" onAction="#checkLicense" text="Check License" />
                     </items>
                   </Menu>
+                  <Menu mnemonicParsing="false" text="Relatório Carga">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#relatorioAtual" text="Horário Corrente" />
+                    </items>
+                  </Menu>
               </menus>
             </MenuBar>
             <TabPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1356.0" style="-fx-background-color: #696969;" tabClosingPolicy="UNAVAILABLE">

@@ -24,11 +24,13 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -83,8 +85,13 @@ public class PrimaryViewController implements Initializable {
 	@FXML
 	public LineChart<String, Integer> lineChart;
 
-
-
+	@FXML
+	private void relatorioAtual(ActionEvent event) throws UnsupportedCommOperationException, IOException {
+		ScrollPane scrollPane= (ScrollPane) UtilitarioNewView.loadFXML("relatorioView", new RelatorioViewController());
+		Scene main = new Scene(scrollPane);
+		UtilitarioNewView.getNewView("Relatorio Das Balanças",main);
+	}
+	
 	@FXML
 	private void comPort(ActionEvent event) throws UnsupportedCommOperationException, IOException {
 		loadView("propertiesCom", null, "Status License", MainApp.getStage(),
