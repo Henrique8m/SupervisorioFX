@@ -284,7 +284,7 @@
                                           <Line endX="462.5" startX="-100.0" stroke="WHITE" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <GridPane prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <GridPane onMouseClicked="#SetPointB3" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
@@ -316,7 +316,7 @@
                                           <Line endX="462.5" startX="-100.0" stroke="WHITE" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <GridPane prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                    <GridPane onMouseClicked="#SetPointB5" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
@@ -348,7 +348,7 @@
                                           <Line endX="462.5" startX="-100.0" stroke="WHITE" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <GridPane prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                    <GridPane onMouseClicked="#SetPointB7" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
@@ -380,7 +380,7 @@
                                           <Line endX="462.5" startX="-100.0" stroke="WHITE" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <GridPane prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                    <GridPane onMouseClicked="#SetPointB9" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="9">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
@@ -412,7 +412,7 @@
                                           <Line endX="462.5" startX="-100.0" stroke="WHITE" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <GridPane prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                    <GridPane onMouseClicked="#SetPointB2" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
@@ -444,7 +444,7 @@
                                           <Line endX="462.5" startX="-100.0" stroke="#00ff0d" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <GridPane prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                    <GridPane onMouseClicked="#SetPointB4" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
@@ -459,14 +459,14 @@
                                                 <Font size="53.0" />
                                              </font>
                                           </Label>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                          <HBox prefHeight="52.0" prefWidth="587.0" GridPane.rowIndex="2">
                                              <children>
-                                                <Text fx:id="Balanca04" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1004" textAlignment="RIGHT" wrappingWidth="361.13671875">
+                                                <Text fx:id="Balanca04" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1004" textAlignment="RIGHT" wrappingWidth="342.13671875">
                                                    <font>
                                                       <Font name="LiquidCrystal" size="61.0" />
                                                    </font>
                                                 </Text>
-                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="346.13671875">
+                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="192.13671875">
                                                    <font>
                                                       <Font name="Calibri Bold" size="44.0" />
                                                    </font>
@@ -476,7 +476,7 @@
                                           <Line endX="462.5" startX="-100.0" stroke="#00ff0d" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <GridPane prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                    <GridPane onMouseClicked="#SetPointB6" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
@@ -508,7 +508,7 @@
                                           <Line endX="462.5" startX="-100.0" stroke="#00ff0d" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <GridPane prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                    <GridPane onMouseClicked="#SetPointB8" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="7">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
@@ -540,7 +540,7 @@
                                           <Line endX="462.5" startX="-100.0" stroke="#00ff0d" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <GridPane prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                                    <GridPane onMouseClicked="#SetPointB10" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="9">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>

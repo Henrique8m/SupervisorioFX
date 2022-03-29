@@ -22,8 +22,12 @@ public class WriteGenericData {
 			saida.close();
 		} catch (IOException e) {
 			System.out.println("Erro ao enviar os dados! STATUS: ");
-			e.printStackTrace();} 
+			e.printStackTrace();
+		}
 		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 	}

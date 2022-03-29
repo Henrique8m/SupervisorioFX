@@ -44,4 +44,8 @@ public class SerialService{
 		return read.readData(serial, bufferSize);
 	}
 	
+	public void closePort() {
+		
+	}
+	
 }

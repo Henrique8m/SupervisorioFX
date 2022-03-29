@@ -10,6 +10,7 @@ import com.rodrigues.rodrigues.serial.service.FormatData;
 import com.rodrigues.rodrigues.serial.service.SerialService;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.Gadgets;
+import com.rodrigues.rodrigues.serial.utilitary.calc.CalculatorByteInt;
 import com.rodrigues.rodrigues.serial.utilitary.calc.CalculatorData;
 
 public class ReadController implements Runnable{
@@ -38,7 +39,9 @@ public class ReadController implements Runnable{
     
     private Boolean whileRead = false;
     private Boolean readSetPoints = false;
+    private Boolean writeSetPoint = false;
     private int readSetPointsEnd;
+	private String[] setPoints = new String[4];
 
     
     public ReadController() {
@@ -75,8 +78,12 @@ public class ReadController implements Runnable{
 	            	}
 	            	//System.out.println(Teste.valueOf("ALFA").getDivisao() + "  " + Teste.ALFA.getBufferWrite() + "   "  +  Teste.ALFA.getBufferRead());
 	                if(readSetPoints) {
-	                	readSetPoints(readSetPointsEnd);
+	                	readSetPoints();
 	                	readSetPoints = false;
+	                }
+	                if(writeSetPoint) {
+	                	writeSetPointsView(setPoints, readSetPointsEnd);
+	                	writeSetPoint = false;
 	                }
 	            	
 	            	sweep(i+1, serialService.enablePortCom());
@@ -175,6 +182,7 @@ public class ReadController implements Runnable{
 		if(serialProperties==null)serialProperties = DependencyInjection.getSerialProperties();
 		if(formatData==null)formatData = DependencyInjection.getFormatData();
 		if(viewService==null)viewService = DependencyInjection.getPrimaryViewService();
+		if(writeSetPoints==null)writeSetPoints = DependencyInjection.getWritesetpoints();
 	}
 
 	public void threadCancel() {
@@ -192,12 +200,20 @@ public class ReadController implements Runnable{
 		return this.whileRead;
 	}
 	
-	public void setReadSetPoints(Boolean readSetPoints, int readSetPointsEnd) {
+	public void setReadSetPoints(Boolean readSetPoints) {
 		this.readSetPoints = readSetPoints;
+	}
+	
+	public void setEndReadSetPoints(int readSetPointsEnd) {		
 		this.readSetPointsEnd = readSetPointsEnd;
 	}
 	
-	private void readSetPoints(int readSetPointsEnd) {
+	public void setWriteSetPoints(Boolean writeSetPoint, String[] setPoints) {		
+		this.writeSetPoint = writeSetPoint;
+		this.setPoints  = setPoints;
+	}
+			
+	private void readSetPoints() {
 		SerialPort serial = serialService.enablePortCom();
     	String[] setPoints = new String[4];
 		
@@ -232,4 +248,26 @@ public class ReadController implements Runnable{
 
 	}
 	
+	public void writeSetPointsView(String[] setPoints, int readSetPointsEnd) {
+		SerialPort serial = serialService.enablePortCom();
+		byte[] buferr = new byte[Gadgets.ALFA_ESC_SETPOINTS.getBufferWrite()];
+		try {
+			Integer vazia = Integer.parseInt(setPoints[0]);
+			Integer sp_1 = Integer.parseInt(setPoints[1]);
+			Integer sp_2 = Integer.parseInt(setPoints[2]);
+			Integer sp_3 = Integer.parseInt(setPoints[3]);
+			//System.out.println(vazia +""+ sp_1 +""+sp_2+""+ sp_3);
+			buferr = writeSetPoints.Write(
+				readSetPointsEnd, 
+				CalculatorByteInt.intToByteWord16(sp_1), 
+				CalculatorByteInt.intToByteWord16(sp_2),
+				CalculatorByteInt.intToByteWord16(sp_3),
+				CalculatorByteInt.intToByteWord16(vazia));
+			
+			serialService.writeData(buferr, serial, Gadgets.ALFA_ESC_SETPOINTS.getBufferWrite());
+		}catch(NumberFormatException e) {
+		System.out.println("Peso do set point em formato incorreto");
+		}
+		serial.close();
+	}
 }

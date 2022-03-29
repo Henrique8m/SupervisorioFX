@@ -1,13 +1,14 @@
 package com.rodrigues.rodrigues.serial.dao;
 
+import com.rodrigues.rodrigues.serial.utilitary.Gadgets;
 import com.rodrigues.rodrigues.serial.utilitary.calc.CalculatorCRC;
 
 public class WriteSetPoints {
 	private byte[] bufferWrite = new byte[27];
 	
 	public byte[] seletroraWrite(int endereco) {
-		int registradorInicial = 30;
-		int totalRegistradores = 9;
+		int registradorInicial = Gadgets.ALFA_ESC_SETPOINTS.getRegistrador();
+		int totalRegistradores = Gadgets.ALFA_ESC_SETPOINTS.getTotalRegistradores();
 		int bytesEsperados = 18;
 		
 		int seletoraMs = 4;
@@ -40,8 +41,8 @@ public class WriteSetPoints {
 	}
 	
 	public byte[] Write(int endereco, byte[] sp_1, byte[] sp_2, byte[] sp_3, byte[] vazia) {
-		int registradorInicial = 30;
-		int totalRegistradores = 9;
+		int registradorInicial = Gadgets.ALFA_ESC_SETPOINTS.getRegistrador();
+		int totalRegistradores = Gadgets.ALFA_ESC_SETPOINTS.getTotalRegistradores();
 		int bytesEsperados = 18;
 		
 		bufferWrite[0] = (byte) endereco;

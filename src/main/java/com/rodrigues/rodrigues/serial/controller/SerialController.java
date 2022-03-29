@@ -4,7 +4,7 @@ import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 
 public class SerialController{
-	private ReadController readController;
+	public ReadController readController;
 
     int end = 2;
 

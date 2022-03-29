@@ -36,6 +36,9 @@ public class CalculatorByteInt {
 			System.out.println("Value its null in calculatorByteWord16");
 		}
 		
+//		for(byte x : valueByte)
+//			System.out.println(x);
+		
 		return valueByte;
 	}
 

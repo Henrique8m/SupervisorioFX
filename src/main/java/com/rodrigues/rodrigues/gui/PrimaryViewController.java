@@ -17,6 +17,7 @@ import com.rodrigues.rodrigues.securit.DataSecurit;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
+import com.rodrigues.rodrigues.serial.utilitary.EndGadgets;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
 import javafx.animation.Timeline;
@@ -47,6 +48,8 @@ public class PrimaryViewController implements Initializable {
 	private DataSecurit securit;
 
 	private List<String> avaliablePorts;
+	
+	public String balancaName;
 	
 
 	@FXML
@@ -119,9 +122,85 @@ public class PrimaryViewController implements Initializable {
 	
 	@FXML
 	private void SetPointB1(MouseEvent event) throws UnsupportedCommOperationException, IOException {
-		loadView("setPointConfigView", null, "Configuração de Set Points", MainApp.getStage(),
+		serialController.readController.setEndReadSetPoints(EndGadgets.Balança_01.getEnd());
+		balancaName = "Balança 1";
+		loadView("setPointConfigView", null, "Configuração de Set Points B1", MainApp.getStage(),
 				DependencyInjection.getSetPointController());
+		
 	}
+	@FXML
+	private void SetPointB2(MouseEvent event) throws UnsupportedCommOperationException, IOException {
+		serialController.readController.setEndReadSetPoints(EndGadgets.Balança_02.getEnd());
+		balancaName = "Balança 2";
+		loadView("setPointConfigView", null, "Configuração de Set Points B2", MainApp.getStage(),
+				DependencyInjection.getSetPointController());
+		
+	}
+	@FXML
+	private void SetPointB3(MouseEvent event) throws UnsupportedCommOperationException, IOException {
+		serialController.readController.setEndReadSetPoints(EndGadgets.Balança_03.getEnd());
+		balancaName = "Balança 3";
+		loadView("setPointConfigView", null, "Configuração de Set Points B3", MainApp.getStage(),
+				DependencyInjection.getSetPointController());
+		
+	}
+	@FXML
+	private void SetPointB4(MouseEvent event) throws UnsupportedCommOperationException, IOException {
+		serialController.readController.setEndReadSetPoints(EndGadgets.Balança_04.getEnd());
+		balancaName = "Balança 4";
+		loadView("setPointConfigView", null, "Configuração de Set Points B4", MainApp.getStage(),
+				DependencyInjection.getSetPointController());
+		
+	}
+	@FXML
+	private void SetPointB5(MouseEvent event) throws UnsupportedCommOperationException, IOException {
+		serialController.readController.setEndReadSetPoints(EndGadgets.Balança_05.getEnd());
+		balancaName = "Balança 5";
+		loadView("setPointConfigView", null, "Configuração de Set Points B5", MainApp.getStage(),
+				DependencyInjection.getSetPointController());
+		
+	}
+	@FXML
+	private void SetPointB6(MouseEvent event) throws UnsupportedCommOperationException, IOException {
+		serialController.readController.setEndReadSetPoints(EndGadgets.Balança_06.getEnd());
+		balancaName = "Balança 6";
+		loadView("setPointConfigView", null, "Configuração de Set Points B6", MainApp.getStage(),
+				DependencyInjection.getSetPointController());
+		
+	}
+	@FXML
+	private void SetPointB7(MouseEvent event) throws UnsupportedCommOperationException, IOException {
+		serialController.readController.setEndReadSetPoints(EndGadgets.Balança_07.getEnd());
+		balancaName = "Balança 7";
+		loadView("setPointConfigView", null, "Configuração de Set Points B7", MainApp.getStage(),
+				DependencyInjection.getSetPointController());
+		
+	}
+	@FXML
+	private void SetPointB8(MouseEvent event) throws UnsupportedCommOperationException, IOException {
+		serialController.readController.setEndReadSetPoints(EndGadgets.Balança_08.getEnd());
+		balancaName = "Balança 8";
+		loadView("setPointConfigView", null, "Configuração de Set Points B8", MainApp.getStage(),
+				DependencyInjection.getSetPointController());
+		
+	}
+	@FXML
+	private void SetPointB9(MouseEvent event) throws UnsupportedCommOperationException, IOException {
+		serialController.readController.setEndReadSetPoints(EndGadgets.Balança_09.getEnd());
+		balancaName = "Balança 9";
+		loadView("setPointConfigView", null, "Configuração de Set Points B9", MainApp.getStage(),
+				DependencyInjection.getSetPointController());
+		
+	}
+	@FXML
+	private void SetPointB10(MouseEvent event) throws UnsupportedCommOperationException, IOException {
+		serialController.readController.setEndReadSetPoints(EndGadgets.Balança_10.getEnd());
+		balancaName = "Balança 10";
+		loadView("setPointConfigView", null, "Configuração de Set Points B10", MainApp.getStage(),
+				DependencyInjection.getSetPointController());
+		
+	}
+	
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {

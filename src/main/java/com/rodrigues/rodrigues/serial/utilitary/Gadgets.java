@@ -12,12 +12,13 @@ public enum Gadgets {
 	//	divisao, registrador, totalRegistradores ,bufferWrite, bufferRead, bufferRead1Ms, bufferReadMs ,bufferReadLs;
 	ALFA(10, 80, 6,  27, 17, 0, 10, 9),
 	ALFA_LEI_SETPOINTS(10, 40, 9,  27, 23, 0, 10, 9),
+	ALFA_ESC_SETPOINTS(10, 30, 9,  27, 23, 0, 10, 9),
 	
 	//Primeiro o de multiplicação, depois o de soma
 	ALFA_FORMAT_SETPOINTS_VAZIA(19, 20),
-	ALFA_FORMAT_SETPOINTS_1_4(15, 16),
+	ALFA_FORMAT_SETPOINTS_1_4(7, 8),
 	ALFA_FORMAT_SETPOINTS_2_5(11, 12),
-	ALFA_FORMAT_SETPOINTS_3_6(7, 8);
+	ALFA_FORMAT_SETPOINTS_3_6(15, 16);
 	
 	
 	int divisao;
