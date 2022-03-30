@@ -21,8 +21,10 @@ public class MainApp extends Application {
 	private static Scene mainScene;
 	private static ImageView imageAltoForno;
 	private static ImageView imageGlendon;
+	
 	private static String strForno = "FundoAltoForno";
 	private static String strGlendon = "FundoGlendon";
+	private final static String nameSupervisorio = "Supervisorio 3.0";
 	
 	@SuppressWarnings("unused")
 	private static Consumer<?> controller;
@@ -75,7 +77,7 @@ public class MainApp extends Application {
 		anchorGlendons.getChildren().add(0, imageGlendon);
 		
 		//Preparar a sena e showww
-		stage = UtilitarioNewView.getNewView("Supervisorio 1.0", mainScene = new Scene(scrollPane));
+		stage = UtilitarioNewView.getNewView(nameSupervisorio, mainScene = new Scene(scrollPane));
 	}
 
 	public static void main(String[] args) {

@@ -175,8 +175,38 @@ public void timerCancel(){
 	Thread.sleep(5000);
 */
 	
+	/*
+	 * @SuppressWarnings("unused") private void beginTimer() { timeline = new
+	 * Timeline(new KeyFrame(javafx.util.Duration.seconds(2), ev -> { //
+	 * sComm.WriteData(); //sComm.formatDados();
+	 * //lblOut.setText(sComm.getDisplay()); }));
+	 * 
+	 * timeline.setCycleCount(Animation.INDEFINITE); timeline.play(); time = true;
+	 * 
+	 * }
+	 */
 	
 	
+	
+	//serialController = DependencyInjection.getSerialController();
+	//controller.setFxmlController(this);
+	//controller = new SerialController(PrimaryViewController.this);
+	
+	
+	
+	
+	/*
+	Balancas balanca1 = new Balancas("Balança01", Integer.parseInt(viewController.Balanca01.getText() ) );
+	Balancas balanca2 = new Balancas("Balança02", Integer.parseInt(viewController.Balanca02.getText() ) );
+	Balancas balanca3 = new Balancas("Balança03", Integer.parseInt(viewController.Balanca03.getText() ) );
+	Balancas balanca4 = new Balancas("Balança04", Integer.parseInt(viewController.Balanca04.getText() ) );
+	Balancas balanca5 = new Balancas("Balança05", Integer.parseInt(viewController.Balanca05.getText() ) );
+	Balancas balanca6 = new Balancas("Balança06", Integer.parseInt(viewController.Balanca06.getText() ) );
+	Balancas balanca7 = new Balancas("Balança07", Integer.parseInt(viewController.Balanca07.getText() ) );
+	Balancas balanca8 = new Balancas("Balança08", Integer.parseInt(viewController.Balanca08.getText() ) );
+	Balancas balanca9 = new Balancas("Balança09", Integer.parseInt(viewController.Balanca09.getText() ) );
+	Balancas balanca10 = new Balancas("Balança10", Integer.parseInt(viewController.Balanca10.getText() ) );
+	*/
 	
 
 }

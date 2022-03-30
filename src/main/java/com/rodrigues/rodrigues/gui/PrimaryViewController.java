@@ -12,6 +12,7 @@ import javax.comm.CommPortIdentifier;
 import javax.comm.UnsupportedCommOperationException;
 
 import com.rodrigues.rodrigues.MainApp;
+import com.rodrigues.rodrigues.gui.history.controller.HistoryController;
 import com.rodrigues.rodrigues.gui.util.Alerts;
 import com.rodrigues.rodrigues.securit.DataSecurit;
 import com.rodrigues.rodrigues.serial.controller.SerialController;
@@ -37,6 +38,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class PrimaryViewController implements Initializable {
+	
+	private HistoryController historyController = new HistoryController();
 
 	private static final Object defautPort = "COM4";
 	private String lastPort = "";
@@ -51,8 +54,7 @@ public class PrimaryViewController implements Initializable {
 
 	private List<String> avaliablePorts;
 	
-	public String balancaName;
-	
+	public String balancaName;	
 
 	@FXML
 	public Text cf1, cf2, cf3;
@@ -115,7 +117,6 @@ public class PrimaryViewController implements Initializable {
 		} else {
 			showError();
 		}
-
 	}
 
 	@FXML
@@ -213,8 +214,7 @@ public class PrimaryViewController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		instanciates();
 		DependencyInjection.setPrimaryViewController(this);
-		if(securit.validateData()) {
-			
+		if(securit.validateData()) {		
 			
 			avaliablePorts = new ArrayList<>();
 			@SuppressWarnings("unchecked")
@@ -230,27 +230,14 @@ public class PrimaryViewController implements Initializable {
 				else if(e.equals(lastPort))
 				serialProperties.setPorta(lastPort);
 			
-			
-			serialController = DependencyInjection.getSerialController();
-			//controller.setFxmlController(this);
-			//controller = new SerialController(PrimaryViewController.this);
-			
 			serialController.startCommunication();
 		}else {
 			showError();
 		}
 		LineChartSample();
+		historyController.startHistory();
 	}
-	/*
-	 * @SuppressWarnings("unused") private void beginTimer() { timeline = new
-	 * Timeline(new KeyFrame(javafx.util.Duration.seconds(2), ev -> { //
-	 * sComm.WriteData(); //sComm.formatDados();
-	 * //lblOut.setText(sComm.getDisplay()); }));
-	 * 
-	 * timeline.setCycleCount(Animation.INDEFINITE); timeline.play(); time = true;
-	 * 
-	 * }
-	 */
+
 
 	@SuppressWarnings("unused")
 	private void cancelTimer() {

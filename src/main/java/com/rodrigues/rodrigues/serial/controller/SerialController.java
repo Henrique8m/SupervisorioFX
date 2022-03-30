@@ -5,7 +5,7 @@ import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 public class SerialController{
 	public ReadController readController;
-
+	
     int end = 2;
 
     public void stopCommunication(){

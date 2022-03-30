@@ -2,6 +2,7 @@ package com.rodrigues.rodrigues.gui.service;
 
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.gui.SetPointController;
+import com.rodrigues.rodrigues.gui.history.service.HistoryService;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 public class PrimaryViewService {
@@ -52,25 +53,35 @@ public class PrimaryViewService {
             if(end==16){ primaryViewController.pirometro.setText(display);}
             if(end==16){ primaryViewController.pirometro1.setText(display);}
             
-            if(end==19){ primaryViewController.Balanca01.setText(display);}
+            if(end==19){ primaryViewController.Balanca01.setText(display);
+            HistoryService.newBalancas[0] = display;}
             
-            if(end==20){ primaryViewController.Balanca02.setText(display);}
+            if(end==20){ primaryViewController.Balanca02.setText(display);
+            HistoryService.newBalancas[1] = display;}
             
-            if(end==21){ primaryViewController.Balanca03.setText(display);}
+            if(end==21){ primaryViewController.Balanca03.setText(display);
+            HistoryService.newBalancas[2] = display;}
             
-            if(end==22){ primaryViewController.Balanca04.setText(display);}
+            if(end==22){ primaryViewController.Balanca04.setText(display);
+            HistoryService.newBalancas[3] = display;}
             
-            if(end==23){ primaryViewController.Balanca05.setText(display);}
+            if(end==23){ primaryViewController.Balanca05.setText(display);
+            HistoryService.newBalancas[4] = display;}
             
-            if(end==24){ primaryViewController.Balanca06.setText(display);}
+            if(end==24){ primaryViewController.Balanca06.setText(display);
+            HistoryService.newBalancas[5] = display;}
             
-            if(end==25){ primaryViewController.Balanca07.setText(display);}
+            if(end==25){ primaryViewController.Balanca07.setText(display);
+            HistoryService.newBalancas[6] = display;}
             
-            if(end==26){ primaryViewController.Balanca08.setText(display);}
+            if(end==26){ primaryViewController.Balanca08.setText(display);
+            HistoryService.newBalancas[7] = display;}
             
-            if(end==27){ primaryViewController.Balanca09.setText(display);}
+            if(end==27){ primaryViewController.Balanca09.setText(display);
+            HistoryService.newBalancas[8] = display;}
             
-            if(end==28){ primaryViewController.Balanca10.setText(display);}
+            if(end==28){ primaryViewController.Balanca10.setText(display);
+            HistoryService.newBalancas[9] = display;}
             
             
 
