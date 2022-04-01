@@ -27,7 +27,7 @@ public class ReadGenericData {
 				public void run() {
 					serial.close(); 
 					}}; 
-			timer.schedule(timerTask,50);
+			timer.schedule(timerTask,60);
 			entrada.read(bufferRead);
 			
 			timerTask.cancel();	

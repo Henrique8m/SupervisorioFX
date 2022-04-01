@@ -5,9 +5,11 @@ import com.rodrigues.rodrigues.gui.SetPointController;
 import com.rodrigues.rodrigues.gui.history.service.HistoryService;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
-public class PrimaryViewService {
+public class PrimaryViewService{
+	
     private PrimaryViewController primaryViewController;
     private SetPointController setPointController;
+      
 	
 	public void writeText(int end, String display) {
 		instanciates();

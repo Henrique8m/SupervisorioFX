@@ -30,12 +30,15 @@ public class ReadController implements Runnable{
     private byte[] bufferRead = new byte[7];
     private byte[] bufferReadAlfa = new byte[17];
     
+    public static String[] displayVetor = new String[28];
+    
     private int bufferSizeRead;
     private int bufferSizeWrite;
      
     private String display;
 
     private Thread thread = new Thread(this);
+    
     
     private Boolean whileRead = false;
     private Boolean readSetPoints = false;
@@ -69,25 +72,36 @@ public class ReadController implements Runnable{
     	try {
 			Thread.sleep(1000);
 	    	while(whileRead) {
-	            for(int i=0; i < numGadgets.length; i++){
-	
-	            	if(thread.isInterrupted()) {
-	                	primaryViewController.txLog.setText("Conection Lost");
-	                	primaryViewController.txLog1.setText("Conection Lost");
-	            		return;
-	            	}
-	            	//System.out.println(Teste.valueOf("ALFA").getDivisao() + "  " + Teste.ALFA.getBufferWrite() + "   "  +  Teste.ALFA.getBufferRead());
-	                if(readSetPoints) {
-	                	readSetPoints();
-	                	readSetPoints = false;
-	                }
-	                if(writeSetPoint) {
-	                	writeSetPointsView(setPoints, readSetPointsEnd);
-	                	writeSetPoint = false;
-	                }
-	            	
-	            	sweep(i+1, serialService.enablePortCom());
-	           }
+	    		int cont = 0;
+
+	    		
+	    		for(int i = 0; i < 9; i++) {
+	    			
+	    			if(i<8) {	cont = 18;
+	    			
+	    			}else cont = 0;
+	    			
+	    		
+		            for(; cont < numGadgets.length; cont++){
+		
+		            	if(thread.isInterrupted()) {
+		                	primaryViewController.txLog.setText("Conection Lost");
+		                	primaryViewController.txLog1.setText("Conection Lost");
+		            		return;
+		            	}
+		            	//System.out.println(Teste.valueOf("ALFA").getDivisao() + "  " + Teste.ALFA.getBufferWrite() + "   "  +  Teste.ALFA.getBufferRead());
+		                if(readSetPoints) {
+		                	readSetPoints();
+		                	readSetPoints = false;
+		                }
+		                if(writeSetPoint) {
+		                	writeSetPointsView(setPoints, readSetPointsEnd);
+		                	writeSetPoint = false;
+		                }
+		            	
+		            	sweep(cont+1, serialService.enablePortCom());
+		           }
+	            }
 	    	}
 	    	
 	    	
@@ -129,27 +143,35 @@ public class ReadController implements Runnable{
 	            	
 		        }
 	                
-                if(bufferRead != null) {                
-	                if((i >= 1 )&&(i<=11)||(i==13 || i==14))
-	                	//displayVetor[i-1] 
+                if(bufferRead != null) {                  	
+                	
+	                if((i >= 1 )&&(i<=11)||(i==13 || i==14)) {	                	
 	                	display = formatData.formatData(bufferRead, "N1540", "int");
-	                else if (i==12 || i==17||i==18)
-	                	//displayVetor[i-1]
+	                	displayVetor[i-1] = display;
+	                			
+                }
+	                else if (i==12 || i==17||i==18) {	                	
 	                	display= formatData.formatData(bufferRead, "N1540_4_a_20", "double");
-	                else if (i==15||i==16)
-	                	//displayVetor[i-1]
+	                	displayVetor[i-1] = display;
+	                }
+	                else if (i==15||i==16) {
+	                	
 	                	display	= formatData.formatData(bufferRead, "N2000", "int");
+	                	displayVetor[i-1] = display;
+	                }
                 }else if(bufferReadAlfa != null){
                 	if(i>=19)
-	                	//displayVetor[i-1]
+                	{
 	                	display	= formatData.formatDataAlfa(bufferReadAlfa);
+                		displayVetor[i-1] = display;
+                	}
                 }else {
-                	//displayVetor[i-1]
+                	displayVetor[i-1]= "Error";
                 	display	= "Error";
 	            }
-                //display = displayVetor[i-1];
+                display = displayVetor[i-1];
                 viewService.writeText(i, display);
-                
+               
                 
                 bufferRead = null;
                 bufferReadAlfa = null;

@@ -7,19 +7,20 @@ import javax.comm.SerialPort;
 
 public class WriteGenericData {	
 	private OutputStream saida;
+	private Integer threadSleep = 120;
 	
 	public void writeData(byte[] bufferWrite, SerialPort serialPort, int BufferSize) {
 
 		//Padrao do bufer = 8
 		//Indicadores alfa = 27
 		try {
-			Thread.sleep(200);
+			Thread.sleep(threadSleep);
 			serialPort.setOutputBufferSize(BufferSize);
 			saida = serialPort.getOutputStream();
 			saida.write(bufferWrite);
-			Thread.sleep(10);
+			//Thread.sleep(0);
 			saida.flush();
-			saida.close();
+			//saida.close();
 		} catch (IOException e) {
 			System.out.println("Erro ao enviar os dados! STATUS: ");
 			e.printStackTrace();

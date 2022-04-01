@@ -22,6 +22,11 @@ public class HistoryService implements Runnable {
 	private Integer nextTime=0;
 	private Date data;
 	
+	
+	private int bordaDeSubida = 200;//k/10
+	private int bordaDeDescida = 200;
+	private int balancaVazia = 100;
+	
 	private Thread thread = new Thread(this);
 
 	public void startHistory() {
@@ -36,86 +41,140 @@ public class HistoryService implements Runnable {
 
 	@Override
 	public void run() {
-		while(true) {			
-	        for(int i=0; i<newBalancas.length; i++ ) {
-	        	oldBalancas[i] = toCompare(newBalancas[i].replaceAll("[^0-9]+", ""),oldBalancas[i], i);
+			
+		while(true){
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
+			for(int i=0; i<newBalancas.length; i++ ) {
+	        	if((newBalancas[i]!=null)&&(newBalancas[i]!="Error") ) {
+	        		
+	        		/*
+	        		System.out.println("New Balancas["+ i + "] é diferente de null");
+	        		System.out.println("New Balancas["+ i + "] = "+ newBalancas[i]);
+        			System.out.println("New Balancas["+ i + "] = "+ newBalancas[i].replaceAll("[^0-9]+", ""));
+        			System.out.println("Old Balancas["+ i + "] = " + oldBalancas[i]);
+        			System.out.println("Old Balancas["+ i + "] Depois do compare= " + oldBalancas[i]);
+	        		System.out.println();
+        			*/ 
+	        		oldBalancas[i] = toCompare(newBalancas[i].replaceAll("[^0-9]+", ""),oldBalancas[i], i);
+
+	        	}
+        	}
+
 	        data = new Date(System.currentTimeMillis()); 			
 	        time = Integer.parseInt(formatarTime.format(data));
 	        
-	        System.out.print(time);
-	        
-	        if(time>nextTime) {
-	        	
-		        for(Integer x : historySaveH5) {
-		        	System.out.print(x + " - ");
-		        }
-		        System.out.println();
-		        for(Integer x : historySaveH4) {
-		        	System.out.print(x + " - ");
-		        }
-		        System.out.println();
-		        for(Integer x : historySaveH3) {
-		        	System.out.print(x + " - ");
-		        }
-		        System.out.println();
-		        for(Integer x : historySaveH2) {
-		        	System.out.print(x + " - ");
-		        }
-		        System.out.println();
-		        for(Integer x : historySaveH1) {
-		        	System.out.print(x + " - ");
-		        }
-	        	
-	        	
-	        	historySaveH5 = historySaveH4;
-	        	historySaveH4 = historySaveH3;
-	        	historySaveH3 = historySaveH2;
-	        	historySaveH1 = null;
-	       
-		        for(Integer x : historySaveH5) {
-		        	System.out.print(x + " - ");
-		        }
-		        System.out.println();
-		        for(Integer x : historySaveH4) {
-		        	System.out.print(x + " - ");
-		        }
-		        System.out.println();
-		        for(Integer x : historySaveH3) {
-		        	System.out.print(x + " - ");
-		        }
-		        System.out.println();
-		        for(Integer x : historySaveH2) {
-		        	System.out.print(x + " - ");
-		        }
-		        System.out.println();
-		        for(Integer x : historySaveH1) {
-		        	System.out.print(x + " - ");
-		        }
+	        try {
+		        if((time>nextTime)&&auxTrocaHorario) {
+		        	System.out.print(time);
+		        	System.out.println();   
+		        	System.out.println();
+		        	
+			        for(int i=0; i< historySaveH1.length; i++) {
+			        	
+			        	if(historySaveH4[i]==null)historySaveH5[i] = 0;
+			        	else historySaveH5[i] = historySaveH4[i].intValue();
+			        	
+			        	if(historySaveH3[i]==null)historySaveH4[i] = 0;
+			        	else historySaveH4[i] = historySaveH3[i].intValue();
+			        	
+			        	if(historySaveH2[i]==null)historySaveH3[i] = 0;
+			        	else historySaveH3[i] = historySaveH2[i].intValue();
+			        	
+			        	if(historySaveH1[i]==null) {
+			        		historySaveH2[i] = 0;
+			        		historySaveH1[i] = 0;
+			        	}
+			        	else {
+			        		historySaveH2[i] = historySaveH1[i].intValue();
+			        		historySaveH1[i] = 0;
+			        	}
+			        }
+		        	
+			        for(Integer x : historySaveH5) {
+			        	System.out.print(x + " - ");
+			        }
+			        System.out.println();
+			        for(Integer x : historySaveH4) {
+			        	System.out.print(x + " - ");
+			        }
+			        System.out.println();
+			        for(Integer x : historySaveH3) {
+			        	System.out.print(x + " - ");
+			        }
+			        System.out.println();
+			        for(Integer x : historySaveH2) {
+			        	System.out.print(x + " - ");
+			        }
+			        System.out.println();
+			        for(Integer x : historySaveH1) {
+			        	System.out.print(x + " - ");
+			        }
+			        System.out.println();
+		        
+			        System.out.println();
+			        System.out.println("Fim");
+			        System.out.println();
+			        nextTime = time + 1;
+			        auxTrocaHorario=false;
+			        
+				}else if(auxTrocaHorario==false){
+					System.out.println("Else");
+					auxTrocaHorario=true;
+				}
+	        }catch(NullPointerException e) {
+				e.printStackTrace();
 			}
 		}
 	}
 
 	private String toCompare(String newValue, String oldValue, int i) {
 		if(auxSave[i] == null) auxSave[i]=true;
+		
+		if(oldValue == null) oldValue = "0";
+		if(oldValue == null) newValue = "0";
+		
+		Integer oldValueInt = null;
+		Integer newValueInt = null;
+		
 		try {
-			Integer oldValueInt = Integer.parseInt(oldValue);
-			Integer newValueInt = Integer.parseInt(newValue);
-			
-			if(newValueInt > (oldValueInt - 20)) {
-				auxSave[i] = true;
-				return Integer.toString(newValueInt);
-				
-			}else if(newValueInt < (oldValueInt - 20)&& auxSave[i]) {
-				historySaveH1[i] += oldValueInt;
-				auxSave[i] = false;
-			}
+			oldValueInt = Integer.parseInt(oldValue);
+			newValueInt = Integer.parseInt(newValue);
 		}catch(NumberFormatException e) {
-			//Não para o software seu merda
-			return oldValue;
+			System.out.println("NumberFormatException in HistoryService");
 		}catch(NullPointerException e) {
+			System.out.println("NullPoint in HistoryService");
+		}	
+		
+		try {
+		if(newValueInt > (oldValueInt + bordaDeSubida)&&auxSave[i]) {
+			auxSave[i] = true;
+			System.out.println("Retornando " + newValueInt);
+			return Integer.toString(newValueInt);
 			
+		}else if(newValueInt < (oldValueInt - bordaDeDescida)&& auxSave[i]) {
+			
+			if(historySaveH1[i]==null) historySaveH1[i] = 0;
+			
+			historySaveH1[i] += oldValueInt;
+			
+			System.out.println("Salvando no historico " + oldValueInt + "\n Historico depois de Salvar " + historySaveH1[i]);
+			auxSave[i] = false;
 		}
+		if((auxSave[i]==false)&&(newValueInt<balancaVazia)) {
+			auxSave[i] = true;
+			System.out.println("Retornando " + newValueInt +  " Para iniciar uma nova era");
+			return Integer.toString(200);
+		}
+		}catch(NullPointerException e ) {
+			System.out.println("NullPoint in HistoryService no if");
+			e.printStackTrace();
+		}
+
 
 		return oldValue;
 	}
