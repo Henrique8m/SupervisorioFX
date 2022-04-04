@@ -41,7 +41,8 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Relatório Carga">
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#relatorioAtual" text="Horário Corrente" />
+                      <MenuItem mnemonicParsing="false" onAction="#view1" text="View 1" />
+                        <MenuItem mnemonicParsing="false" onAction="#view2" text="View 2" />
                     </items>
                   </Menu>
               </menus>

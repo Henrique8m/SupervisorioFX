@@ -1196,7 +1196,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Text fx:id="B8_AC_" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                    <Text fx:id="B8_AC_2" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
                                        <font>
                                           <Font name="LiquidCrystalNovus" size="35.0" />
                                        </font>

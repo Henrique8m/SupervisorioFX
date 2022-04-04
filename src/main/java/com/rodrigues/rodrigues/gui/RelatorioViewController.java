@@ -3,14 +3,19 @@ package com.rodrigues.rodrigues.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 
 public class RelatorioViewController implements Initializable{
 	
+	private Timeline timeline;
+	
 	@FXML
-	private Text 
+	public Text 
 				B1_AC_5, B1_AC_4, B1_AC_3, B1_AC_2, B1_AC_1, B1_AC,
 				B2_AC_5, B2_AC_4, B2_AC_3, B2_AC_2, B2_AC_1, B2_AC,	
 				B3_AC_5, B3_AC_4, B3_AC_3, B3_AC_2, B3_AC_1, B3_AC,
@@ -26,5 +31,20 @@ public class RelatorioViewController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		
 	}
+	
 
+
+	  @SuppressWarnings("unused")
+	 private void beginTimer() { 
+		  timeline = new
+		 Timeline(new KeyFrame(javafx.util.Duration.seconds(2), ev -> { 
+			 System.out.println("Teste TimeLine");
+			 //sComm.WriteData(); 
+			 //sComm.formatDados();
+			  //lblOut.setText(sComm.getDisplay()); 
+		 }));
+		
+		 timeline.setCycleCount(Animation.INDEFINITE); timeline.play();
+
+	}
 }

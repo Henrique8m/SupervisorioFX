@@ -5,6 +5,7 @@ import java.util.List;
 import com.rodrigues.rodrigues.gui.CheckLicenseController;
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.gui.PropertiesComController;
+import com.rodrigues.rodrigues.gui.RelatorioViewController;
 import com.rodrigues.rodrigues.gui.SetPointController;
 import com.rodrigues.rodrigues.gui.service.PrimaryViewService;
 import com.rodrigues.rodrigues.securit.DataSecurit;
@@ -36,6 +37,11 @@ public class DependencyInjection {
 	private static final DataSecurit dataSecurit = new DataSecurit();
 	private static final SetPointController setPointController = new SetPointController();
 	private static final PortComResurce portComResurces = new PortComResurce();
+	private static final RelatorioViewController relatorioViewController = new RelatorioViewController();
+	public static RelatorioViewController getRelatorioviewcontroller() {
+		return relatorioViewController;
+	}
+
 	private static PrimaryViewController primaryViewController;
 	private static List<String> avaliablePorts;
 	

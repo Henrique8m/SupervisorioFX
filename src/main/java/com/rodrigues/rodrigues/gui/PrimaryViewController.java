@@ -88,10 +88,20 @@ public class PrimaryViewController implements Initializable {
 	public LineChart<String, Integer> lineChart;
 
 	@FXML
-	private void relatorioAtual(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		ScrollPane scrollPane= (ScrollPane) UtilitarioNewView.loadFXML("relatorioView", new RelatorioViewController());
+	private void view1(ActionEvent event) throws UnsupportedCommOperationException, IOException {
+		ScrollPane scrollPane= (ScrollPane) UtilitarioNewView.loadFXML("relatorioView", DependencyInjection.getRelatorioviewcontroller());
 		Scene main = new Scene(scrollPane);
 		UtilitarioNewView.getNewView("Relatorio Das Balanças",main);
+		
+		historyController.updatedValue();
+	}
+	@FXML
+	private void view2(ActionEvent event) throws UnsupportedCommOperationException, IOException {
+		ScrollPane scrollPane= (ScrollPane) UtilitarioNewView.loadFXML("relatorioView2", DependencyInjection.getRelatorioviewcontroller());
+		Scene main = new Scene(scrollPane);
+		UtilitarioNewView.getNewView("Relatorio Das Balanças",main);
+		
+		historyController.updatedValue();
 	}
 	
 	@FXML

@@ -8,4 +8,8 @@ public class HistoryController {
 	public void startHistory() {
 		service.startHistory();		
 	}
+	
+	public void updatedValue() {
+		service.updatedValue();		
+	}
 }

@@ -3,7 +3,13 @@ package com.rodrigues.rodrigues.gui.history.service;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
+import com.rodrigues.rodrigues.gui.RelatorioViewController;
+import com.rodrigues.rodrigues.serial.dao.WriteValueAccumulated;
+import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
+
 public class HistoryService implements Runnable {
+	private WriteValueAccumulated accumulated = new WriteValueAccumulated();
+	
 	
 	public static String[] newBalancas = new String[10];
 	public String[] oldBalancas = new String[10];
@@ -185,6 +191,11 @@ public class HistoryService implements Runnable {
 
 
 		return oldValue;
+	}
+
+	public void updatedValue() {
+		accumulated.write(historySaveHC, historySaveH1, historySaveH2, historySaveH3, historySaveH4, historySaveH5);
+		
 	}
 }
 
