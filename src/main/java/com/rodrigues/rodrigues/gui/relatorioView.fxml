@@ -1,14 +1,1858 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="388.0" prefWidth="591.0">
+    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1363.0" style="-fx-background-color: #696969;">
          <children>
-            <Text layoutX="284.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello Word" />
+            <VBox layoutX="130.0" layoutY="86.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="1366.0" text="Acomulado de 5 Horas Atras" textAlignment="CENTER">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="29.0" />
+                     </font>
+                  </Label>
+                  <GridPane hgap="4.0" prefHeight="115.0" prefWidth="1369.0" VBox.vgrow="NEVER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Text fx:id="B1_AC_5" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Balança 01" textAlignment="CENTER" wrappingWidth="138.4072265625">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="24.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Text fx:id="B2_AC_5" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Balança 02" textAlignment="CENTER" wrappingWidth="138.4072265625">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="24.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Text fx:id="B3_AC_5" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Balança 03" textAlignment="CENTER" wrappingWidth="138.4072265625">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="24.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Text fx:id="B4_AC_5" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Balança 04" textAlignment="CENTER" wrappingWidth="138.4072265625">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="24.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="4">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Text fx:id="B5_AC_5" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Balança 05" textAlignment="CENTER" wrappingWidth="138.4072265625">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="24.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="5">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Text fx:id="B6_AC_5" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Balança 06" textAlignment="CENTER" wrappingWidth="138.4072265625">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="24.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="6">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Text fx:id="B7_AC_5" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Balança 07" textAlignment="CENTER" wrappingWidth="138.4072265625">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="24.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="7">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Text fx:id="B8_AC_5" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Balança 08" textAlignment="CENTER" wrappingWidth="138.4072265625">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="24.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="8">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Text fx:id="B9_AC_5" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Balança 09" textAlignment="CENTER" wrappingWidth="138.4072265625">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="24.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="9">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Text fx:id="B10_AC_5" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Carvão" textAlignment="CENTER" wrappingWidth="138.4072265625">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="24.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="1366.0" text="Acomulado de 4 Horas Atras" textAlignment="CENTER" textFill="#c3c3c3">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="29.0" />
+                     </font>
+                  </Label>
+                  <GridPane hgap="4.0" prefHeight="50.0" prefWidth="1369.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B1_AC_4" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B2_AC_4" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B3_AC_4" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B4_AC_4" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="4">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B5_AC_4" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="5">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B6_AC_4" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="6">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B7_AC_4" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="7">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B8_AC_4" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="8">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B9_AC_4" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="9">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B10_AC_4" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="1366.0" text="Acomulado de 3 Horas Atras" textAlignment="CENTER">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="29.0" />
+                     </font>
+                  </Label>
+                  <GridPane hgap="4.0" prefHeight="50.0" prefWidth="1369.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B1_AC_3" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B2_AC_3" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B3_AC_3" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B4_AC_3" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="4">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B5_AC_3" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="5">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B6_AC_3" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="6">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B7_AC_3" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="7">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B8_AC_3" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="8">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B9_AC_3" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="9">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B10_AC_3" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="1366.0" text="Acomulado de 2 Horas Atras" textAlignment="CENTER" textFill="#070707">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="29.0" />
+                     </font>
+                  </Label>
+                  <GridPane hgap="4.0" prefHeight="50.0" prefWidth="1369.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B1_AC_2" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B2_AC_2" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B3_AC_2" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B4_AC_2" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="4">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B5_AC_2" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="5">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B6_AC_2" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="6">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B7_AC_2" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="7">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B8_AC_" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="8">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B9_AC_2" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="9">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B10_AC_2" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="1366.0" text="Acomulado de 1 Horas Atras" textAlignment="CENTER" textFill="#c3c3c3">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="29.0" />
+                     </font>
+                  </Label>
+                  <GridPane hgap="4.0" prefHeight="50.0" prefWidth="1369.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B1_AC_1" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B2_AC_1" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B3_AC_1" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B4_AC_1" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="4">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B5_AC_1" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="5">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B6_AC_1" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="6">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B7_AC_1" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="7">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B8_AC_1" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="8">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B9_AC_1" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="9">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B10_AC_1" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="1366.0" text="Peso Corrente" textAlignment="CENTER">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="29.0" />
+                     </font>
+                  </Label>
+                  <GridPane hgap="4.0" prefHeight="50.0" prefWidth="1369.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B1_AC" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B2_AC" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B3_AC" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B4_AC" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="4">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B5_AC" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="5">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B6_AC" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="6">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B7_AC" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="7">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B8_AC" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="8">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B9_AC" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="9">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="B10_AC" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" wrappingWidth="36.4072265625">
+                                       <font>
+                                          <Font name="Comic Sans MS" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
          </children></AnchorPane>
   </content>
 </ScrollPane>

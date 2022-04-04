@@ -8,6 +8,7 @@ public class HistoryService implements Runnable {
 	public static String[] newBalancas = new String[10];
 	public String[] oldBalancas = new String[10];
 	
+	private Integer[] historySaveHC = new Integer[10];
 	private Integer[] historySaveH1 = new Integer[10];
 	private Integer[] historySaveH2 = new Integer[10];
 	private Integer[] historySaveH3 = new Integer[10];
@@ -74,7 +75,7 @@ public class HistoryService implements Runnable {
 		        	System.out.println();   
 		        	System.out.println();
 		        	
-			        for(int i=0; i< historySaveH1.length; i++) {
+			        for(int i=0; i< historySaveHC.length; i++) {
 			        	
 			        	if(historySaveH4[i]==null)historySaveH5[i] = 0;
 			        	else historySaveH5[i] = historySaveH4[i].intValue();
@@ -85,13 +86,16 @@ public class HistoryService implements Runnable {
 			        	if(historySaveH2[i]==null)historySaveH3[i] = 0;
 			        	else historySaveH3[i] = historySaveH2[i].intValue();
 			        	
-			        	if(historySaveH1[i]==null) {
-			        		historySaveH2[i] = 0;
+			        	if(historySaveH1[i]==null)historySaveH2[i] = 0;
+			        	else historySaveH2[i] = historySaveH1[i].intValue();
+			        	
+			        	if(historySaveHC[i]==null) {
 			        		historySaveH1[i] = 0;
+			        		historySaveHC[i] = 0;
 			        	}
 			        	else {
-			        		historySaveH2[i] = historySaveH1[i].intValue();
-			        		historySaveH1[i] = 0;
+			        		historySaveH1[i] = historySaveHC[i].intValue();
+			        		historySaveHC[i] = 0;
 			        	}
 			        }
 		        	
@@ -112,6 +116,10 @@ public class HistoryService implements Runnable {
 			        }
 			        System.out.println();
 			        for(Integer x : historySaveH1) {
+			        	System.out.print(x + " - ");
+			        }
+			        System.out.println();
+			        for(Integer x : historySaveHC) {
 			        	System.out.print(x + " - ");
 			        }
 			        System.out.println();
@@ -158,11 +166,11 @@ public class HistoryService implements Runnable {
 			
 		}else if(newValueInt < (oldValueInt - bordaDeDescida)&& auxSave[i]) {
 			
-			if(historySaveH1[i]==null) historySaveH1[i] = 0;
+			if(historySaveHC[i]==null) historySaveHC[i] = 0;
 			
-			historySaveH1[i] += oldValueInt;
+			historySaveHC[i] += oldValueInt;
 			
-			System.out.println("Salvando no historico " + oldValueInt + "\n Historico depois de Salvar " + historySaveH1[i]);
+			System.out.println("Salvando no historico " + oldValueInt + "\n Historico depois de Salvar " + historySaveHC[i]);
 			auxSave[i] = false;
 		}
 		if((auxSave[i]==false)&&(newValueInt<balancaVazia)) {

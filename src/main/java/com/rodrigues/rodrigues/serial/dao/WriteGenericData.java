@@ -7,7 +7,7 @@ import javax.comm.SerialPort;
 
 public class WriteGenericData {	
 	private OutputStream saida;
-	private Integer threadSleep = 120;
+	private Integer threadSleep = 130;
 	
 	public void writeData(byte[] bufferWrite, SerialPort serialPort, int BufferSize) {
 
