@@ -184,6 +184,12 @@ public void timerCancel(){
 	 * timeline.setCycleCount(Animation.INDEFINITE); timeline.play(); time = true;
 	 * 
 	 * }
+	 * 
+	 * 	@SuppressWarnings("unused")
+	private void cancelTimer() {
+		timeline.stop();
+	}
+	 * 
 	 */
 	
 	

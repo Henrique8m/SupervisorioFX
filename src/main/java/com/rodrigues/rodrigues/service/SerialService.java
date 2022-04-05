@@ -1,4 +1,4 @@
-package com.rodrigues.rodrigues.serial.service;
+package com.rodrigues.rodrigues.service;
 
 import javax.comm.SerialPort;
 

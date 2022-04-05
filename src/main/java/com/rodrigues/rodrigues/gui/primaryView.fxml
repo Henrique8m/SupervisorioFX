@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="1359.0">
          <children>
@@ -103,12 +103,18 @@
                                  </font>
                               </Text>
                               <Text fx:id="txLog" layoutX="1169.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.8033447265625" />
-                              <LineChart fx:id="lineChart" layoutX="23.0" layoutY="150.0" prefHeight="445.0" prefWidth="777.0">
+                              <LineChart fx:id="lineChart" layoutX="1.0" layoutY="96.0" prefHeight="499.0" prefWidth="799.0" style="-fx-background-color: #696969; -fx-background-radius: 20;">
                                 <xAxis>
-                                  <CategoryAxis side="BOTTOM" style="-fx-background-color: ffff;" />
+                                  <CategoryAxis prefHeight="43.0" prefWidth="721.0" side="BOTTOM" style="-fx-background-color: ffff;">
+                                       <tickLabelFont>
+                                          <Font name="Comic Sans MS Bold" size="12.0" />
+                                       </tickLabelFont></CategoryAxis>
                                 </xAxis>
                                 <yAxis>
-                                  <NumberAxis side="LEFT" style="-fx-background-color: ffff;" />
+                                  <NumberAxis prefHeight="432.0" prefWidth="48.0" side="LEFT" style="-fx-background-color: ffff;" upperBound="30.0">
+                                       <tickLabelFont>
+                                          <Font name="Comic Sans MS Bold Italic" size="14.0" />
+                                       </tickLabelFont></NumberAxis>
                                 </yAxis>
                               </LineChart>
                            </children>

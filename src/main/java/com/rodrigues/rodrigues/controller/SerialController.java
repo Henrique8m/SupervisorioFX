@@ -1,4 +1,4 @@
-package com.rodrigues.rodrigues.serial.controller;
+package com.rodrigues.rodrigues.controller;
 
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 

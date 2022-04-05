@@ -3,7 +3,7 @@ package com.rodrigues.rodrigues.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.rodrigues.rodrigues.serial.controller.ReadController;
+import com.rodrigues.rodrigues.controller.ReadController;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 import javafx.event.ActionEvent;

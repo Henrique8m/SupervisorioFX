@@ -1,4 +1,4 @@
-package com.rodrigues.rodrigues.serial.service;
+package com.rodrigues.rodrigues.service;
 
 import com.rodrigues.rodrigues.serial.utilitary.Gadgets;
 

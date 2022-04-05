@@ -2,23 +2,23 @@ package com.rodrigues.rodrigues.serial.utilitary;
 
 import java.util.List;
 
+import com.rodrigues.rodrigues.controller.ReadController;
+import com.rodrigues.rodrigues.controller.SerialController;
 import com.rodrigues.rodrigues.gui.CheckLicenseController;
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.gui.PropertiesComController;
 import com.rodrigues.rodrigues.gui.RelatorioViewController;
 import com.rodrigues.rodrigues.gui.SetPointController;
-import com.rodrigues.rodrigues.gui.service.PrimaryViewService;
 import com.rodrigues.rodrigues.securit.DataSecurit;
 import com.rodrigues.rodrigues.securit.EncryptionAES;
 import com.rodrigues.rodrigues.securit.SerialMotherboard;
-import com.rodrigues.rodrigues.serial.controller.ReadController;
-import com.rodrigues.rodrigues.serial.controller.SerialController;
 import com.rodrigues.rodrigues.serial.dao.WriteSetPoints;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.resources.PortComResurce;
-import com.rodrigues.rodrigues.serial.service.FormatData;
-import com.rodrigues.rodrigues.serial.service.ReadService;
-import com.rodrigues.rodrigues.serial.service.SerialService;
+import com.rodrigues.rodrigues.service.FormatData;
+import com.rodrigues.rodrigues.service.PrimaryViewService;
+import com.rodrigues.rodrigues.service.ReadService;
+import com.rodrigues.rodrigues.service.SerialService;
 
 public class DependencyInjection {
 	

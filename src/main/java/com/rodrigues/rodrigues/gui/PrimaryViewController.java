@@ -12,15 +12,18 @@ import javax.comm.CommPortIdentifier;
 import javax.comm.UnsupportedCommOperationException;
 
 import com.rodrigues.rodrigues.MainApp;
-import com.rodrigues.rodrigues.gui.history.controller.HistoryController;
+import com.rodrigues.rodrigues.controller.HistoryController;
+import com.rodrigues.rodrigues.controller.LineChartController;
+import com.rodrigues.rodrigues.controller.SerialController;
 import com.rodrigues.rodrigues.gui.util.Alerts;
 import com.rodrigues.rodrigues.securit.DataSecurit;
-import com.rodrigues.rodrigues.serial.controller.SerialController;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.EndGadgets;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,16 +43,13 @@ import javafx.stage.Stage;
 public class PrimaryViewController implements Initializable {
 	
 	private HistoryController historyController = new HistoryController();
+	private LineChartController chartController = new LineChartController();
 
 	private static final Object defautPort = "COM4";
 	private String lastPort = "";
 	private SerialController serialController;
 	private SerialProperties serialProperties;
-	@SuppressWarnings("unused")
-	private Boolean comunicationOn;
-	private Timeline timeline;
-	@SuppressWarnings("unused")
-	private boolean time;
+	
 	private DataSecurit securit;
 
 	private List<String> avaliablePorts;
@@ -85,7 +85,7 @@ public class PrimaryViewController implements Initializable {
 	@FXML
 	public Text Balanca06, Balanca07, Balanca08, Balanca09, Balanca10;
 	@FXML
-	public LineChart<String, Integer> lineChart;
+	public LineChart<String, Double> lineChart;
 
 	@FXML
 	private void view1(ActionEvent event) throws UnsupportedCommOperationException, IOException {
@@ -121,18 +121,22 @@ public class PrimaryViewController implements Initializable {
 
 		if (securit.validateData()) {
 			serialController.stopCommunication();
-			// serialController.timerCancel();
+			chartStop();
 			txLog.setText("Comunication Stop");
 			txLog1.setText("Comunication Stop");
 		} else {
 			showError();
 		}
 	}
-
+	public void chartStop() {
+		chartController.lineChartStop();
+		
+	}
 	@FXML
 	private void startComunication(ActionEvent event) throws UnsupportedCommOperationException, InterruptedException {
 		if (securit.validateData()) {
 			serialController.startCommunication();
+			chartController.lineChartStart();
 		} else {
 			showError();
 		}
@@ -244,15 +248,12 @@ public class PrimaryViewController implements Initializable {
 		}else {
 			showError();
 		}
-		LineChartSample();
+				
+		chartController.lineChartStart();
 		historyController.startHistory();
 	}
 
 
-	@SuppressWarnings("unused")
-	private void cancelTimer() {
-		timeline.stop();
-	}
 
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title,
 			Stage stageEvent, Object controller) {
@@ -279,31 +280,10 @@ public class PrimaryViewController implements Initializable {
 				"Erro ao validar a licença, entre em contato com o adim", AlertType.ERROR);
 	}
 
-	public void LineChartSample() {
-		
-		lineChart.setTitle("Grafico Ativo");
-		
-		//lineChart.setVisible(true);
-		Series<String, Integer> series = new XYChart.Series<>();
-		series.setName("Pressao da Coroa");
-        
-        series.getData().add(new Data<String, Integer>("10:10", 23));
-        series.getData().add(new Data<String, Integer>("11:10", 14));
-        series.getData().add(new Data<String, Integer>("12:10", 15));
-        series.getData().add(new Data<String, Integer>("13:10", 24));
-        series.getData().add(new Data<String, Integer>("14:10", 34));
-        series.getData().add(new Data<String, Integer>("15:10", 36));
-        series.getData().add(new Data<String, Integer>("16:10", 22));
-        series.getData().add(new Data<String, Integer>("17:10", 45));
-        series.getData().add(new Data<String, Integer>("18:10", 43));
-        series.getData().add(new Data<String, Integer>("19:10", 17));
-        series.getData().add(new Data<String, Integer>("20:10", 29));
-        series.getData().add(new Data<String, Integer>("21:10", 100));
-		
-		lineChart.getData().add(series);
-
-	}
-
+	
+	
+	
+	
 }
 
 

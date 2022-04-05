@@ -1,6 +1,6 @@
-package com.rodrigues.rodrigues.gui.history.controller;
+package com.rodrigues.rodrigues.controller;
 
-import com.rodrigues.rodrigues.gui.history.service.HistoryService;
+import com.rodrigues.rodrigues.service.HistoryService;
 
 public class HistoryController {
 	private HistoryService service = new HistoryService();

@@ -1,4 +1,4 @@
-package com.rodrigues.rodrigues.gui.history.service;
+package com.rodrigues.rodrigues.service;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -133,7 +133,7 @@ public class HistoryService implements Runnable {
 			        System.out.println();
 			        System.out.println("Fim");
 			        System.out.println();
-			        nextTime = time + 1;
+			        nextTime = time + 100;
 			        auxTrocaHorario=false;
 			        
 				}else if(auxTrocaHorario==false){
