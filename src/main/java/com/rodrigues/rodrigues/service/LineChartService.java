@@ -20,9 +20,9 @@ public class LineChartService {
 	
 	private Timeline timeline, timeCoroaMedia, timeVazaoMedia; 
 
-	private int timeVazaoMediaSecunds = 1;
-	private int timeCoroaMediaSecunds = 1;
-	private int plotSecunds = 10;
+	private int timeVazaoMediaSecunds = 10;
+	private int timeCoroaMediaSecunds = 10;
+	private int plotSecunds = 60;
 	private int sizeSeries = 30;
 	private int contVazao = 0;
 	private int contPressao = 0;
@@ -53,7 +53,9 @@ public class LineChartService {
 		
 		timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(plotSecunds), ev -> {
 
+			if((contVazao != 0) && (vazaoAC != 0))
 			mediaVazao = (double) ((vazaoAC / contVazao)/100);
+			if((pressaoAC != 0) && (contPressao != 0))
 			mediaPressao = (double) ((pressaoAC / contPressao)/100);
 										
 				if(serieVazao!=null) {

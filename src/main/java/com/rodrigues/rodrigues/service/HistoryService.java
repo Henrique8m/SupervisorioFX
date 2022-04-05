@@ -21,6 +21,10 @@ public class HistoryService implements Runnable {
 	private Integer[] historySaveH4 = new Integer[10];
 	private Integer[] historySaveH5= new Integer[10];
 	
+	//
+	private Integer auxCarga, carga;
+	private Boolean carvaoPassou;
+	
 	private Boolean[] auxSave = new Boolean[10];
 	private Boolean auxTrocaHorario = false;
 
@@ -76,7 +80,7 @@ public class HistoryService implements Runnable {
 	        time = Integer.parseInt(formatarTime.format(data));
 	        
 	        try {
-		        if((time>nextTime)&&auxTrocaHorario) {
+		        if((time>=nextTime)&&auxTrocaHorario&&(carvaoPassou)) {
 		        	System.out.print(time);
 		        	System.out.println();   
 		        	System.out.println();
@@ -133,11 +137,22 @@ public class HistoryService implements Runnable {
 			        System.out.println();
 			        System.out.println("Fim");
 			        System.out.println();
+			        if(time>=2300)
+			        	nextTime = 0;
 			        nextTime = time + 100;
+			        
+			        
+			        
+			        //
+			        carga = auxCarga;
+			        auxCarga=0;
+			        
+			        
+			        
 			        auxTrocaHorario=false;
 			        
 				}else if(auxTrocaHorario==false){
-					System.out.println("Else");
+					//System.out.println("Else");
 					auxTrocaHorario=true;
 				}
 	        }catch(NullPointerException e) {
@@ -146,6 +161,7 @@ public class HistoryService implements Runnable {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private String toCompare(String newValue, String oldValue, int i) {
 		if(auxSave[i] == null) auxSave[i]=true;
 		
@@ -181,7 +197,17 @@ public class HistoryService implements Runnable {
 		}
 		if((auxSave[i]==false)&&(newValueInt<balancaVazia)) {
 			auxSave[i] = true;
-			System.out.println("Retornando " + newValueInt +  " Para iniciar uma nova era");
+			
+			
+			//
+			if(i==9) {
+				auxCarga++;
+			}
+			
+			
+			
+			
+			//System.out.println("Retornando " + newValueInt +  " Para iniciar uma nova era");
 			return Integer.toString(200);
 		}
 		}catch(NullPointerException e ) {
