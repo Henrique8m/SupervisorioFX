@@ -96,7 +96,7 @@ public class ReadController implements Runnable{
 		                	readSetPoints = false;
 		                }
 		                if(writeSetPoint) {
-		                	writeSetPointsView(setPoints, readSetPointsEnd);
+		                	writeSetPointsView();
 		                	writeSetPoint = false;
 		                }
 		            	
@@ -230,7 +230,9 @@ public class ReadController implements Runnable{
 	}
 	
 	public void setEndReadSetPoints(int readSetPointsEnd) {		
-		this.readSetPointsEnd = readSetPointsEnd;
+		this.readSetPointsEnd = readSetPointsEnd;	
+		
+		
 	}
 	
 	public void setWriteSetPoints(Boolean writeSetPoint, String[] setPoints) {		
@@ -273,26 +275,32 @@ public class ReadController implements Runnable{
 
 	}
 	
-	public void writeSetPointsView(String[] setPoints, int readSetPointsEnd) {
+	public void writeSetPointsView() {
+		System.out.println(this.readSetPointsEnd);
 		SerialPort serial = serialService.enablePortCom();
 		byte[] buferr = new byte[Gadgets.ALFA_ESC_SETPOINTS.getBufferWrite()];
 		try {
-			Integer vazia = Integer.parseInt(setPoints[0]);
-			Integer sp_1 = Integer.parseInt(setPoints[1]);
-			Integer sp_2 = Integer.parseInt(setPoints[2]);
-			Integer sp_3 = Integer.parseInt(setPoints[3]);
+			Integer vazia = Integer.parseInt(this.setPoints[0]);
+			Integer sp_1 = Integer.parseInt(this.setPoints[1]);
+			Integer sp_2 = Integer.parseInt(this.setPoints[2]);
+			Integer sp_3 = Integer.parseInt(this.setPoints[3]);
 			//System.out.println(vazia +""+ sp_1 +""+sp_2+""+ sp_3);
 			buferr = writeSetPoints.Write(
-				readSetPointsEnd, 
+				this.readSetPointsEnd, 
 				CalculatorByteInt.intToByteWord16(sp_1), 
 				CalculatorByteInt.intToByteWord16(sp_2),
 				CalculatorByteInt.intToByteWord16(sp_3),
 				CalculatorByteInt.intToByteWord16(vazia));
+
 			
 			serialService.writeData(buferr, serial, Gadgets.ALFA_ESC_SETPOINTS.getBufferWrite());
 		}catch(NumberFormatException e) {
 		System.out.println("Peso do set point em formato incorreto");
 		}
 		serial.close();
+	}
+
+	public int getEndReadSetPoints() {		
+		return this.readSetPointsEnd;
 	}
 }

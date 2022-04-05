@@ -23,7 +23,7 @@ public class HistoryService implements Runnable {
 	
 	//
 	private Integer auxCarga, carga;
-	private Boolean carvaoPassou;
+	private Boolean carvaoPassou=false;
 	
 	private Boolean[] auxSave = new Boolean[10];
 	private Boolean auxTrocaHorario = false;
@@ -57,7 +57,7 @@ public class HistoryService implements Runnable {
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			for(int i=0; i<newBalancas.length; i++ ) {
@@ -190,9 +190,16 @@ public class HistoryService implements Runnable {
 			
 			if(historySaveHC[i]==null) historySaveHC[i] = 0;
 			
-			historySaveHC[i] += oldValueInt;
 			
-			System.out.println("Salvando no historico " + oldValueInt + "\n Historico depois de Salvar " + historySaveHC[i]);
+			
+			//
+			historySaveHC[i] += oldValueInt/10;
+			
+			
+			
+			
+			//System.out.println("Salvando no historico " + oldValueInt + "\n Historico depois de Salvar " + historySaveHC[i]);
+			
 			auxSave[i] = false;
 		}
 		if((auxSave[i]==false)&&(newValueInt<balancaVazia)) {
@@ -202,6 +209,7 @@ public class HistoryService implements Runnable {
 			//
 			if(i==9) {
 				auxCarga++;
+				
 			}
 			
 			
@@ -222,6 +230,9 @@ public class HistoryService implements Runnable {
 	public void updatedValue() {
 		accumulated.write(historySaveHC, historySaveH1, historySaveH2, historySaveH3, historySaveH4, historySaveH5);
 		
+		
+		//
+		accumulated.ritmoDeCarga(Integer.toString(carga));
 	}
 }
 

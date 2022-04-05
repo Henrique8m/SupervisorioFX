@@ -9,9 +9,11 @@ import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class SetPointController implements Initializable{
 	private ReadController controller;
@@ -20,16 +22,27 @@ public class SetPointController implements Initializable{
 	public TextField setPointVazia, setPoint01, setPoint02, setPoint03;
 	@FXML
 	public Text balanca;
+	@FXML
+	private Button gravarValor;
 	
 	@FXML
 	public void gravarValores(ActionEvent event) {
-		String[] setPoints = new String[4];
-		setPoints[0] = setPointVazia.getText().replaceAll("[^0-9]+", "");
-		setPoints[1] = setPoint01.getText().replaceAll("[^0-9]+", "");
-		setPoints[2] = setPoint02.getText().replaceAll("[^0-9]+", "");
-		setPoints[3] = setPoint03.getText().replaceAll("[^0-9]+", "");
-		controller.setWriteSetPoints(true, setPoints);
-		
+		try {
+			String[] setPoints = new String[4];
+			setPoints[0] = setPointVazia.getText().replaceAll("[^0-9]+", "");
+			setPoints[1] = setPoint01.getText().replaceAll("[^0-9]+", "");
+			setPoints[2] = setPoint02.getText().replaceAll("[^0-9]+", "");
+			setPoints[3] = setPoint03.getText().replaceAll("[^0-9]+", "");
+			controller.setWriteSetPoints(true, setPoints);
+
+			
+			//
+			Stage stage = (Stage) gravarValor.getScene().getWindow(); //Obtendo a janela atual
+		    stage.close();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML

@@ -7,6 +7,7 @@ public class WriteValueAccumulated {
 	private RelatorioViewController view = DependencyInjection.getRelatorioviewcontroller();
 	
 	
+	
 	public void write(Integer[] historySaveHC, Integer[] historySaveH1, Integer[] historySaveH2,
 			Integer[] historySaveH3, Integer[] historySaveH4, Integer[] historySaveH5) {
        
@@ -19,6 +20,9 @@ public class WriteValueAccumulated {
 			balanca(historySaveHC, i, 0);
 	        
 	    }
+	}
+	public void ritmoDeCarga(String ritmo) {
+		view.ritmoDeCarga.setText(ritmo);
 	}
 
 	private void balanca(Integer[] history, int i, int horaHist) {
