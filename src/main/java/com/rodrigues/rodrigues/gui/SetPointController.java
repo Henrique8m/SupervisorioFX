@@ -34,13 +34,9 @@ public class SetPointController implements Initializable{
 			setPoints[2] = setPoint02.getText().replaceAll("[^0-9]+", "");
 			setPoints[3] = setPoint03.getText().replaceAll("[^0-9]+", "");
 			controller.setWriteSetPoints(true, setPoints);
-
-			
-			//
 			Stage stage = (Stage) gravarValor.getScene().getWindow(); //Obtendo a janela atual
 		    stage.close();
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

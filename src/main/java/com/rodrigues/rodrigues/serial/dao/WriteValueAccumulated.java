@@ -24,6 +24,9 @@ public class WriteValueAccumulated {
 	public void ritmoDeCarga(String ritmo) {
 		view.ritmoDeCarga.setText(ritmo);
 	}
+	public void ritmoDeCargaHorarioPassado(String ritmo) {
+		view.ritmoDeCargaUltimoH.setText(ritmo);
+	}
 
 	private void balanca(Integer[] history, int i, int horaHist) {
 		try {
@@ -239,6 +242,5 @@ public class WriteValueAccumulated {
 		}
 		
 	}
-	
 
 }

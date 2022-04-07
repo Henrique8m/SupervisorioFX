@@ -92,12 +92,12 @@ public class PrimaryViewService{
 	}
 	
 	public void writeTextSetPoints(int balança, String[] setPoints) {
-		if(balança == 19) {
+		
 			setPointController.setPointVazia.setText(setPoints[0]);
 			setPointController.setPoint01.setText(setPoints[1]);
 			setPointController.setPoint02.setText(setPoints[2]);
 			setPointController.setPoint03.setText(setPoints[3]);
-		}
+		
 		
 	}
 	

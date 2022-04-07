@@ -16,16 +16,16 @@ public class FormatData {
 					display = Integer.toString(((Byte.toUnsignedInt(bufferRead[4])) + ((Byte.toUnsignedInt(bufferRead[3]) * 256))) / division);
 				
 				else if(format == "double") {
-					valueDouble = (((Byte.toUnsignedInt(bufferRead[4])) + ((Byte.toUnsignedInt(bufferRead[3]) * 256))) / division);
-					display = Double.toString(valueDouble / 100);
+					valueDouble = (((Byte.toUnsignedInt(bufferRead[4])) + ((Byte.toUnsignedInt(bufferRead[3]) * 256))));
+					display = Double.toString(valueDouble / division);
 				}
 				
 			} else {
 				if(format == "int")
 					display = Integer.toString((Byte.toUnsignedInt(bufferRead[4])) / division);
 				else if(format == "double") {
-					valueDouble = (Byte.toUnsignedInt(bufferRead[4])) / division;
-					display = Double.toString(valueDouble / 100);
+					valueDouble = (Byte.toUnsignedInt(bufferRead[4])) ;
+					display = Double.toString(valueDouble / division);
 				}
 			}
 			

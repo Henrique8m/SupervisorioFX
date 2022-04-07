@@ -26,9 +26,7 @@ public class RelatorioViewController implements Initializable{
 				B8_AC_5, B8_AC_4, B8_AC_3, B8_AC_2, B8_AC_1, B8_AC,
 				B9_AC_5, B9_AC_4, B9_AC_3, B9_AC_2, B9_AC_1, B9_AC,
 				B10_AC_5, B10_AC_4, B10_AC_3, B10_AC_2, B10_AC_1, B10_AC,
-				
-				//
-				ritmoDeCarga;
+				ritmoDeCarga, ritmoDeCargaUltimoH;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

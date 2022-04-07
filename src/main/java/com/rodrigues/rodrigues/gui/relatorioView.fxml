@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
   <content>
     <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1363.0" style="-fx-background-color: #696969;">
          <children>
@@ -1851,7 +1851,7 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="1366.0" text="Rítmo de Carga" textAlignment="CENTER">
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="1366.0" text="Rítmo de Carga / Horario passado / agora" textAlignment="CENTER">
                      <font>
                         <Font name="Comic Sans MS Bold Italic" size="29.0" />
                      </font>
@@ -1874,7 +1874,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="7" GridPane.rowIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
@@ -1885,6 +1885,28 @@
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Text fx:id="ritmoDeCarga" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
+                                       <font>
+                                          <Font name="LiquidCrystalNovus" size="35.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text fx:id="ritmoDeCargaUltimoH" fill="#00ff0d" strokeType="OUTSIDE" strokeWidth="0.0" text="65123">
                                        <font>
                                           <Font name="LiquidCrystalNovus" size="35.0" />
                                        </font>

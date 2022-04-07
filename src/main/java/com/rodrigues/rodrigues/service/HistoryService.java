@@ -3,9 +3,7 @@ package com.rodrigues.rodrigues.service;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-import com.rodrigues.rodrigues.gui.RelatorioViewController;
 import com.rodrigues.rodrigues.serial.dao.WriteValueAccumulated;
-import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 public class HistoryService implements Runnable {
 	private WriteValueAccumulated accumulated = new WriteValueAccumulated();
@@ -20,8 +18,7 @@ public class HistoryService implements Runnable {
 	private Integer[] historySaveH3 = new Integer[10];
 	private Integer[] historySaveH4 = new Integer[10];
 	private Integer[] historySaveH5= new Integer[10];
-	
-	//
+
 	private Integer auxCarga, carga;
 	private Boolean carvaoPassou=false;
 	
@@ -81,9 +78,7 @@ public class HistoryService implements Runnable {
 	        
 	        try {
 		        if((time>=nextTime)&&auxTrocaHorario&&(carvaoPassou)) {
-		        	System.out.print(time);
-		        	System.out.println();   
-		        	System.out.println();
+		        	//System.out.print(time);
 		        	
 			        for(int i=0; i< historySaveHC.length; i++) {
 			        	
@@ -109,6 +104,7 @@ public class HistoryService implements Runnable {
 			        	}
 			        }
 		        	
+			        /*
 			        for(Integer x : historySaveH5) {
 			        	System.out.print(x + " - ");
 			        }
@@ -137,18 +133,15 @@ public class HistoryService implements Runnable {
 			        System.out.println();
 			        System.out.println("Fim");
 			        System.out.println();
-			        if(time>=2300)
+			        
+			        */
+			        
+			        if(time>=2300) {
 			        	nextTime = 0;
-			        nextTime = time + 100;
-			        
-			        
-			        
-			        //
+			        }else nextTime = time + 100;
+
 			        carga = auxCarga;
 			        auxCarga=0;
-			        
-			        
-			        
 			        auxTrocaHorario=false;
 			        
 				}else if(auxTrocaHorario==false){
@@ -183,20 +176,13 @@ public class HistoryService implements Runnable {
 		try {
 		if(newValueInt > (oldValueInt + bordaDeSubida)&&auxSave[i]) {
 			auxSave[i] = true;
-			System.out.println("Retornando " + newValueInt);
+			//System.out.println("Retornando " + newValueInt);
 			return Integer.toString(newValueInt);
 			
 		}else if(newValueInt < (oldValueInt - bordaDeDescida)&& auxSave[i]) {
 			
 			if(historySaveHC[i]==null) historySaveHC[i] = 0;
-			
-			
-			
-			//
-			historySaveHC[i] += oldValueInt/10;
-			
-			
-			
+			historySaveHC[i] += (oldValueInt/10);
 			
 			//System.out.println("Salvando no historico " + oldValueInt + "\n Historico depois de Salvar " + historySaveHC[i]);
 			
@@ -204,17 +190,9 @@ public class HistoryService implements Runnable {
 		}
 		if((auxSave[i]==false)&&(newValueInt<balancaVazia)) {
 			auxSave[i] = true;
-			
-			
-			//
-			if(i==9) {
-				auxCarga++;
-				
-			}
-			
-			
-			
-			
+
+			if(i==9)auxCarga++;				
+
 			//System.out.println("Retornando " + newValueInt +  " Para iniciar uma nova era");
 			return Integer.toString(200);
 		}
@@ -229,10 +207,10 @@ public class HistoryService implements Runnable {
 
 	public void updatedValue() {
 		accumulated.write(historySaveHC, historySaveH1, historySaveH2, historySaveH3, historySaveH4, historySaveH5);
-		
-		
-		//
-		accumulated.ritmoDeCarga(Integer.toString(carga));
+		if(carga==null)carga=0;
+		accumulated.ritmoDeCargaHorarioPassado(Integer.toString(carga));
+		if(auxCarga!=null)
+		accumulated.ritmoDeCarga(Integer.toString(auxCarga));
 	}
 }
 

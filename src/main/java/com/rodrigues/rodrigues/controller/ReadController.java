@@ -155,9 +155,14 @@ public class ReadController implements Runnable{
 	                	display= formatData.formatData(bufferRead, "N1540_4_a_20", "double");
 	                	displayVetor[i-1] = display;
 	                }
-	                else if (i==15||i==16) {
+	                else if (i==15) {
 	                	
-	                	display	= formatData.formatData(bufferRead, "N2000", "int");
+	                	display	= formatData.formatData(bufferRead, "N2000", "double");
+	                	displayVetor[i-1] = display;
+	                }	                
+	                else if (i==16) {
+	                	
+	                	display	= formatData.formatData(bufferRead, "N1500", "int");
 	                	displayVetor[i-1] = display;
 	                }
                 }else if(bufferReadAlfa != null){
@@ -249,30 +254,30 @@ public class ReadController implements Runnable{
     	bufferSizeWrite = Gadgets.ALFA_LEI_SETPOINTS.getBufferWrite();
     	serialService.writeData(bufferWrite, serial, bufferSizeWrite);
     	bufferReadAlfa = serialService.readData(serial, bufferSizeRead);
+    	if(bufferReadAlfa!= null) {
     	
-    	
-    	setPoints[0] = formatData.formatDataAlfaGeneric(
-    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
-    			Gadgets.ALFA_FORMAT_SETPOINTS_VAZIA.getFormatDataLs(),
-    			Gadgets.ALFA_FORMAT_SETPOINTS_VAZIA.getFormatDataMs());
-    	setPoints[1] =
-    			formatData.formatDataAlfaGeneric(
-    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
-    			Gadgets.ALFA_FORMAT_SETPOINTS_1_4.getFormatDataLs(),
-    			Gadgets.ALFA_FORMAT_SETPOINTS_1_4.getFormatDataMs());
-    	setPoints[2] =
-    			formatData.formatDataAlfaGeneric(
-    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
-    			Gadgets.ALFA_FORMAT_SETPOINTS_2_5.getFormatDataLs(),
-    			Gadgets.ALFA_FORMAT_SETPOINTS_2_5.getFormatDataMs());
-    	setPoints[3] =
-    			formatData.formatDataAlfaGeneric(
-    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
-    			Gadgets.ALFA_FORMAT_SETPOINTS_3_6.getFormatDataLs(),
-    			Gadgets.ALFA_FORMAT_SETPOINTS_3_6.getFormatDataMs());
-    	
-    	viewService.writeTextSetPoints(readSetPointsEnd, setPoints);
-
+    		setPoints[0] = formatData.formatDataAlfaGeneric(
+	    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+	    			Gadgets.ALFA_FORMAT_SETPOINTS_VAZIA.getFormatDataLs(),
+	    			Gadgets.ALFA_FORMAT_SETPOINTS_VAZIA.getFormatDataMs());
+	    	setPoints[1] =
+	    			formatData.formatDataAlfaGeneric(
+	    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+	    			Gadgets.ALFA_FORMAT_SETPOINTS_1_4.getFormatDataLs(),
+	    			Gadgets.ALFA_FORMAT_SETPOINTS_1_4.getFormatDataMs());
+	    	setPoints[2] =
+	    			formatData.formatDataAlfaGeneric(
+	    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+	    			Gadgets.ALFA_FORMAT_SETPOINTS_2_5.getFormatDataLs(),
+	    			Gadgets.ALFA_FORMAT_SETPOINTS_2_5.getFormatDataMs());
+	    	setPoints[3] =
+	    			formatData.formatDataAlfaGeneric(
+	    			"ALFA_LEI_SETPOINTS", bufferReadAlfa, 
+	    			Gadgets.ALFA_FORMAT_SETPOINTS_3_6.getFormatDataLs(),
+	    			Gadgets.ALFA_FORMAT_SETPOINTS_3_6.getFormatDataMs());
+	    	
+	    	viewService.writeTextSetPoints(readSetPointsEnd, setPoints);
+    	}
 	}
 	
 	public void writeSetPointsView() {
@@ -285,6 +290,12 @@ public class ReadController implements Runnable{
 			Integer sp_2 = Integer.parseInt(this.setPoints[2]);
 			Integer sp_3 = Integer.parseInt(this.setPoints[3]);
 			//System.out.println(vazia +""+ sp_1 +""+sp_2+""+ sp_3);
+			writeSetPoints.seletroraWrite(this.readSetPointsEnd);			
+			try {
+				Thread.sleep(200);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}			
 			buferr = writeSetPoints.Write(
 				this.readSetPointsEnd, 
 				CalculatorByteInt.intToByteWord16(sp_1), 
