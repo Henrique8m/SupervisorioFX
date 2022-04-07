@@ -45,6 +45,14 @@ public class ReadController implements Runnable{
     private Boolean writeSetPoint = false;
     private int readSetPointsEnd;
 	private String[] setPoints = new String[4];
+	
+	//
+	
+	
+	private int last = 0;
+	private boolean lastTrue = true;
+	
+	
 
     
     public ReadController() {
@@ -73,7 +81,20 @@ public class ReadController implements Runnable{
 			Thread.sleep(1000);
 	    	while(whileRead) {
 	    		int cont = 0;
-
+	    		
+	    		
+	    		
+	    		try {
+	    			Thread.sleep(2000);
+	    		}catch(Exception e) {
+	    			e.printStackTrace();
+	    		}
+	    		
+	    		sweep(16, serialService.enablePortCom());
+	    		
+	    		
+	    		
+/*
 	    		
 	    		for(int i = 0; i < 9; i++) {
 	    			
@@ -103,6 +124,10 @@ public class ReadController implements Runnable{
 		            	sweep(cont+1, serialService.enablePortCom());
 		           }
 	            }
+	    		
+	    		
+	    		
+	    		*/
 	    	}
 	    	
 	    	
@@ -130,12 +155,15 @@ public class ReadController implements Runnable{
 	            	
 				}  
 				else {
-					if(i==15)
-						bufferWrite = CalculatorData.addressRead(i,2);
-				
-		            else 
-		            	bufferWrite = CalculatorData.addressRead(i,1);
-		            
+					if(i==15) {
+						bufferWrite = CalculatorData.addressRead(i,1);
+					}
+		            else if(i==16) {
+		            	bufferWrite = CalculatorData.addressRead(i,0);
+		            }
+		            else {
+		            	bufferWrite = CalculatorData.addressRead(i,0);
+		            }
 					
 	            	bufferSizeRead = Gadgets.N1500.getBufferRead();
 	            	bufferSizeWrite = Gadgets.N1500.getBufferWrite();
@@ -150,7 +178,7 @@ public class ReadController implements Runnable{
 	                	display = formatData.formatData(bufferRead, "N1540", "int");
 	                	displayVetor[i-1] = display;
 	                			
-                }
+	                }
 	                else if (i==12 || i==17||i==18) {	                	
 	                	display= formatData.formatData(bufferRead, "N1540_4_a_20", "double");
 	                	displayVetor[i-1] = display;
@@ -161,9 +189,10 @@ public class ReadController implements Runnable{
 	                	displayVetor[i-1] = display;
 	                }	                
 	                else if (i==16) {
-	                	
-	                	display	= formatData.formatData(bufferRead, "N1500", "int");
-	                	displayVetor[i-1] = display;
+	                	display = formatData.formatData(bufferRead, "N1500", "int");
+	                	if(pirometro(display))
+	                		displayVetor[i-1] = display;          	
+	                	else displayVetor[i-1] = "----";
 	                }
                 }else if(bufferReadAlfa != null){
                 	if(i>=19)
@@ -203,7 +232,8 @@ public class ReadController implements Runnable{
 		
     }
     
-    private void instanciates() {
+
+	private void instanciates() {
     	if(serialService==null)serialService = DependencyInjection.getSerialService();
 		if(serialController==null)serialController = DependencyInjection.getSerialController();
 		if(primaryViewController==null)primaryViewController = DependencyInjection.getPrimaryViewController();
@@ -314,4 +344,24 @@ public class ReadController implements Runnable{
 	public int getEndReadSetPoints() {		
 		return this.readSetPointsEnd;
 	}
+	
+    private boolean pirometro(String display2) {
+		int i = Integer.parseInt(display2);
+		System.out.println(display2);
+		
+		if((i>1000) && (i == last) && (i<1760) && lastTrue) {
+			lastTrue = false;
+			
+			return true;
+			
+		}else if((i>1000)&&(i<1760)) {
+			last = i;
+			
+		}else lastTrue = true;
+		
+		return false;
+	}
+	
+	
+	
 }

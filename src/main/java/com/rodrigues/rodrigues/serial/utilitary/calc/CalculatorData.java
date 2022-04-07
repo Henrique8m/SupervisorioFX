@@ -9,9 +9,9 @@ public interface CalculatorData {
 			bufferWrite[0] = (byte) endereco;
 			bufferWrite[1] = (byte) 3; // Metodo de escrita
 			bufferWrite[2] = (byte) 0;
-			bufferWrite[3] = (byte) 0;
+			bufferWrite[3] = (byte) registrador;
 			bufferWrite[4] = (byte) 0;
-			bufferWrite[5] = (byte) registrador; // registrador
+			bufferWrite[5] = (byte) 1; // registrador
 			
 			int[] crc = CalculatorCRC.calculateCRC(bufferWrite, 0, 6); //calcular o crc
 			
