@@ -15,6 +15,7 @@ import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.controller.HistoryController;
 import com.rodrigues.rodrigues.controller.LineChartController;
 import com.rodrigues.rodrigues.controller.SerialController;
+import com.rodrigues.rodrigues.entities.Pirometro;
 import com.rodrigues.rodrigues.gui.util.Alerts;
 import com.rodrigues.rodrigues.securit.DataSecurit;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
@@ -22,19 +23,18 @@ import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.EndGadgets;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -86,6 +86,13 @@ public class PrimaryViewController implements Initializable {
 	public Text Balanca06, Balanca07, Balanca08, Balanca09, Balanca10;
 	@FXML
 	public LineChart<String, Double> lineChart;
+	@FXML
+	public TableColumn<Pirometro, String> dataTime;
+	@FXML
+	public TableColumn<Pirometro, String> temp;
+	@FXML
+    private TableView<Pirometro> table = new TableView<Pirometro>();
+    private ObservableList<Pirometro> data;
 
 	@FXML
 	private void view1(ActionEvent event) throws UnsupportedCommOperationException, IOException {
@@ -112,6 +119,7 @@ public class PrimaryViewController implements Initializable {
 	
 	@FXML
 	private void checkLicense(ActionEvent event) throws UnsupportedCommOperationException, IOException {
+		testAdd();
 		loadView("checkLicense", null, "Status License", MainApp.getStage(),
 				DependencyInjection.getCheckLicenseController());
 	}
@@ -251,6 +259,7 @@ public class PrimaryViewController implements Initializable {
 				
 		chartController.lineChartStart();
 		historyController.startHistory();
+		test();
 	}
 
 
@@ -283,7 +292,49 @@ public class PrimaryViewController implements Initializable {
 	
 	
 	
-	
+	@SuppressWarnings("unchecked")
+	public void test() {
+		table.setMinWidth(225);
+		
+			
+		data =
+	            (ObservableList<Pirometro>) FXCollections.observableArrayList(
+		new Pirometro("1530","09/04/2022 - 08:40"),
+		new Pirometro("1510","08/04/2022 - 09:30"),
+		new Pirometro("1430","07/04/2022 - 10:35"),
+		new Pirometro("1460","06/04/2022 - 12:22"),
+		new Pirometro("1480","05/04/2022 - 19:40"));
+	    
+	    table.setEditable(false);
+	 
+       dataTime = new TableColumn<Pirometro, String>("Data Time");
+        
+       dataTime.setMinWidth(125); 
+       dataTime.setSortType(TableColumn.SortType.DESCENDING);
+       dataTime.setCellValueFactory(
+                new PropertyValueFactory<Pirometro, String>("dataTime"));
+
+ 
+        temp = new TableColumn<Pirometro, String>("Temperatura");
+        temp.setMinWidth(100);
+        temp.setCellValueFactory(
+                new PropertyValueFactory<Pirometro, String>("temp"));
+
+      
+        table.setItems(data);
+        
+        table.getColumns().addAll(dataTime, temp);
+ 
+	}
+ 
+	public void testAdd() {
+		data.add(new Pirometro("1600","09/04/2022 - 19:40"));
+		dataTime.setSortType(TableColumn.SortType.DESCENDING);
+		
+	}
+ 
+
+       
 }
 
 

@@ -10,6 +10,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="1359.0">
          <children>
@@ -117,6 +118,7 @@
                                        </tickLabelFont></NumberAxis>
                                 </yAxis>
                               </LineChart>
+                              <TableView fx:id="table" layoutX="14.0" layoutY="590.0" prefHeight="122.0" prefWidth="201.0" />
                            </children>
                         </AnchorPane>
                      </content>

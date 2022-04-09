@@ -214,5 +214,19 @@ public void timerCancel(){
 	Balancas balanca10 = new Balancas("Balança10", Integer.parseInt(viewController.Balanca10.getText() ) );
 	*/
 	
+	
+	/*
+	 *        private final SimpleStringProperty firstName;
+        private final SimpleStringProperty lastName;
+        private final SimpleStringProperty email;
+ 
+        private Person(String fName, String lName, String email) {
+            this.firstName = new SimpleStringProperty(fName);
+            this.lastName = new SimpleStringProperty(lName);
+            this.email = new SimpleStringProperty(email);
+	 */
+	
+	
+	
 
 }
