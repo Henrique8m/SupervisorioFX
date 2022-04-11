@@ -27,32 +27,32 @@ public class PrimaryViewService{
             if(end==8){ primaryViewController.s2.setText(display);}
             if(end==9){ primaryViewController.s3.setText(display);}
             
-            if(end==10){ primaryViewController.topoE.setText(display);}
-            if(end==11){ primaryViewController.topoD.setText(display);}
+            if(end==10){ primaryViewController.topoE.setText(display); 
+            			primaryViewController.topoE1.setText(display);}
             
-            if(end==13){ primaryViewController.coroaE.setText(display);}
-            if(end==14){ primaryViewController.coroaD.setText(display);}
+            if(end==11){ primaryViewController.topoD.setText(display);
+            			primaryViewController.topoD1.setText(display);}
             
-            if(end==10){ primaryViewController.topoE1.setText(display);}
-            if(end==11){ primaryViewController.topoD1.setText(display);}
+            if(end==13){ primaryViewController.coroaE.setText(display);
+            			primaryViewController.coroaE1.setText(display);}
             
-            if(end==13){ primaryViewController.coroaE1.setText(display);}
-            if(end==14){ primaryViewController.coroaD1.setText(display);}
+            if(end==14){ primaryViewController.coroaD.setText(display);
+            			primaryViewController.coroaD1.setText(display);}
             
-            if(end==12){ primaryViewController.ptopo.setText(display);}
-            if(end==12){ primaryViewController.ptopo1.setText(display);}
+            if(end==12){ primaryViewController.ptopo.setText(display);
+            			primaryViewController.ptopo1.setText(display);}
             
-            if(end==15){ primaryViewController.pcoroa.setText(display);}
-            if(end==15){ primaryViewController.pcoroa1.setText(display);}
+            if(end==15){ primaryViewController.pcoroa.setText(display);
+            			primaryViewController.pcoroa1.setText(display);}
             
-            if(end==17){ primaryViewController.vazao.setText(display);}
-            if(end==17){ primaryViewController.vazao1.setText(display);}
+            if(end==17){ primaryViewController.vazao.setText(display);
+            			primaryViewController.vazao1.setText(display);}
             
-            if(end==18){ primaryViewController.psm.setText(display);}
-            if(end==18){ primaryViewController.psm1.setText(display);}
+            if(end==18){ primaryViewController.psm.setText(display);
+            			primaryViewController.psm1.setText(display);}
             
-            if(end==16){ primaryViewController.pirometro.setText(display);}
-            if(end==16){ primaryViewController.pirometro1.setText(display);}
+            if(end==16){ primaryViewController.pirometro.setText(display);
+            			primaryViewController.pirometro1.setText(display);}
             
             if(end==19){ primaryViewController.Balanca01.setText(display);
             HistoryService.newBalancas[0] = display;}

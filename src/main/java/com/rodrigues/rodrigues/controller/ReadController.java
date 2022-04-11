@@ -10,6 +10,7 @@ import com.rodrigues.rodrigues.serial.utilitary.Gadgets;
 import com.rodrigues.rodrigues.serial.utilitary.calc.CalculatorByteInt;
 import com.rodrigues.rodrigues.serial.utilitary.calc.CalculatorData;
 import com.rodrigues.rodrigues.service.FormatData;
+import com.rodrigues.rodrigues.service.PirometroService;
 import com.rodrigues.rodrigues.service.PrimaryViewService;
 import com.rodrigues.rodrigues.service.SerialService;
 
@@ -56,10 +57,9 @@ public class ReadController implements Runnable{
 
     
     public ReadController() {
-		// TODO Auto-generated constructor stub
 	}
 
-	@SuppressWarnings("removal")
+	@SuppressWarnings({ "deprecation" })
 	public void read() throws InterruptedException {
 		
 		instanciates();
@@ -90,11 +90,6 @@ public class ReadController implements Runnable{
 	    			e.printStackTrace();
 	    		}
 	    		
-	    		sweep(16, serialService.enablePortCom());
-	    		
-	    		
-	    		
-/*
 	    		
 	    		for(int i = 0; i < 9; i++) {
 	    			
@@ -124,10 +119,7 @@ public class ReadController implements Runnable{
 		            	sweep(cont+1, serialService.enablePortCom());
 		           }
 	            }
-	    		
-	    		
-	    		
-	    		*/
+
 	    	}
 	    	
 	    	
@@ -158,9 +150,6 @@ public class ReadController implements Runnable{
 					if(i==15) {
 						bufferWrite = CalculatorData.addressRead(i,1);
 					}
-		            else if(i==16) {
-		            	bufferWrite = CalculatorData.addressRead(i,0);
-		            }
 		            else {
 		            	bufferWrite = CalculatorData.addressRead(i,0);
 		            }
@@ -311,7 +300,7 @@ public class ReadController implements Runnable{
 	}
 	
 	public void writeSetPointsView() {
-		System.out.println(this.readSetPointsEnd);
+		//System.out.println(this.readSetPointsEnd);
 		SerialPort serial = serialService.enablePortCom();
 		byte[] buferr = new byte[Gadgets.ALFA_ESC_SETPOINTS.getBufferWrite()];
 		try {
@@ -347,11 +336,12 @@ public class ReadController implements Runnable{
 	
     private boolean pirometro(String display2) {
 		int i = Integer.parseInt(display2);
+		
 		System.out.println(display2);
 		
 		if((i>1000) && (i == last) && (i<1760) && lastTrue) {
 			lastTrue = false;
-			
+			PirometroService.addTempList(i);
 			return true;
 			
 		}else if((i>1000)&&(i<1760)) {

@@ -22,6 +22,7 @@ import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.EndGadgets;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
+import com.rodrigues.rodrigues.service.PirometroService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -87,12 +88,12 @@ public class PrimaryViewController implements Initializable {
 	@FXML
 	public LineChart<String, Double> lineChart;
 	@FXML
-	public TableColumn<Pirometro, String> dataTime;
+	private TableColumn<Pirometro, String> dataTime;
 	@FXML
-	public TableColumn<Pirometro, String> temp;
+	private TableColumn<Pirometro, String> temp;
 	@FXML
-    private TableView<Pirometro> table = new TableView<Pirometro>();
-    private ObservableList<Pirometro> data;
+	private TableView<Pirometro> table = new TableView<Pirometro>();
+    public static ObservableList<Pirometro> obsListTableView;
 
 	@FXML
 	private void view1(ActionEvent event) throws UnsupportedCommOperationException, IOException {
@@ -119,7 +120,6 @@ public class PrimaryViewController implements Initializable {
 	
 	@FXML
 	private void checkLicense(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		testAdd();
 		loadView("checkLicense", null, "Status License", MainApp.getStage(),
 				DependencyInjection.getCheckLicenseController());
 	}
@@ -259,7 +259,9 @@ public class PrimaryViewController implements Initializable {
 				
 		chartController.lineChartStart();
 		historyController.startHistory();
-		test();
+		
+		strartTablePirometro();
+		System.out.println();
 	}
 
 
@@ -293,19 +295,15 @@ public class PrimaryViewController implements Initializable {
 	
 	
 	@SuppressWarnings("unchecked")
-	public void test() {
+	public void strartTablePirometro() {
 		table.setMinWidth(225);
 		
 			
-		data =
+		obsListTableView =
 	            (ObservableList<Pirometro>) FXCollections.observableArrayList(
-		new Pirometro("1530","09/04/2022 - 08:40"),
-		new Pirometro("1510","08/04/2022 - 09:30"),
-		new Pirometro("1430","07/04/2022 - 10:35"),
-		new Pirometro("1460","06/04/2022 - 12:22"),
-		new Pirometro("1480","05/04/2022 - 19:40"));
+	            		new Pirometro("1530","09/04/1994 - 08:40"));
 	    
-	    table.setEditable(false);
+	   table.setEditable(false);
 	 
        dataTime = new TableColumn<Pirometro, String>("Data Time");
         
@@ -320,20 +318,10 @@ public class PrimaryViewController implements Initializable {
         temp.setCellValueFactory(
                 new PropertyValueFactory<Pirometro, String>("temp"));
 
-      
-        table.setItems(data);
-        
+        table.setItems(obsListTableView);
         table.getColumns().addAll(dataTime, temp);
  
 	}
- 
-	public void testAdd() {
-		data.add(new Pirometro("1600","09/04/2022 - 19:40"));
-		dataTime.setSortType(TableColumn.SortType.DESCENDING);
-		
-	}
- 
-
        
 }
 

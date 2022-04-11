@@ -37,6 +37,7 @@ public class HistoryService implements Runnable {
 	
 	private Thread thread = new Thread(this);
 
+	@SuppressWarnings("deprecation")
 	public void startHistory() {
 		
 		if(!thread.isAlive()){

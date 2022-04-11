@@ -16,6 +16,7 @@ import com.rodrigues.rodrigues.serial.dao.WriteSetPoints;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.resources.PortComResurce;
 import com.rodrigues.rodrigues.service.FormatData;
+import com.rodrigues.rodrigues.service.PirometroService;
 import com.rodrigues.rodrigues.service.PrimaryViewService;
 import com.rodrigues.rodrigues.service.ReadService;
 import com.rodrigues.rodrigues.service.SerialService;
@@ -38,6 +39,7 @@ public class DependencyInjection {
 	private static final SetPointController setPointController = new SetPointController();
 	private static final PortComResurce portComResurces = new PortComResurce();
 	private static final RelatorioViewController relatorioViewController = new RelatorioViewController();
+	private static final PirometroService pirometroService = new PirometroService();
 	public static RelatorioViewController getRelatorioviewcontroller() {
 		return relatorioViewController;
 	}
@@ -121,5 +123,9 @@ public class DependencyInjection {
 
 	public static PortComResurce getPortComResurce() {
 		return portComResurces;
+	}
+
+	public static PirometroService getPirometroService() {
+		return pirometroService;
 	}
 }
