@@ -24,6 +24,8 @@ import com.rodrigues.rodrigues.serial.utilitary.EndGadgets;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 import com.rodrigues.rodrigues.service.PirometroService;
 
+import Aladdin.Hasp;
+import Aladdin.HaspStatus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,6 +47,7 @@ public class PrimaryViewController implements Initializable {
 	
 	private HistoryController historyController = new HistoryController();
 	private LineChartController chartController = new LineChartController();
+	private static native int Read(int var0, long var1, int var3, int var4, byte[] var5);
 
 	private static final Object defautPort = "COM4";
 	private String lastPort = "";
@@ -261,7 +264,35 @@ public class PrimaryViewController implements Initializable {
 		historyController.startHistory();
 		
 		strartTablePirometro();
-		System.out.println();
+		
+		Hasp hasp = new Hasp(0);
+		String vendorCode = "AzIceaqfA1hX5wS+M8cGnYh5ceevUnOZIzJBbXFD6dgf3tBkb9cvUF/Tkd/iKu2fsg9wAysYKw7RMAsV"
+				+ "vIp4KcXle/v1RaXrLVnNBJ2H2DmrbUMOZbQUFXe698qmJsqNpLXRA367xpZ54i8kC5DTXwDhfxWTOZrB"
+				+ "rh5sRKHcoVLumztIQjgWh37AzmSd1bLOfUGI0xjAL9zJWO3fRaeB0NS2KlmoKaVT5Y04zZEc06waU2r6"
+				+ "AU2Dc4uipJqJmObqKM+tfNKAS0rZr5IudRiC7pUwnmtaHRe5fgSI8M7yvypvm+13Wm4Gwd4VnYiZvSxf"
+				+ "8ImN3ZOG9wEzfyMIlH2+rKPUVHI+igsqla0Wd9m7ZUR9vFotj1uYV0OzG7hX0+huN2E/IdgLDjbiapj1"
+				+ "e2fKHrMmGFaIvI6xzzJIQJF9GiRZ7+0jNFLKSyzX/K3JAyFrIPObfwM+y+zAgE1sWcZ1YnuBhICyRHBh"
+				+ "aJDKIZL8MywrEfB2yF+R3k9wFG1oN48gSLyfrfEKuB/qgNp+BeTruWUk0AwRE9XVMUuRbjpxa4YA67SK"
+				+ "unFEgFGgUfHBeHJTivvUl0u4Dki1UKAT973P+nXy2O0u239If/kRpNUVhMg8kpk7s8i6Arp7l/705/bL"
+				+ "Cx4kN5hHHSXIqkiG9tHdeNV8VYo5+72hgaCx3/uVoVLmtvxbOIvo120uTJbuLVTvT8KtsOlb3DxwUrwL"
+				+ "zaEMoAQAFk6Q9bNipHxfkRQER4kR7IYTMzSoW5mxh3H9O8Ge5BqVeYMEW36q9wnOYfxOLNw6yQMf8f9s"
+				+ "JN4KhZty02xm707S7VEfJJ1KNq7b5pP/3RjE0IKtB2gE6vAPRvRLzEohu0m7q1aUp8wAvSiqjZy7FLaT"
+				+ "tLEApXYvLvz6PEJdj4TegCZugj7c8bIOEqLXmloZ6EgVnjQ7/ttys7VFITB3mazzFiyQuKf4J6+b/a/Y";
+		hasp.login(vendorCode);
+
+		int status = hasp.getLastError();
+		
+		for(int i=1; i<999999999; i++) {
+			if (HaspStatus.HASP_STATUS_OK == status) {
+				System.out.print("Ok no numero " + (i-1));
+			}
+			hasp = new Hasp(i);
+			hasp.login(vendorCode);
+			status = hasp.getLastError();
+		}
+		System.out.print("Fim");
+		
+		
 	}
 
 

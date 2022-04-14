@@ -11,9 +11,11 @@ public class EncryptionAES {
 	 String IV = "AAAAAAAAAAAAAAAA";
 	 String textopuro = "teste texto 12345678\0\0\0";
 	 String chaveencriptacao = "0123456789abcdef";
+	@SuppressWarnings("unused")
 	private static byte[] bytes;
 
 
+	@SuppressWarnings("deprecation")
 	public void testEncrypt() {
         
         try {
