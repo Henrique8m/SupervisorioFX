@@ -239,11 +239,11 @@ public class WriteValueAccumulated {
 					}
 				}
 			}catch (NumberFormatException e ) {
-				System.out.println("NumberFormatException em WriteValueAccumulated");
+				//System.out.println("NumberFormatException em WriteValueAccumulated");
 				e.printStackTrace();
 			
 			}catch (NullPointerException e ) {
-				System.out.println("NullPointerException em WriteValueAccumulated");
+				//System.out.println("NullPointerException em WriteValueAccumulated");
 				//e.printStackTrace();
 			}
 		}

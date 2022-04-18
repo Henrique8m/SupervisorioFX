@@ -10,6 +10,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -23,7 +24,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="1359.0">
          <children>
@@ -588,6 +589,44 @@
                                     </GridPane>
                                  </children>
                               </GridPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab style="-fx-background-color: #696969;" text="Relatorio">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #696969;">
+                           <children>
+                              <TableView prefHeight="709.0" prefWidth="974.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="Data" />
+                                  <TableColumn prefWidth="70.0" text="Hora Inicio" />
+                                    <TableColumn prefWidth="66.0" text="Hora Fim" />
+                                    <TableColumn prefWidth="89.0" text="Balança 01" />
+                                    <TableColumn prefWidth="73.0" text="Balança 02" />
+                                    <TableColumn prefWidth="75.0" text="Balança 03" />
+                                    <TableColumn prefWidth="75.0" text="Balança 04" />
+                                    <TableColumn prefWidth="75.0" text="Balança 05" />
+                                    <TableColumn prefWidth="75.0" text="Balança 06" />
+                                    <TableColumn prefWidth="75.0" text="Balança 07" />
+                                    <TableColumn prefWidth="75.0" text="Balança 08" />
+                                    <TableColumn prefWidth="75.0" text="Balança 09" />
+                                    <TableColumn prefWidth="75.0" text="Balança 10" />
+                                </columns>
+                              </TableView>
+                              <TableView layoutX="974.0" prefHeight="708.0" prefWidth="387.0">
+                                <columns>
+                                    <TableColumn minWidth="80.0" prefWidth="332.0" text="Media /h">
+                                       <columns>
+                                          <TableColumn minWidth="75.0" prefWidth="75.0" text="Inicio / Fim" />
+                                          <TableColumn prefWidth="75.0" text="Vazão" />
+                                          <TableColumn minWidth="93.0" prefWidth="93.0" text="Pressão Coroa" />
+                                          <TableColumn prefWidth="65.0" text="T - Coroa" />
+                                          <TableColumn prefWidth="78.0" text="T - Topo" />
+                                       </columns>
+                                    </TableColumn>
+                                </columns>
+                              </TableView>
                            </children>
                         </AnchorPane>
                     </content>

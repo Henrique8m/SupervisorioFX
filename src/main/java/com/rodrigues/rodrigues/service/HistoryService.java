@@ -1,12 +1,13 @@
 package com.rodrigues.rodrigues.service;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 import com.rodrigues.rodrigues.serial.dao.WriteValueAccumulated;
+import com.rodrigues.rodrigues.serial.utilitary.Format;
 
 public class HistoryService implements Runnable {
 	private WriteValueAccumulated accumulated = new WriteValueAccumulated();
+	private BalancaService service = new BalancaService();
 	
 	
 	public static String[] newBalancas = new String[10];
@@ -25,11 +26,12 @@ public class HistoryService implements Runnable {
 	private Boolean[] auxSave = new Boolean[10];
 	private Boolean auxTrocaHorario = false;
 
-	private SimpleDateFormat formatarTime = new SimpleDateFormat("HHmm");
 	private Integer time;
-	private Integer nextTime=0;
-	private Date data;
-	
+	private Integer minute;
+	private Integer nextTime;
+	private Date date;
+	private String timeStart;
+	private String currentDate;
 	
 	private int bordaDeSubida = 200;//k/10
 	private int bordaDeDescida = 200;
@@ -37,7 +39,6 @@ public class HistoryService implements Runnable {
 	
 	private Thread thread = new Thread(this);
 
-	@SuppressWarnings("deprecation")
 	public void startHistory() {
 		
 		if(!thread.isAlive()){
@@ -50,6 +51,18 @@ public class HistoryService implements Runnable {
 
 	@Override
 	public void run() {
+        date = new Date(System.currentTimeMillis()); 			
+        time = Integer.parseInt(Format.formatarTime.format(date));
+        
+		if(nextTime==null)
+			if(time>=2300)
+				nextTime = 0;
+			else nextTime = time + 100;
+		
+		if(timeStart==null)
+			timeStart = Format.formatarTimeString.format(date);
+		
+		if(currentDate == null) currentDate = Format.formatData.format(date);
 			
 		while(true){
 			try {
@@ -74,13 +87,13 @@ public class HistoryService implements Runnable {
 	        	}
         	}
 
-	        data = new Date(System.currentTimeMillis()); 			
-	        time = Integer.parseInt(formatarTime.format(data));
+	        date = new Date(System.currentTimeMillis()); 			
+	        time = Integer.parseInt(Format.formatarTime.format(date));
+	        minute = Integer.parseInt(Format.formatarMinut.format(date));
 	        
 	        try {
-		        if((time>=nextTime)&&auxTrocaHorario&&(carvaoPassou)) {
-		        	//System.out.print(time);
-		        	
+		        if((time>=nextTime)&&auxTrocaHorario&&((carvaoPassou)||(minute>10))) {
+		        	service.newBalancaData(historySaveHC, timeStart, Format.formatarTimeString.format(date), currentDate);
 			        for(int i=0; i< historySaveHC.length; i++) {
 			        	
 			        	if(historySaveH4[i]==null)historySaveH5[i] = 0;
@@ -140,7 +153,8 @@ public class HistoryService implements Runnable {
 			        if(time>=2300) {
 			        	nextTime = 0;
 			        }else nextTime = time + 100;
-
+			        
+			        timeStart = Format.formatarTime.format(date);
 			        carga = auxCarga;
 			        auxCarga=0;
 			        auxTrocaHorario=false;
@@ -177,6 +191,9 @@ public class HistoryService implements Runnable {
 		try {
 		if(newValueInt > (oldValueInt + bordaDeSubida)&&auxSave[i]) {
 			auxSave[i] = true;
+			
+			if(i==9)carvaoPassou = false;
+		
 			//System.out.println("Retornando " + newValueInt);
 			return Integer.toString(newValueInt);
 			
@@ -192,7 +209,10 @@ public class HistoryService implements Runnable {
 		if((auxSave[i]==false)&&(newValueInt<balancaVazia)) {
 			auxSave[i] = true;
 
-			if(i==9)auxCarga++;				
+			if(i==9) {
+				auxCarga++;	
+				carvaoPassou = true;
+			}
 
 			//System.out.println("Retornando " + newValueInt +  " Para iniciar uma nova era");
 			return Integer.toString(200);

@@ -15,6 +15,7 @@ import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.controller.HistoryController;
 import com.rodrigues.rodrigues.controller.LineChartController;
 import com.rodrigues.rodrigues.controller.SerialController;
+import com.rodrigues.rodrigues.entities.Balancas;
 import com.rodrigues.rodrigues.entities.Pirometro;
 import com.rodrigues.rodrigues.gui.util.Alerts;
 import com.rodrigues.rodrigues.securit.DataSecurit;
@@ -22,10 +23,7 @@ import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.EndGadgets;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
-import com.rodrigues.rodrigues.service.PirometroService;
 
-import Aladdin.Hasp;
-import Aladdin.HaspStatus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,6 +45,7 @@ public class PrimaryViewController implements Initializable {
 	
 	private HistoryController historyController = new HistoryController();
 	private LineChartController chartController = new LineChartController();
+	private RelatorioViewController viewController;
 	private static native int Read(int var0, long var1, int var3, int var4, byte[] var5);
 
 	private static final Object defautPort = "COM4";
@@ -96,23 +95,32 @@ public class PrimaryViewController implements Initializable {
 	private TableColumn<Pirometro, String> temp;
 	@FXML
 	private TableView<Pirometro> table = new TableView<Pirometro>();
+	
     public static ObservableList<Pirometro> obsListTableView;
+    
+    //////////////////////////////////////////////////////////////
+    //table Balance
+    
+    @FXML
+    private TableColumn<Balancas, String> data, hInicio, hFim, b1,b2,b3,b4,b5,b6,b7,b8,b9,b10;
+    @FXML
+    private TableView<Balancas> tableBalancas;
+    
+    ///////////////////////////////////////////////////////////////
 
 	@FXML
 	private void view1(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		ScrollPane scrollPane= (ScrollPane) UtilitarioNewView.loadFXML("relatorioView", DependencyInjection.getRelatorioviewcontroller());
+		ScrollPane scrollPane= (ScrollPane) UtilitarioNewView.loadFXML("relatorioView", viewController);
 		Scene main = new Scene(scrollPane);
-		UtilitarioNewView.getNewView("Relatorio Das Balanças",main);
+		viewController.setStage(UtilitarioNewView.getNewView("Relatorio Das Balanças",main));
 		
-		historyController.updatedValue();
 	}
 	@FXML
 	private void view2(ActionEvent event) throws UnsupportedCommOperationException, IOException {
-		ScrollPane scrollPane= (ScrollPane) UtilitarioNewView.loadFXML("relatorioView2", DependencyInjection.getRelatorioviewcontroller());
+		ScrollPane scrollPane= (ScrollPane) UtilitarioNewView.loadFXML("relatorioView2", viewController);
 		Scene main = new Scene(scrollPane);
-		UtilitarioNewView.getNewView("Relatorio Das Balanças",main);
+		viewController.setStage(UtilitarioNewView.getNewView("Relatorio Das Balanças",main));
 		
-		historyController.updatedValue();
 	}
 	
 	@FXML
@@ -264,35 +272,7 @@ public class PrimaryViewController implements Initializable {
 		historyController.startHistory();
 		
 		strartTablePirometro();
-		
-		Hasp hasp = new Hasp(0);
-		String vendorCode = "AzIceaqfA1hX5wS+M8cGnYh5ceevUnOZIzJBbXFD6dgf3tBkb9cvUF/Tkd/iKu2fsg9wAysYKw7RMAsV"
-				+ "vIp4KcXle/v1RaXrLVnNBJ2H2DmrbUMOZbQUFXe698qmJsqNpLXRA367xpZ54i8kC5DTXwDhfxWTOZrB"
-				+ "rh5sRKHcoVLumztIQjgWh37AzmSd1bLOfUGI0xjAL9zJWO3fRaeB0NS2KlmoKaVT5Y04zZEc06waU2r6"
-				+ "AU2Dc4uipJqJmObqKM+tfNKAS0rZr5IudRiC7pUwnmtaHRe5fgSI8M7yvypvm+13Wm4Gwd4VnYiZvSxf"
-				+ "8ImN3ZOG9wEzfyMIlH2+rKPUVHI+igsqla0Wd9m7ZUR9vFotj1uYV0OzG7hX0+huN2E/IdgLDjbiapj1"
-				+ "e2fKHrMmGFaIvI6xzzJIQJF9GiRZ7+0jNFLKSyzX/K3JAyFrIPObfwM+y+zAgE1sWcZ1YnuBhICyRHBh"
-				+ "aJDKIZL8MywrEfB2yF+R3k9wFG1oN48gSLyfrfEKuB/qgNp+BeTruWUk0AwRE9XVMUuRbjpxa4YA67SK"
-				+ "unFEgFGgUfHBeHJTivvUl0u4Dki1UKAT973P+nXy2O0u239If/kRpNUVhMg8kpk7s8i6Arp7l/705/bL"
-				+ "Cx4kN5hHHSXIqkiG9tHdeNV8VYo5+72hgaCx3/uVoVLmtvxbOIvo120uTJbuLVTvT8KtsOlb3DxwUrwL"
-				+ "zaEMoAQAFk6Q9bNipHxfkRQER4kR7IYTMzSoW5mxh3H9O8Ge5BqVeYMEW36q9wnOYfxOLNw6yQMf8f9s"
-				+ "JN4KhZty02xm707S7VEfJJ1KNq7b5pP/3RjE0IKtB2gE6vAPRvRLzEohu0m7q1aUp8wAvSiqjZy7FLaT"
-				+ "tLEApXYvLvz6PEJdj4TegCZugj7c8bIOEqLXmloZ6EgVnjQ7/ttys7VFITB3mazzFiyQuKf4J6+b/a/Y";
-		hasp.login(vendorCode);
-
-		int status = hasp.getLastError();
-		
-		for(int i=1; i<999999999; i++) {
-			if (HaspStatus.HASP_STATUS_OK == status) {
-				System.out.print("Ok no numero " + (i-1));
-			}
-			hasp = new Hasp(i);
-			hasp.login(vendorCode);
-			status = hasp.getLastError();
-		}
-		System.out.print("Fim");
-		
-		
+				
 	}
 
 
@@ -315,6 +295,8 @@ public class PrimaryViewController implements Initializable {
 			serialProperties = DependencyInjection.getSerialProperties();
 		if (securit == null)
 			securit = DependencyInjection.getDataSecurit();
+		if(viewController ==null)
+			viewController = DependencyInjection.getRelatorioviewcontroller();
 	}
 
 	private void showError() {

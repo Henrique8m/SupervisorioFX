@@ -3,14 +3,18 @@ package com.rodrigues.rodrigues.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.rodrigues.rodrigues.controller.HistoryController;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class RelatorioViewController implements Initializable{
+	private HistoryController history;
 	
 	private Timeline timeline;
 	
@@ -28,24 +32,33 @@ public class RelatorioViewController implements Initializable{
 				B10_AC_5, B10_AC_4, B10_AC_3, B10_AC_2, B10_AC_1, B10_AC,
 				ritmoDeCarga, ritmoDeCargaUltimoH;
 
+	private Stage stage;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-	}
-	
+		history = new HistoryController();
+		beginTimer();	
+	}	
 
-
-	  @SuppressWarnings("unused")
+	@SuppressWarnings("unused")
 	 private void beginTimer() { 
 		  timeline = new
 		 Timeline(new KeyFrame(javafx.util.Duration.seconds(2), ev -> { 
-			 System.out.println("Teste TimeLine");
-			 //sComm.WriteData(); 
-			 //sComm.formatDados();
-			  //lblOut.setText(sComm.getDisplay()); 
+			 
+			 if(!stage.isShowing())
+				 timeline.stop();
+			 else {
+				 history.updatedValue();
+				 System.out.println("Updated View");
+			 }
 		 }));
 		
 		 timeline.setCycleCount(Animation.INDEFINITE); timeline.play();
 
 	}
+	  
+	  public void setStage(Stage stage) {
+		  this.stage = stage;
+	  }
+
 }

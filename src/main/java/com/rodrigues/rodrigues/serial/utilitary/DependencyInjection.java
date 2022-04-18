@@ -9,6 +9,7 @@ import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.gui.PropertiesComController;
 import com.rodrigues.rodrigues.gui.RelatorioViewController;
 import com.rodrigues.rodrigues.gui.SetPointController;
+import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
 import com.rodrigues.rodrigues.securit.DataSecurit;
 import com.rodrigues.rodrigues.securit.EncryptionAES;
 import com.rodrigues.rodrigues.securit.SerialMotherboard;
@@ -40,6 +41,7 @@ public class DependencyInjection {
 	private static final PortComResurce portComResurces = new PortComResurce();
 	private static final RelatorioViewController relatorioViewController = new RelatorioViewController();
 	private static final PirometroService pirometroService = new PirometroService();
+	private static final RelatorioViewService relatorioViewService = new RelatorioViewService();
 	public static RelatorioViewController getRelatorioviewcontroller() {
 		return relatorioViewController;
 	}
@@ -127,5 +129,9 @@ public class DependencyInjection {
 
 	public static PirometroService getPirometroService() {
 		return pirometroService;
+	}
+
+	public static RelatorioViewService getRelatorioviewservice() {
+		return relatorioViewService;
 	}
 }

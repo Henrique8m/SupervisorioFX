@@ -25,7 +25,7 @@ public class MainApp extends Application {
 	private static String strForno = "FundoAltoForno";
 	private static String strGlendon = "FundoGlendon";
 	private final static String nameSupervisorio = "Supervisorio 3.0";
-	
+		
 	@SuppressWarnings("unused")
 	private static Consumer<?> controller;
 
@@ -79,7 +79,7 @@ public class MainApp extends Application {
 		//Preparar a sena e showww
 		stage = UtilitarioNewView.getNewView(nameSupervisorio, mainScene = new Scene(scrollPane));
 	}
-
+	
 	public static void main(String[] args) {
 		launch(args);
 		System.exit(1);
