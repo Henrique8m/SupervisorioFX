@@ -16,6 +16,7 @@ import com.rodrigues.rodrigues.controller.HistoryController;
 import com.rodrigues.rodrigues.controller.LineChartController;
 import com.rodrigues.rodrigues.controller.SerialController;
 import com.rodrigues.rodrigues.entities.Balancas;
+import com.rodrigues.rodrigues.entities.Carvao;
 import com.rodrigues.rodrigues.entities.Pirometro;
 import com.rodrigues.rodrigues.entities.Pyrometry;
 import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
@@ -345,6 +346,11 @@ public class PrimaryViewController implements Initializable {
     @FXML
     private TableView<Pyrometry> tablePyrometry;
     
+    @FXML
+    private TableColumn<Carvao, String> dataCarvao, horaCarvao, pesoCarvao, umidadeCarvao;
+    @FXML
+    private TableView<Carvao> tableCarvao;
+    
    private void alimentarTabelaTestes() {
 	   tableBalancas.setEditable(false);
 	   data.setCellValueFactory(new PropertyValueFactory<Balancas, String>("date"));
@@ -374,6 +380,15 @@ public class PrimaryViewController implements Initializable {
 	   
 	   RelatorioViewService.addListPyrometry(new Pyrometry("18:30 / 19:30", "19.600 m³/h", "6,55 mmH2O", "650°C", "58°C"));
 	   tablePyrometry.setItems(RelatorioViewService.getListPyrometry());
+	   
+	   tableCarvao.setEditable(false);
+	   dataCarvao.setCellValueFactory(new PropertyValueFactory<Carvao, String>("dataCarvao"));
+	   horaCarvao.setCellValueFactory(new PropertyValueFactory<Carvao, String>("horaCarvao"));
+	   pesoCarvao.setCellValueFactory(new PropertyValueFactory<Carvao, String>("pesoCarvao"));
+	   umidadeCarvao.setCellValueFactory(new PropertyValueFactory<Carvao, String>("umidadeCarvao"));
+	   
+	   RelatorioViewService.addListCarvao(new Carvao("19/04/2022", "10:35", "953,5 Kg", ""));
+	   tableCarvao.setItems(RelatorioViewService.getListCarvao());
 	   
    }
        

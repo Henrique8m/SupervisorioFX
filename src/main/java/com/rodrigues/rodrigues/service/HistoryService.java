@@ -52,7 +52,7 @@ public class HistoryService implements Runnable {
 	@Override
 	public void run() {
         date = new Date(System.currentTimeMillis()); 			
-        time = Integer.parseInt(Format.formatarTime.format(date));
+        time = Integer.parseInt(Format.formatTime.format(date));
         
 		if(nextTime==null)
 			if(time>=2300)
@@ -60,7 +60,7 @@ public class HistoryService implements Runnable {
 			else nextTime = time + 100;
 		
 		if(timeStart==null)
-			timeStart = Format.formatarTimeString.format(date);
+			timeStart = Format.formataTimeString.format(date);
 		
 		if(currentDate == null) currentDate = Format.formatData.format(date);
 			
@@ -88,12 +88,12 @@ public class HistoryService implements Runnable {
         	}
 
 	        date = new Date(System.currentTimeMillis()); 			
-	        time = Integer.parseInt(Format.formatarTime.format(date));
-	        minute = Integer.parseInt(Format.formatarMinut.format(date));
+	        time = Integer.parseInt(Format.formatTime.format(date));
+	        minute = Integer.parseInt(Format.formataMinut.format(date));
 	        
 	        try {
 		        if((time>=nextTime)&&auxTrocaHorario&&((carvaoPassou)||(minute>10))) {
-		        	service.newBalancaData(historySaveHC, timeStart, Format.formatarTimeString.format(date), currentDate);
+		        	service.newBalancaData(historySaveHC, timeStart, Format.formataTimeString.format(date), currentDate);
 			        for(int i=0; i< historySaveHC.length; i++) {
 			        	
 			        	if(historySaveH4[i]==null)historySaveH5[i] = 0;
@@ -154,7 +154,7 @@ public class HistoryService implements Runnable {
 			        	nextTime = 0;
 			        }else nextTime = time + 100;
 			        
-			        timeStart = Format.formatarTime.format(date);
+			        timeStart = Format.formatTime.format(date);
 			        carga = auxCarga;
 			        auxCarga=0;
 			        auxTrocaHorario=false;
