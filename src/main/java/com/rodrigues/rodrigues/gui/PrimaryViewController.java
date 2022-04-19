@@ -17,6 +17,8 @@ import com.rodrigues.rodrigues.controller.LineChartController;
 import com.rodrigues.rodrigues.controller.SerialController;
 import com.rodrigues.rodrigues.entities.Balancas;
 import com.rodrigues.rodrigues.entities.Pirometro;
+import com.rodrigues.rodrigues.entities.Pyrometry;
+import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
 import com.rodrigues.rodrigues.gui.util.Alerts;
 import com.rodrigues.rodrigues.securit.DataSecurit;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
@@ -97,17 +99,10 @@ public class PrimaryViewController implements Initializable {
 	private TableView<Pirometro> table = new TableView<Pirometro>();
 	
     public static ObservableList<Pirometro> obsListTableView;
+  
+///////////////////////////////////////////////////////////////////////////////Butons////////////////////////////////////////////////////////////////
     
-    //////////////////////////////////////////////////////////////
-    //table Balance
     
-    @FXML
-    private TableColumn<Balancas, String> data, hInicio, hFim, b1,b2,b3,b4,b5,b6,b7,b8,b9,b10;
-    @FXML
-    private TableView<Balancas> tableBalancas;
-    
-    ///////////////////////////////////////////////////////////////
-
 	@FXML
 	private void view1(ActionEvent event) throws UnsupportedCommOperationException, IOException {
 		ScrollPane scrollPane= (ScrollPane) UtilitarioNewView.loadFXML("relatorioView", viewController);
@@ -243,6 +238,9 @@ public class PrimaryViewController implements Initializable {
 	}
 	
 
+/////////////////////////////////////////////////////////////////////////////// Metodos ////////////////////////////////////////////////////////////////
+	
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		instanciates();
@@ -271,11 +269,11 @@ public class PrimaryViewController implements Initializable {
 		chartController.lineChartStart();
 		historyController.startHistory();
 		
+		alimentarTabelaTestes();
+		
 		strartTablePirometro();
 				
 	}
-
-
 
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title,
 			Stage stageEvent, Object controller) {
@@ -303,9 +301,6 @@ public class PrimaryViewController implements Initializable {
 		Alerts.showAlert("Securit", "Error, validação da licença ",
 				"Erro ao validar a licença, entre em contato com o adim", AlertType.ERROR);
 	}
-
-	
-	
 	
 	@SuppressWarnings("unchecked")
 	public void strartTablePirometro() {
@@ -335,6 +330,52 @@ public class PrimaryViewController implements Initializable {
         table.getColumns().addAll(dataTime, temp);
  
 	}
+	
+	
+/////////////////////////////////////////////////////////////////////////////// table Balance and pyrometry ////////////////////////////////////////////////////////////////
+  
+	
+    @FXML
+    private TableColumn<Balancas, String> data, hInicio, hFim, b1,b2,b3,b4,b5,b6,b7,b8,b9,b10;
+    @FXML
+    private TableView<Balancas> tableBalancas;
+    
+    @FXML
+    private TableColumn<Pyrometry, String> timeStartFinish, vazaoAr, pressaoCoroa, tempCoroa, tempTopo;
+    @FXML
+    private TableView<Pyrometry> tablePyrometry;
+    
+   private void alimentarTabelaTestes() {
+	   tableBalancas.setEditable(false);
+	   data.setCellValueFactory(new PropertyValueFactory<Balancas, String>("date"));
+	   hInicio.setCellValueFactory(new PropertyValueFactory<Balancas, String>("hInicio"));
+	   hFim.setCellValueFactory(new PropertyValueFactory<Balancas, String>("hFim"));
+	   b1.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca01"));
+	   b2.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca02"));
+	   b3.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca03"));
+	   b4.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca04"));
+	   b5.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca05"));
+	   b6.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca06"));
+	   b7.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca07"));
+	   b8.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca08"));
+	   b9.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca09"));
+	   b10.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca10"));
+	   
+	   RelatorioViewService.addListBalancas(new Balancas("17/04/22", "10:01", "16:05", "1500", "1502", "1503", "1504", "1505", "1506", "1507", "1508", "1509", "1510"));
+	   tableBalancas.setItems(RelatorioViewService.getListBalancas());
+	   
+	   
+	   tablePyrometry.setEditable(false);
+	   timeStartFinish.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("timeStartFinish"));
+	   vazaoAr.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("vazaoAr"));
+	   pressaoCoroa.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("pressaoCoroa"));
+	   tempCoroa.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("tempCoroa"));
+	   tempTopo.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("tempTopo"));
+	   
+	   RelatorioViewService.addListPyrometry(new Pyrometry("18:30 / 19:30", "19.600 m³/h", "6,55 mmH2O", "650°C", "58°C"));
+	   tablePyrometry.setItems(RelatorioViewService.getListPyrometry());
+	   
+   }
        
 }
 

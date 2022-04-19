@@ -2,8 +2,8 @@ package com.rodrigues.rodrigues.entities;
 
 public class Balancas {	
 	private String date;
-	private String horarioStart;
-	private String horarioFim;	
+	private String hInicio;
+	private String hFim;	
 	private String balanca01;
 	private String balanca02;
 	private String balanca03;
@@ -16,8 +16,8 @@ public class Balancas {
 	private String balanca10;
 
 	
-	public Balancas(String date, String balanca01, String balanca02, String balanca03, String balanca04, String balanca05,
-			String balanca06, String balanca07, String balanca08, String balanca09, String balanca10, String horario, String horariofim) {
+	public Balancas(String date,String hInicio, String hFim, String balanca01, String balanca02, String balanca03, String balanca04, String balanca05,
+			String balanca06, String balanca07, String balanca08, String balanca09, String balanca10 ) {
 		this.date = date;
 		this.balanca01 = balanca01;
 		this.balanca02 = balanca02;
@@ -29,8 +29,8 @@ public class Balancas {
 		this.balanca08 = balanca08;
 		this.balanca09 = balanca09;
 		this.balanca10 = balanca10;
-		this.horarioStart = horario;
-		this.horarioFim = horariofim;
+		this.hInicio = hInicio;
+		this.hFim = hFim;
 	}
 	
 	public Balancas() {
@@ -97,19 +97,19 @@ public class Balancas {
 	public void setBalanca10(String balanca10) {
 		this.balanca10 = balanca10;
 	}
-	public String getHorario() {
-		return horarioStart;
+	public String getHInicio() {
+		return hInicio;
 	}
-	public void setHorario(String horario) {
-		this.horarioStart = horario;
-	}
-
-	public String getHorarioFim() {
-		return horarioFim;
+	public void setHInicio(String horario) {
+		this.hInicio = horario;
 	}
 
-	public void setHorarioFim(String horarioFim) {
-		this.horarioFim = horarioFim;
+	public String getHFim() {
+		return hFim;
+	}
+
+	public void setHFim(String horarioFim) {
+		this.hFim = horarioFim;
 	}
 
 	public String getDate() {

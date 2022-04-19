@@ -24,9 +24,9 @@ public class BalancaService {
 		balanca.setBalanca09(Integer.toString(historySaveHC[8]));
 		balanca.setBalanca10(Integer.toString(historySaveHC[9]));
 		balanca.setDate(currentDate);
-		balanca.setHorario(timeStart);
-		balanca.setHorarioFim(time);	
-		service.addList(balanca);
+		balanca.setHInicio(timeStart);
+		balanca.setHFim(time);	
+		service.addListBalancas(balanca);
 		
 	}
 }
