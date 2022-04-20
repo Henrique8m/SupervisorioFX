@@ -2,12 +2,16 @@ package com.rodrigues.rodrigues.service;
 
 import java.sql.Date;
 
+import com.rodrigues.rodrigues.entities.Carvao;
+import com.rodrigues.rodrigues.gui.PrimaryViewController;
+import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
 import com.rodrigues.rodrigues.serial.dao.WriteValueAccumulated;
 import com.rodrigues.rodrigues.serial.utilitary.Format;
 
 public class HistoryService implements Runnable {
 	private WriteValueAccumulated accumulated = new WriteValueAccumulated();
 	private BalancaService service = new BalancaService();
+	private Carvao carvao;
 	
 	
 	public static String[] newBalancas = new String[10];
@@ -19,8 +23,10 @@ public class HistoryService implements Runnable {
 	private Integer[] historySaveH3 = new Integer[10];
 	private Integer[] historySaveH4 = new Integer[10];
 	private Integer[] historySaveH5= new Integer[10];
+	
+	private Integer[] valueStabilized = new Integer[10];
 
-	private Integer auxCarga, carga;
+	private Integer auxCarga = 0, carga;
 	private Boolean carvaoPassou=false;
 	
 	private Boolean[] auxSave = new Boolean[10];
@@ -189,7 +195,7 @@ public class HistoryService implements Runnable {
 		}	
 		
 		try {
-		if(newValueInt > (oldValueInt + bordaDeSubida)&&auxSave[i]) {
+		if((newValueInt > (oldValueInt + bordaDeSubida)||valuestabilized(newValueInt,i))&&auxSave[i]) {
 			auxSave[i] = true;
 			
 			if(i==9)carvaoPassou = false;
@@ -201,15 +207,22 @@ public class HistoryService implements Runnable {
 			
 			if(historySaveHC[i]==null) historySaveHC[i] = 0;
 			historySaveHC[i] += (oldValueInt/10);
-			
+			if(i==9) {
+				
+				carvao = new Carvao(date,Double.valueOf(oldValueInt/10), 0d);
+				RelatorioViewService.addListCarvao(carvao);
+				System.out.println("AddListCarvao " + carvao.toString());
+			}
 			//System.out.println("Salvando no historico " + oldValueInt + "\n Historico depois de Salvar " + historySaveHC[i]);
-			
 			auxSave[i] = false;
 		}
+		
+		
 		if((auxSave[i]==false)&&(newValueInt<balancaVazia)) {
 			auxSave[i] = true;
 
 			if(i==9) {
+				
 				auxCarga++;	
 				carvaoPassou = true;
 			}
@@ -224,6 +237,15 @@ public class HistoryService implements Runnable {
 
 
 		return oldValue;
+	}
+
+
+	private boolean valuestabilized(Integer newValueInt, int i) {
+		if(valueStabilized[i]==null)valueStabilized[i]=0;
+		if(valueStabilized[i]>(newValueInt - 20)&&valueStabilized[i]<(newValueInt + 20))
+			return true;
+		else valueStabilized[i] = newValueInt;			
+		return false;
 	}
 
 	public void updatedValue() {

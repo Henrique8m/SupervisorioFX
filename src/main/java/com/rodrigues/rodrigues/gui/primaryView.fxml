@@ -119,7 +119,6 @@
                                        </tickLabelFont></NumberAxis>
                                 </yAxis>
                               </LineChart>
-                              <TableView fx:id="table" layoutX="14.0" layoutY="590.0" prefHeight="122.0" prefWidth="201.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -614,19 +613,6 @@
                                     <TableColumn fx:id="b10" prefWidth="75.0" text="Balança 10" />
                                 </columns>
                               </TableView>
-                              <TableView fx:id="tablePyrometry" layoutX="974.0" prefHeight="708.0" prefWidth="387.0">
-                                <columns>
-                                    <TableColumn minWidth="80.0" prefWidth="332.0" text="Media /h">
-                                       <columns>
-                                          <TableColumn fx:id="timeStartFinish" minWidth="75.0" prefWidth="75.0" text="Inicio / Fim" />
-                                          <TableColumn fx:id="vazaoAr" prefWidth="75.0" text="Vazão" />
-                                          <TableColumn fx:id="pressaoCoroa" minWidth="93.0" prefWidth="93.0" text="Pressão Coroa" />
-                                          <TableColumn fx:id="tempCoroa" prefWidth="65.0" text="T - Coroa" />
-                                          <TableColumn fx:id="tempTopo" prefWidth="78.0" text="T - Topo" />
-                                       </columns>
-                                    </TableColumn>
-                                </columns>
-                              </TableView>
                            </children>
                         </AnchorPane>
                     </content>
@@ -635,14 +621,50 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tableCarvao" layoutX="14.0" layoutY="14.0" prefHeight="689.0" prefWidth="303.0">
+                              <TableView fx:id="tableCarvao" layoutX="543.0" prefHeight="708.0" prefWidth="600.0">
                                 <columns>
-                                  <TableColumn fx:id="dataCarvao" prefWidth="75.0" text="Data" />
-                                  <TableColumn fx:id="horaCarvao" prefWidth="75.0" text="Hora" />
-                                    <TableColumn fx:id="pesoCarvao" prefWidth="75.0" text="Peso" />
-                                    <TableColumn fx:id="umidadeCarvao" prefWidth="75.0" text="Umidade" />
+                                    <TableColumn prefWidth="75.0" text="Cargas de Carvão Enf">
+                                       <columns>
+                                        <TableColumn fx:id="dataCarvao" prefWidth="75.0" text="Data" />
+                                        <TableColumn fx:id="horaCarvao" prefWidth="75.0" text="Hora" />
+                                          <TableColumn prefWidth="75.0" text="Densid" />
+                                          <TableColumn fx:id="umidadeCarvao" prefWidth="75.0" text="\% Umidade" />
+                                          <TableColumn prefWidth="75.0" text="C.F" />
+                                          <TableColumn prefWidth="75.0" text="Calc" />
+                                          <TableColumn fx:id="pesoCarvao" prefWidth="75.0" text="Enf (Peso)" />
+                                          <TableColumn prefWidth="75.0" text="Enf (m³)" />
+                                       </columns>
+                                    </TableColumn>
                                 </columns>
                               </TableView>
+                              <TableView fx:id="tablePyrometry" prefHeight="710.0" prefWidth="539.0">
+                                <columns>
+                                    <TableColumn fx:id="timeStartFinish" minWidth="75.0" prefWidth="75.0" text="Inicio / Fim" />
+                                    <TableColumn prefWidth="166.0" text="Pressão">
+                                       <columns>
+                                          <TableColumn fx:id="pressaoCoroa" minWidth="93.0" prefWidth="93.0" text="Coroa" />
+                                          <TableColumn fx:id="pressaoTopo" prefWidth="75.0" text="Topo" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn minWidth="80.0" prefWidth="295.0" text="Temperatura">
+                                       <columns>
+                                          <TableColumn fx:id="tempCoroa" prefWidth="65.0" text="T - Coroa" />
+                                          <TableColumn fx:id="tempTopo" prefWidth="78.0" text="T - Topo" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn fx:id="vazaoAr" prefWidth="75.0" text="Vazão" />
+                                    <TableColumn fx:id="secador" prefWidth="75.0" text="Secador" />
+                                </columns>
+                              </TableView>
+                              <TableView fx:id="tablePirometro" layoutX="1147.0" prefHeight="706.0" prefWidth="213.0">
+                                 <columns>
+                                    <TableColumn minWidth="160.0" prefWidth="212.0" text="Gusa">
+                                       <columns>
+                                          <TableColumn fx:id="dataTime" prefWidth="121.0" text="Hora" />
+                                          <TableColumn fx:id="temp" prefWidth="89.0" text="Temp" />
+                                       </columns>
+                                    </TableColumn>
+                                 </columns></TableView>
                            </children>
                         </AnchorPane>
                     </content>

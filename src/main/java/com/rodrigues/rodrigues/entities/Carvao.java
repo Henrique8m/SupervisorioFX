@@ -5,6 +5,7 @@ import java.sql.Date;
 import com.rodrigues.rodrigues.serial.utilitary.Format;
 
 public class Carvao {
+
 	public Carvao() {}
 	
 	public String getDataCarvao() {
@@ -37,23 +38,30 @@ public class Carvao {
 	private String pesoCarvao;
 	private String umidadeCarvao;
 	
-	public Carvao(String dataCarvao, String horaCarvao, String pesoCarvao, String umidadeCarvao) {
+	/*public Carvao(String dataCarvao, String horaCarvao, String pesoCarvao, String umidadeCarvao) {
 		
 		this.dataCarvao = dataCarvao;
 		this.horaCarvao = horaCarvao;
 		this.pesoCarvao = pesoCarvao;
 		this.umidadeCarvao = umidadeCarvao;
-	}
+	}*/
 	
-	public void parseToCarvao(Date dateCarvao, Double pesoCarvao, Double umidadeCarvao) {
+	public Carvao(Date dateCarvao, Double pesoCarvao, Double umidadeCarvao) {
 		
 		this.dataCarvao = Format.formatData.format(dateCarvao);
 		this.horaCarvao = Format.formataTimeString.format(dateCarvao);
 		try {
-			this.pesoCarvao = Double.toString(pesoCarvao);
+			this.pesoCarvao = Double.toString(pesoCarvao) + " Kg";
 			this.umidadeCarvao = Double.toString(umidadeCarvao);
 		}catch(NumberFormatException e ) {
 			e.printStackTrace();
 		}
 	}
+	@Override
+	public String toString() {
+		String print = dataCarvao + "  " + horaCarvao + "  " + pesoCarvao;
+		return print;
+	}
+
+	
 }

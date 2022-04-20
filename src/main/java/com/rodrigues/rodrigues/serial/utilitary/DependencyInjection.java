@@ -19,14 +19,12 @@ import com.rodrigues.rodrigues.serial.resources.PortComResurce;
 import com.rodrigues.rodrigues.service.FormatData;
 import com.rodrigues.rodrigues.service.PirometroService;
 import com.rodrigues.rodrigues.service.PrimaryViewService;
-import com.rodrigues.rodrigues.service.ReadService;
 import com.rodrigues.rodrigues.service.SerialService;
 
 public class DependencyInjection {
 	
 	private static final ReadController readController = new ReadController();
 	private static final SerialController serialController = new SerialController();
-	private static final ReadService readService = new ReadService();
 	private static final SerialService serialService = new SerialService();
 	private static final SerialProperties serialProperties = new SerialProperties();
 	private static final PropertiesComController propertiesComController = new PropertiesComController();
@@ -58,10 +56,6 @@ public class DependencyInjection {
 
 	public static SerialController getSerialController() {
 		return serialController;
-	}
-
-	public static ReadService getReadService() {
-		return readService;
 	}
 
 	public static SerialService getSerialService() {

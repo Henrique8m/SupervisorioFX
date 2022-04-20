@@ -10,11 +10,14 @@ import com.rodrigues.rodrigues.serial.utilitary.Gadgets;
 import com.rodrigues.rodrigues.serial.utilitary.calc.CalculatorByteInt;
 import com.rodrigues.rodrigues.serial.utilitary.calc.CalculatorData;
 import com.rodrigues.rodrigues.service.FormatData;
+import com.rodrigues.rodrigues.service.MediaPirometriaService;
 import com.rodrigues.rodrigues.service.PirometroService;
 import com.rodrigues.rodrigues.service.PrimaryViewService;
 import com.rodrigues.rodrigues.service.SerialService;
 
 public class ReadController implements Runnable{
+	
+	private MediaPirometriaService pirometriaService = new MediaPirometriaService();
 
     private SerialProperties serialProperties;
     private PrimaryViewController primaryViewController;
@@ -61,7 +64,6 @@ public class ReadController implements Runnable{
 
 	@SuppressWarnings({ "deprecation" })
 	public void read() throws InterruptedException {
-		
 		instanciates();
 		if(!thread.isAlive()){
 			whileRead = true;
@@ -77,30 +79,18 @@ public class ReadController implements Runnable{
 
     @Override
     public void run() {
+    	pirometriaService.start();
     	try {
 			Thread.sleep(1000);
 	    	while(whileRead) {
-	    		int cont = 0;
-	    		
-	    		
-	    		
-	    		try {
-	    			Thread.sleep(2000);
-	    		}catch(Exception e) {
-	    			e.printStackTrace();
-	    		}
-	    		
+	    		int cont = 0;	   
 	    		
 	    		for(int i = 0; i < 9; i++) {
-	    			
-	    			if(i<8) {	cont = 18;
-	    			
-	    			}else cont = 0;
-	    			
-	    		
-		            for(; cont < numGadgets.length; cont++){
-		
-		            	if(thread.isInterrupted()) {
+	    			if(i<8) 	
+	    				cont = 18;
+	    			else cont = 0;
+	    			for(; cont < numGadgets.length; cont++){
+	    				if(thread.isInterrupted()) {
 		                	primaryViewController.txLog.setText("Conection Lost");
 		                	primaryViewController.txLog1.setText("Conection Lost");
 		                	//primaryViewController.chartStop();
@@ -147,7 +137,14 @@ public class ReadController implements Runnable{
 	            	
 				}  
 				else {
-					if(i==15) {
+					if(i==15) {	 
+						synchronized (this) {
+	                		System.out.println("Enviando o notify");
+	                		
+	                		notify();
+	                		
+	                		System.out.println("Passou do notify");
+						}
 						bufferWrite = CalculatorData.addressRead(i,1);
 					}
 		            else {
@@ -173,6 +170,7 @@ public class ReadController implements Runnable{
 	                	displayVetor[i-1] = display;
 	                }
 	                else if (i==15) {
+
 	                	
 	                	display	= formatData.formatData(bufferRead, "N2000", "double");
 	                	displayVetor[i-1] = display;

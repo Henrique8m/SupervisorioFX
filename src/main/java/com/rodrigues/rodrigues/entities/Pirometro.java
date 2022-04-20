@@ -5,7 +5,7 @@ public class Pirometro {
 	private String dataTime;
 	
 	public Pirometro(String temp, String dataTime) {
-		this.temp = temp;
+		this.temp = temp + " °C";
 		this.dataTime = dataTime;
 	}
 	
