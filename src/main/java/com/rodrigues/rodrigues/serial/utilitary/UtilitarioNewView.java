@@ -33,7 +33,7 @@ public class UtilitarioNewView {
 	
 	public static Stage getNewView(String title, Scene mainScene){
 		Stage stage = new Stage();
-		stage.setMaximized(true);
+		stage.setMaximized(false);
 		stage.setTitle(title);
 		stage.setScene(mainScene);
 		stage.show();

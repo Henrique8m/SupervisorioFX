@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox minHeight="500.0" minWidth="1000.0" prefHeight="761.0" prefWidth="1359.0">
+         <children>
+            <MenuBar style="-fx-background-color: #696969;">
+              <menus>
+                <Menu mnemonicParsing="false" text="Config">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#comPort" text="COM Port" />
+                        <MenuItem mnemonicParsing="false" onAction="#stopComunication" text="Stop Comunication" />
+                        <MenuItem mnemonicParsing="false" onAction="#startComunication" text="Start Comunication" />
+                     </items></Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#checkLicense" text="Check License" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Relatório Carga">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#view1" text="View 1" />
+                        <MenuItem mnemonicParsing="false" onAction="#view2" text="View 2" />
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+            <TabPane minHeight="500.0" minWidth="1000.0" prefHeight="737.0" prefWidth="1356.0" style="-fx-background-color: #696969;" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab style="-fx-background-color: #696969;" text="Alto Forno">
+                     <content>
+                        <AnchorPane minHeight="500.0" minWidth="1000.0" prefHeight="760.0" prefWidth="1360.0">
+                           <children>
+                              <ImageView disable="true" opacity="0.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@resources/FundoAltoForno.png" />
+                                 </image></ImageView>
+                              <Text fx:id="vazao" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="795.0" layoutY="666.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="psm" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="691.0" layoutY="666.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5.60" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="ptopo" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="974.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.10" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="topoE" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="827.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="156" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="topoD" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="1142.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="156" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="coroaD" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="1118.0" layoutY="548.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="coroaE" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="849.0" layoutY="548.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="pirometro" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="1133.0" layoutY="687.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1436" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="pcoroa" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="974.0" layoutY="486.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="txLog" layoutX="1169.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.8033447265625" />
+                              <LineChart fx:id="lineChart" layoutX="1.0" layoutY="96.0" prefHeight="499.0" prefWidth="799.0" style="-fx-background-color: #696969; -fx-background-radius: 20;">
+                                <xAxis>
+                                  <CategoryAxis prefHeight="43.0" prefWidth="721.0" side="BOTTOM" style="-fx-background-color: ffff;">
+                                       <tickLabelFont>
+                                          <Font name="Comic Sans MS Bold" size="12.0" />
+                                       </tickLabelFont></CategoryAxis>
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis prefHeight="432.0" prefWidth="48.0" side="LEFT" style="-fx-background-color: ffff;" upperBound="30.0">
+                                       <tickLabelFont>
+                                          <Font name="Comic Sans MS Bold Italic" size="14.0" />
+                                       </tickLabelFont></NumberAxis>
+                                </yAxis>
+                              </LineChart>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                </Tab>
+                <Tab style="-fx-background-color: #696969;" text="Glendons">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="709.0" fitWidth="1360.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@resources/FundoGlendon.png" />
+                                 </image></ImageView>
+                              <Text fx:id="cf1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="358.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="pcoroa1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="1033.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5.60" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cf2" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="360.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cf3" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="360.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cm3" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="520.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cm2" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="519.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cm1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="519.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cq1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="678.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cq2" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="678.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cq3" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="679.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="s3" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="825.0" layoutY="612.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="s2" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="763.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="s1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="834.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="ptopo1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="1162.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.10" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="topoE1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="934.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="156" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="topoD1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="1153.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="156" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="coroaD1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="1177.0" layoutY="667.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="coroaE1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="908.0" layoutY="668.0" strokeType="OUTSIDE" strokeWidth="0.0" text="600" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="pirometro1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="1250.0" layoutY="598.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1436" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="vazao1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="80.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="13.00" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="psm1" fill="#0d0d0d" fontSmoothingType="LCD" layoutX="90.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5.60" textAlignment="RIGHT" wrappingWidth="49.47003173828125">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="txLog1" layoutX="1170.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.8033447265625" />
+                           </children>
+                        </AnchorPane>
+                     </content></Tab>
+                  <Tab style="-fx-background-color: #696969;" text="Balanças">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #696969;">
+                           <children>
+                              <GridPane alignment="CENTER" prefHeight="682.0" prefWidth="1352.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="0.0">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="757.0" minWidth="0.0" prefWidth="23.0" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="971.0" minWidth="10.0" prefWidth="651.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="444.0" minWidth="0.0" prefWidth="69.0" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="901.0" minWidth="10.0" prefWidth="579.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="901.0" minWidth="10.0" prefWidth="72.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints maxHeight="138.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="113.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="187.0" minHeight="0.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="249.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="167.0" minHeight="3.0" prefHeight="6.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="262.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="172.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="12.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="143.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="26.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <GridPane onMouseClicked="#SetPointB1" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <columnConstraints>
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="Balança 01" textFill="#c3c3c3">
+                                             <font>
+                                                <Font size="53.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Text fx:id="Balanca01" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1001" textAlignment="RIGHT" wrappingWidth="461.13671875">
+                                                   <font>
+                                                      <Font name="LiquidCrystal" size="61.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="346.13671875">
+                                                   <font>
+                                                      <Font name="Calibri Bold" size="44.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="462.5" startX="-100.0" stroke="WHITE" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane onMouseClicked="#SetPointB3" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Balança 03" textFill="#c3c3c3">
+                                             <font>
+                                                <Font size="53.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Text fx:id="Balanca03" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1003" textAlignment="RIGHT" wrappingWidth="461.13671875">
+                                                   <font>
+                                                      <Font name="LiquidCrystal" size="61.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="346.13671875">
+                                                   <font>
+                                                      <Font name="Calibri Bold" size="44.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="462.5" startX="-100.0" stroke="WHITE" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane onMouseClicked="#SetPointB5" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Balança 05" textFill="#c3c3c3">
+                                             <font>
+                                                <Font size="53.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Text fx:id="Balanca05" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1005" textAlignment="RIGHT" wrappingWidth="461.13671875">
+                                                   <font>
+                                                      <Font name="LiquidCrystal" size="61.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="346.13671875">
+                                                   <font>
+                                                      <Font name="Calibri Bold" size="44.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="462.5" startX="-100.0" stroke="WHITE" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane onMouseClicked="#SetPointB7" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Balança 07" textFill="#c3c3c3">
+                                             <font>
+                                                <Font size="53.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Text fx:id="Balanca07" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1007" textAlignment="RIGHT" wrappingWidth="461.13671875">
+                                                   <font>
+                                                      <Font name="LiquidCrystal" size="61.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="346.13671875">
+                                                   <font>
+                                                      <Font name="Calibri Bold" size="44.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="462.5" startX="-100.0" stroke="WHITE" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane onMouseClicked="#SetPointB9" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Balança 09" textFill="#c3c3c3">
+                                             <font>
+                                                <Font size="53.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Text fx:id="Balanca09" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1009" textAlignment="RIGHT" wrappingWidth="461.13671875">
+                                                   <font>
+                                                      <Font name="LiquidCrystal" size="61.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="346.13671875">
+                                                   <font>
+                                                      <Font name="Calibri Bold" size="44.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="462.5" startX="-100.0" stroke="WHITE" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane onMouseClicked="#SetPointB2" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Balança 02" textFill="#c3c3c3">
+                                             <font>
+                                                <Font size="53.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Text fx:id="Balanca02" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1002" textAlignment="RIGHT" wrappingWidth="461.13671875">
+                                                   <font>
+                                                      <Font name="LiquidCrystal" size="61.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="346.13671875">
+                                                   <font>
+                                                      <Font name="Calibri Bold" size="44.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="462.5" startX="-100.0" stroke="#00ff0d" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane onMouseClicked="#SetPointB4" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Balança 04" textFill="#c3c3c3">
+                                             <font>
+                                                <Font size="53.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="52.0" prefWidth="587.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Text fx:id="Balanca04" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1004" textAlignment="RIGHT" wrappingWidth="342.13671875">
+                                                   <font>
+                                                      <Font name="LiquidCrystal" size="61.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="192.13671875">
+                                                   <font>
+                                                      <Font name="Calibri Bold" size="44.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="462.5" startX="-100.0" stroke="#00ff0d" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane onMouseClicked="#SetPointB6" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Balança 06" textFill="#c3c3c3">
+                                             <font>
+                                                <Font size="53.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Text fx:id="Balanca06" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1006" textAlignment="RIGHT" wrappingWidth="461.13671875">
+                                                   <font>
+                                                      <Font name="LiquidCrystal" size="61.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="346.13671875">
+                                                   <font>
+                                                      <Font name="Calibri Bold" size="44.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="462.5" startX="-100.0" stroke="#00ff0d" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane onMouseClicked="#SetPointB8" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Balança 08" textFill="#c3c3c3">
+                                             <font>
+                                                <Font size="53.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Text fx:id="Balanca08" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1008" textAlignment="RIGHT" wrappingWidth="461.13671875">
+                                                   <font>
+                                                      <Font name="LiquidCrystal" size="61.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="346.13671875">
+                                                   <font>
+                                                      <Font name="Calibri Bold" size="44.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="462.5" startX="-100.0" stroke="#00ff0d" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane onMouseClicked="#SetPointB10" prefHeight="141.0" prefWidth="501.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Balança 10" textFill="#c3c3c3">
+                                             <font>
+                                                <Font size="53.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Text fx:id="Balanca10" fill="#00ff0d" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="1010" textAlignment="RIGHT" wrappingWidth="461.13671875">
+                                                   <font>
+                                                      <Font name="LiquidCrystal" size="61.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="#c3c3c3" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kg" wrappingWidth="346.13671875">
+                                                   <font>
+                                                      <Font name="Calibri Bold" size="44.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="462.5" startX="-100.0" stroke="#00ff0d" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab style="-fx-background-color: #696969;" text="Relatorio">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #696969;">
+                           <children>
+                              <TableView fx:id="tableBalancas" prefHeight="709.0" prefWidth="974.0">
+                                <columns>
+                                  <TableColumn fx:id="data" prefWidth="75.0" text="Data" />
+                                  <TableColumn fx:id="hInicio" prefWidth="70.0" text="Hora Inicio" />
+                                    <TableColumn fx:id="hFim" prefWidth="66.0" text="Hora Fim" />
+                                    <TableColumn fx:id="b1" prefWidth="89.0" text="Balança 01" />
+                                    <TableColumn fx:id="b2" prefWidth="73.0" text="Balança 02" />
+                                    <TableColumn fx:id="b3" prefWidth="75.0" text="Balança 03" />
+                                    <TableColumn fx:id="b4" prefWidth="75.0" text="Balança 04" />
+                                    <TableColumn fx:id="b5" prefWidth="75.0" text="Balança 05" />
+                                    <TableColumn fx:id="b6" prefWidth="75.0" text="Balança 06" />
+                                    <TableColumn fx:id="b7" prefWidth="75.0" text="Balança 07" />
+                                    <TableColumn fx:id="b8" prefWidth="75.0" text="Balança 08" />
+                                    <TableColumn fx:id="b9" prefWidth="75.0" text="Balança 09" />
+                                    <TableColumn fx:id="b10" prefWidth="75.0" text="Balança 10" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab style="-fx-background-color: #696969;" text="Cargas Carvão">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="tableCarvao" layoutX="543.0" prefHeight="708.0" prefWidth="600.0">
+                                <columns>
+                                    <TableColumn prefWidth="75.0" text="Cargas de Carvão Enf">
+                                       <columns>
+                                        <TableColumn fx:id="dataCarvao" prefWidth="75.0" text="Data" />
+                                        <TableColumn fx:id="horaCarvao" prefWidth="75.0" text="Hora" />
+                                          <TableColumn prefWidth="75.0" text="Densid" />
+                                          <TableColumn fx:id="umidadeCarvao" prefWidth="75.0" text="\% Umidade" />
+                                          <TableColumn prefWidth="75.0" text="C.F" />
+                                          <TableColumn prefWidth="75.0" text="Calc" />
+                                          <TableColumn fx:id="pesoCarvao" prefWidth="75.0" text="Enf (Peso)" />
+                                          <TableColumn prefWidth="75.0" text="Enf (m³)" />
+                                       </columns>
+                                    </TableColumn>
+                                </columns>
+                              </TableView>
+                              <TableView fx:id="tablePyrometry" prefHeight="710.0" prefWidth="539.0">
+                                <columns>
+                                    <TableColumn fx:id="timeStartFinish" minWidth="75.0" prefWidth="75.0" text="Inicio / Fim" />
+                                    <TableColumn prefWidth="166.0" text="Pressão">
+                                       <columns>
+                                          <TableColumn fx:id="pressaoCoroa" minWidth="93.0" prefWidth="93.0" text="Coroa" />
+                                          <TableColumn fx:id="pressaoTopo" prefWidth="75.0" text="Topo" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn minWidth="80.0" prefWidth="295.0" text="Temperatura">
+                                       <columns>
+                                          <TableColumn fx:id="tempCoroa" prefWidth="65.0" text="T - Coroa" />
+                                          <TableColumn fx:id="tempTopo" prefWidth="78.0" text="T - Topo" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn fx:id="vazaoAr" prefWidth="75.0" text="Vazão" />
+                                    <TableColumn fx:id="secador" prefWidth="75.0" text="Secador" />
+                                </columns>
+                              </TableView>
+                              <TableView fx:id="tablePirometro" layoutX="1147.0" prefHeight="706.0" prefWidth="213.0">
+                                 <columns>
+                                    <TableColumn minWidth="160.0" prefWidth="212.0" text="Gusa">
+                                       <columns>
+                                          <TableColumn fx:id="dataTime" prefWidth="121.0" text="Hora" />
+                                          <TableColumn fx:id="temp" prefWidth="89.0" text="Temp" />
+                                       </columns>
+                                    </TableColumn>
+                                 </columns></TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
