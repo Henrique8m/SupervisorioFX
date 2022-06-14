@@ -8,14 +8,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class MainApp extends RecizeItens {
+public class MainApp extends ResizeItens {
 	static Stage stage;
 	static Scene mainScene;
-	static Image imageAltoForno;
-	private static ImageView imageGlendon;
 	
-	static String strForno = "FundoAltoForno";
-	private static String strGlendon = "FundoGlendon";
+	public static String strForno = "FundoAltoForno";
+	public static String strGlendon = "FundoGlendon";
 	final static String nameSupervisorio = "Supervisorio 3.0";
 	
 	static double tamanhoWidth = 13.56D;
