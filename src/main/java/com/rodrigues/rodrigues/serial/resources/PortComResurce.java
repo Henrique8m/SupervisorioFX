@@ -12,15 +12,12 @@ public class PortComResurce {
 	private CommPortIdentifier cp;
 	private SerialPort serialPort;
 	
-	public Boolean getPortIdentifier(String portName) {
+	public Boolean getPortIdentifier(String portName) throws NoSuchPortException {
 		
-		try {
+	
 			if(cp==null) cp = CommPortIdentifier.getPortIdentifier(portName);
 			return true;
-		} catch (NoSuchPortException e) {
-			System.out.println("Porta não existe! STATUS: " + e.getMessage());	
-			return false;
-		}
+		
 	}
 
 	@SuppressWarnings("static-access")

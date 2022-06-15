@@ -1,7 +1,11 @@
 package com.rodrigues.rodrigues.controller;
 
+import java.io.IOException;
+
+import javax.comm.NoSuchPortException;
 import javax.comm.SerialPort;
 
+import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.dao.WriteSetPoints;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
@@ -27,11 +31,10 @@ public class ReadController implements Runnable{
     private FormatData formatData;
     private WriteSetPoints writeSetPoints;
 
-    private int lostConection = 0;
-    private int attemptToReconnect = 5;
-    private byte[] numGadgets = new byte[28];
+//    private int lostConection = 0;
+//   private int attemptToReconnect = 5;
+//  private byte[] numGadgets = new byte[28];
     private byte[] bufferWrite= new byte[8];
-    private byte[] bufferRead = new byte[7];
     private byte[] bufferReadAlfa = new byte[17];
     
     public static String[] displayVetor = new String[28];
@@ -56,18 +59,15 @@ public class ReadController implements Runnable{
 	private int last = 0;
 	private boolean lastTrue = true;
 	
-	
-
-    
-    public ReadController() {
-	}
+	private String[] aparelhos = MainApp.aparelhos;
+	 
+    public ReadController() {}
 
 	@SuppressWarnings({ "deprecation" })
 	public void read() throws InterruptedException {
 		instanciates();
 		if(!thread.isAlive()){
 			whileRead = true;
-			lostConection = 0;
 			thread.start();
 			}	
 			else {
@@ -78,24 +78,19 @@ public class ReadController implements Runnable{
 		}
 
     @Override
-    public void run() {
+    public void run() { 
+    	int alfa = primeiroAlfa();
     	pirometriaService.start();
     	try {
-			Thread.sleep(1000);
+			Thread.sleep(1000);			
 	    	while(whileRead) {
+//	    		System.out.println(alfa);
 	    		int cont = 0;	   
-	    		
-	    		for(int i = 0; i < 9; i++) {
-	    			if(i<8) 	
-	    				cont = 18;
+	    		for(int i = 0; i < ( MainApp.varredurasAlfaMais + 1 ) ; i++) {
+	    			if(i<MainApp.varredurasAlfaMais) 	
+	    				cont = alfa;
 	    			else cont = 0;
-	    			for(; cont < numGadgets.length; cont++){
-	    				if(thread.isInterrupted()) {
-		                	primaryViewController.txLog.setText("Conection Lost");
-		                	primaryViewController.txLog1.setText("Conection Lost");
-		                	//primaryViewController.chartStop();
-		            		return;
-		            	}
+	    			for(; cont < aparelhos.length; cont++){
 		            	//System.out.println(Teste.valueOf("ALFA").getDivisao() + "  " + Teste.ALFA.getBufferWrite() + "   "  +  Teste.ALFA.getBufferRead());
 		                if(readSetPoints) {
 		                	readSetPoints();
@@ -105,28 +100,141 @@ public class ReadController implements Runnable{
 		                	writeSetPointsView();
 		                	writeSetPoint = false;
 		                }
-		            	
-		            	sweep(cont+1, serialService.enablePortCom());
+		            	try 
+		            	{
+							sweep(cont+1, serialService.enablePortCom());
+						} 
+		            	catch (NoSuchPortException e) 
+		            	{
+//								System.out.println("Porta não existe! STATUS: " + e.getMessage());	
+								primaryViewController.txLog1.setText("Porta não existe!");
+								primaryViewController.txLog.setText("Porta não existe!");
+								Thread.sleep(100);	
+						} catch (NullPointerException e) {
+							primaryViewController.txLog1.setText("Null Pointer Exception");
+							primaryViewController.txLog.setText("Null Pointer Exception");
+							//e.printStackTrace();
+						}catch (IOException e) {
+							primaryViewController.txLog1.setText("Erro ao enviar os dados!");
+							primaryViewController.txLog.setText("Erro ao enviar os dados!");
+							//e.printStackTrace();
+						}catch (Exception e) {
+							primaryViewController.txLog1.setText("Exception");
+							primaryViewController.txLog.setText("Exception");
+							//e.printStackTrace();
+						}
 		           }
+	    			if(i>=MainApp.varredurasAlfaMais) 
+	    			{
+		    			synchronized (pirometriaService) 
+						{
+	                		System.out.println("Enviando o notify");
+	                		
+	                		pirometriaService.notify();
+	                		
+	                		System.out.println("Passou do notify");
+						}	 	
+	    			}
+   			
+	    			
 	            }
+	    		
 
 	    	}
 	    	
 	    	
-    	} catch (InterruptedException e) {
+    	} catch (InterruptedException | NullPointerException | IOException e) {
 			e.printStackTrace();
 		}
     }
 
     
-    private void sweep(int i, SerialPort serial) {
+    private int primeiroAlfa() {
+    	int alfa = 0;
+		for(int i = 0 ; i < aparelhos.length; i++)
+		{
+			if(aparelhos[i] == "ALFA") 
+			{
+				alfa = i;
+				return alfa;
+			}
+		}
+		return 0;
+	}
 
-    	
-    	try{
- 
-    		
-        	if(serial != null) {               
+	private void sweep(int i, SerialPort serial) throws NullPointerException, IOException{    	
+	    byte[] bufferRead = new byte[7];
+        	if(serial != null)
+        	{ 
+        		switch (aparelhos[i]) 
+        		{
+				case "ALFA":
+					bufferWrite = CalculatorData.addressReadAlfa(i,Gadgets.ALFA.getRegistrador(),Gadgets.ALFA.getTotalRegistradores()); 
+					bufferSizeRead = Gadgets.ALFA.getBufferRead();
+					bufferSizeWrite = Gadgets.ALFA.getBufferWrite();
+					serialService.writeData(bufferWrite, serial, bufferSizeWrite);
+	            	bufferReadAlfa = serialService.readData(serial, bufferSizeRead);
+	            	if(bufferReadAlfa != null){
+	                	display	= formatData.formatDataAlfa(bufferReadAlfa);
+                		displayVetor[i] = display;
+                	
+	                }
+	            	primaryViewController.txLog.setText("Conection OK");
+	            	primaryViewController.txLog1.setText("Conection OK");
+					return;
+				case "N2000":
+					bufferWrite = CalculatorData.addressRead(i,1);					
+					break;
+				default:
+					bufferWrite = CalculatorData.addressRead(i,0);
+					break;
+				}        		
+        		
+            	bufferSizeRead = Gadgets.N1500.getBufferRead();
+            	bufferSizeWrite = Gadgets.N1500.getBufferWrite();
+            	serialService.writeData(bufferWrite, serial, bufferSizeWrite);
+            	bufferRead = serialService.readData(serial, bufferSizeRead);
+        		
+	        	if(bufferRead != null) 
+	        	{ 
+	            	switch (aparelhos[i]) 
+	            	{
+					case "N1540":
+							display = formatData.formatData(bufferRead, "N1540", "int");
+						break;
+						
+					case "N1540_4_a_20" :
+							display= formatData.formatData(bufferRead, "N1540_4_a_20", "double");
+						break;
+						
+					case "N2000" :
+		                	display	= formatData.formatData(bufferRead, "N2000", "double");		                	
+						break;
+						
+					case "N1500" :
+	                	display = formatData.formatData(bufferRead, "N1500", "int");
+	                	if(pirometro(display))
+	                		displayVetor[i-1] = display;          	
+	                	else displayVetor[i-1] = "----";
+                	
+	                	return;
+					default:
+						break;
+					}
+	            	
+	            	displayVetor[i-1] = display;
+    
+                }else {
+                	displayVetor[i-1]= "Error";
+                	display	= "Error";
+	            }
+                viewService.writeText(i, display);           
                 
+            	primaryViewController.txLog.setText("Conection OK");
+            	primaryViewController.txLog1.setText("Conection OK");
+            	
+            	
+                /*
 				if(i>=19) {
 					bufferWrite = CalculatorData.addressReadAlfa(i,Gadgets.ALFA.getRegistrador(),Gadgets.ALFA.getTotalRegistradores()); 
 					bufferSizeRead = Gadgets.ALFA.getBufferRead();
@@ -138,13 +246,6 @@ public class ReadController implements Runnable{
 				}  
 				else {
 					if(i==15) {	 
-						synchronized (this) {
-	                		System.out.println("Enviando o notify");
-	                		
-	                		notify();
-	                		
-	                		System.out.println("Passou do notify");
-						}
 						bufferWrite = CalculatorData.addressRead(i,1);
 					}
 		            else {
@@ -170,7 +271,6 @@ public class ReadController implements Runnable{
 	                	displayVetor[i-1] = display;
 	                }
 	                else if (i==15) {
-
 	                	
 	                	display	= formatData.formatData(bufferRead, "N2000", "double");
 	                	displayVetor[i-1] = display;
@@ -198,7 +298,8 @@ public class ReadController implements Runnable{
                 bufferRead = null;
                 bufferReadAlfa = null;
             	primaryViewController.txLog.setText("Conection OK");
-            	primaryViewController.txLog1.setText("Conection OK");
+            	primaryViewController.txLog1.setText("Conection OK");}
+        		
             }
             else{
             	lostConection++;
@@ -209,13 +310,8 @@ public class ReadController implements Runnable{
             	}else {
                 	//serialController.timerCancel();
             		threadCancel();
-            	}
+            	*/
             } 
-
-        }catch(Exception e) {
-        	e.printStackTrace();
-        	threadCancel();
-        }
 		
     }
     
@@ -262,8 +358,14 @@ public class ReadController implements Runnable{
 		this.setPoints  = setPoints;
 	}
 			
-	private void readSetPoints() {
-		SerialPort serial = serialService.enablePortCom();
+	private void readSetPoints() throws NullPointerException, IOException {
+		SerialPort serial = null;
+		try {
+			serial = serialService.enablePortCom();
+		} catch (NoSuchPortException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	String[] setPoints = new String[4];
 		
 		bufferWrite = CalculatorData.addressReadAlfa(readSetPointsEnd,Gadgets.ALFA_LEI_SETPOINTS.getRegistrador(),Gadgets.ALFA_LEI_SETPOINTS.getTotalRegistradores()); 
@@ -297,9 +399,15 @@ public class ReadController implements Runnable{
     	}
 	}
 	
-	public void writeSetPointsView() {
+	public void writeSetPointsView() throws NullPointerException, IOException {
 		//System.out.println(this.readSetPointsEnd);
-		SerialPort serial = serialService.enablePortCom();
+		SerialPort serial = null;
+		try {
+			serial = serialService.enablePortCom();
+		} catch (NoSuchPortException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		byte[] buferr = new byte[Gadgets.ALFA_ESC_SETPOINTS.getBufferWrite()];
 		try {
 			Integer vazia = Integer.parseInt(this.setPoints[0]);
@@ -332,7 +440,8 @@ public class ReadController implements Runnable{
 		return this.readSetPointsEnd;
 	}
 	
-    private boolean pirometro(String display2) {
+    @SuppressWarnings("unused")
+	private boolean pirometro(String display2) {
 		int i = Integer.parseInt(display2);
 		
 		System.out.println(display2);

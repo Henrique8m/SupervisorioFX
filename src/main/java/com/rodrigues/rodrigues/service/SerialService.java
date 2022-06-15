@@ -1,5 +1,8 @@
 package com.rodrigues.rodrigues.service;
 
+import java.io.IOException;
+
+import javax.comm.NoSuchPortException;
 import javax.comm.SerialPort;
 
 import com.rodrigues.rodrigues.serial.dao.ReadGenericData;
@@ -23,7 +26,7 @@ public class SerialService{
 	}
 	
 
-	public SerialPort enablePortCom() {
+	public SerialPort enablePortCom() throws NoSuchPortException {
 		if(serialProperties==null)serialProperties = DependencyInjection.getSerialProperties();
 		SerialPort serial;
 		if(resurce.getPortIdentifier(serialProperties.getPorta())) {
@@ -34,7 +37,7 @@ public class SerialService{
 	}
 
 	
-	public void writeData(byte[] bufferWrite, SerialPort serial, int BufferSize) {
+	public void writeData(byte[] bufferWrite, SerialPort serial, int BufferSize) throws NullPointerException, IOException{
 		write.writeData(bufferWrite, serial, BufferSize);
 		
 	}

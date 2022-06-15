@@ -5,11 +5,13 @@ import java.io.OutputStream;
 
 import javax.comm.SerialPort;
 
+import com.rodrigues.rodrigues.MainApp;
+
 public class WriteGenericData {	
 	private OutputStream saida;
-	private Integer threadSleep = 130;
+	private Integer threadSleep = MainApp.threadSleep;
 	
-	public void writeData(byte[] bufferWrite, SerialPort serialPort, int BufferSize) {
+	public void writeData(byte[] bufferWrite, SerialPort serialPort, int BufferSize) throws NullPointerException ,IOException {
 
 		//Padrao do bufer = 8
 		//Indicadores alfa = 27
@@ -21,14 +23,7 @@ public class WriteGenericData {
 			//Thread.sleep(0);
 			saida.flush();
 			//saida.close();
-		} catch (IOException e) {
-			System.out.println("Erro ao enviar os dados! STATUS: ");
-			e.printStackTrace();
-		}
-		catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		catch (NullPointerException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

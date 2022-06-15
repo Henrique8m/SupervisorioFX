@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 public class DataSecurit {
-	private Integer dataSpired = 20220430;
+	private Integer dataSpired = 20220615;
 	
 	public Boolean validateData() {
 		Date data = new Date(System.currentTimeMillis()); 

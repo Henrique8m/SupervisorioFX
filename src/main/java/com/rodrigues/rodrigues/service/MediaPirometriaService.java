@@ -15,10 +15,10 @@ public class MediaPirometriaService extends Thread {
 		if(read ==null) read = DependencyInjection.getReadController();
 		
 		while(true) {
-			synchronized (read) {
+			synchronized (this) {
 				System.out.println("Teste Synchronized wait");
 				try {
-					read.wait();
+					this.wait();
 					
 					System.out.println("Passou do wait");
 				} catch (InterruptedException e1) {

@@ -16,6 +16,19 @@ public class MainApp extends ResizeItens {
 	public static String strGlendon = "FundoGlendon";
 	final static String nameSupervisorio = "Supervisorio 3.0";
 	
+	public static Integer threadSleep = 150;
+	
+	public static int varredurasAlfaMais = 5 ;
+	public static String[] aparelhos = new String[]{
+			"N1540","N1540","N1540",
+			"N1540","N1540","N1540",
+			"N1540","N1540","N1540",
+			"N1540","N1540","N1540_4_a_20",
+			"N1540","N1540","N2000",
+			"N1500","N1540_4_a_20","N1540_4_a_20",
+			"ALFA","ALFA","ALFA","ALFA","ALFA",
+			"ALFA","ALFA","ALFA","ALFA","ALFA"};
+	
 	static double tamanhoWidth = 13.56D;
 	static double tamanhoHeigt = 7.07D;
 		
