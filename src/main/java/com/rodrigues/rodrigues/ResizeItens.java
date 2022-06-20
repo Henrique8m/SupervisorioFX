@@ -6,21 +6,15 @@ import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public abstract class ResizeItens extends Application {
 	

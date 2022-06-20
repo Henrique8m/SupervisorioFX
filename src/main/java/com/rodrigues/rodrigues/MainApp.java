@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.function.Consumer;
 
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class MainApp extends ResizeItens {
@@ -16,9 +14,11 @@ public class MainApp extends ResizeItens {
 	public static String strGlendon = "FundoGlendon";
 	final static String nameSupervisorio = "Supervisorio 3.0";
 	
+	public static final Object defautPort = "COM4";
+	
 	public static Integer threadSleep = 150;
 	
-	public static int varredurasAlfaMais = 5 ;
+	public static int varredurasAlfaMais = 1 ;
 	public static String[] aparelhos = new String[]{
 			"N1540","N1540","N1540",
 			"N1540","N1540","N1540",

@@ -63,7 +63,7 @@ public class ReadController implements Runnable{
 	 
     public ReadController() {}
 
-	@SuppressWarnings({ "deprecation" })
+	@SuppressWarnings({ "removal", "deprecation" })
 	public void read() throws InterruptedException {
 		instanciates();
 		if(!thread.isAlive()){
@@ -128,11 +128,11 @@ public class ReadController implements Runnable{
 	    			{
 		    			synchronized (pirometriaService) 
 						{
-	                		System.out.println("Enviando o notify");
+	                		//System.out.println("Enviando o notify");
 	                		
 	                		pirometriaService.notify();
 	                		
-	                		System.out.println("Passou do notify");
+	                		//System.out.println("Passou do notify");
 						}	 	
 	    			}
    			
@@ -166,7 +166,7 @@ public class ReadController implements Runnable{
 	    byte[] bufferRead = new byte[7];
         	if(serial != null)
         	{ 
-        		switch (aparelhos[i]) 
+        		switch (aparelhos[i-1]) 
         		{
 				case "ALFA":
 					bufferWrite = CalculatorData.addressReadAlfa(i,Gadgets.ALFA.getRegistrador(),Gadgets.ALFA.getTotalRegistradores()); 
@@ -185,7 +185,7 @@ public class ReadController implements Runnable{
 				case "N2000":
 					bufferWrite = CalculatorData.addressRead(i,1);					
 					break;
-				default:
+				default:					
 					bufferWrite = CalculatorData.addressRead(i,0);
 					break;
 				}        		
@@ -197,7 +197,7 @@ public class ReadController implements Runnable{
         		
 	        	if(bufferRead != null) 
 	        	{ 
-	            	switch (aparelhos[i]) 
+	            	switch (aparelhos[i-1]) 
 	            	{
 					case "N1540":
 							display = formatData.formatData(bufferRead, "N1540", "int");

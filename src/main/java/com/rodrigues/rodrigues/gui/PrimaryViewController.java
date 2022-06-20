@@ -52,7 +52,7 @@ public class PrimaryViewController implements Initializable {
 	private RelatorioViewController viewController;
 	private static native int Read(int var0, long var1, int var3, int var4, byte[] var5);
 
-	private static final Object defautPort = "COM4";
+	
 	private String lastPort = "";
 	private SerialController serialController;
 	private SerialProperties serialProperties;
@@ -250,10 +250,8 @@ public class PrimaryViewController implements Initializable {
 			DependencyInjection.setAvaliablePortsNames(avaliablePorts);
 			
 			for(String e : avaliablePorts)
-				if(e.equals(defautPort))
-					serialProperties.setPorta("COM4");
-				else if(e.equals(lastPort))
-				serialProperties.setPorta(lastPort);
+				if(e.equals(MainApp.defautPort) || !e.equals("COM1"))
+					serialProperties.setPorta(e);
 			
 			serialController.startCommunication();
 		}else {

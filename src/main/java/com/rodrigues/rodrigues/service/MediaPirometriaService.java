@@ -16,11 +16,11 @@ public class MediaPirometriaService extends Thread {
 		
 		while(true) {
 			synchronized (this) {
-				System.out.println("Teste Synchronized wait");
+				//System.out.println("Teste Synchronized wait");
 				try {
 					this.wait();
 					
-					System.out.println("Passou do wait");
+					//System.out.println("Passou do wait");
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

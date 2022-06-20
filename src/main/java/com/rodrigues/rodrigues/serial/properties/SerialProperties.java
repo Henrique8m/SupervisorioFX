@@ -17,10 +17,6 @@ public class SerialProperties {
     private String pathToProperties = null;
     private String properties = "SerialProperties";
     
-    
-    public SerialProperties(String porta){
-        this.porta = porta;
-    }
 
     public SerialProperties(){
     	try {
@@ -34,7 +30,7 @@ public class SerialProperties {
 		String itemsCsv = br.readLine();
 			while(itemsCsv != null) {				
 				String[] line = itemsCsv.split(",");
-				System.out.println(line[1]);								
+				//System.out.println(line[1]);								
 				itemsCsv = br.readLine();
 			}	
 		}

@@ -7,7 +7,7 @@ public enum Gadgets {
 	N1500(1, 1, 8, 7, 4, 3),
 	N1540(10, 1, 8, 7, 4, 3),
 	N1500_4_a_20(1, 1, 8, 7, 4, 3),
-	N1540_4_a_20(1000, 1, 8, 7, 4, 3),
+	N1540_4_a_20(100, 1, 8, 7, 4, 3),
 	
 	//	divisao, registrador, totalRegistradores ,bufferWrite, bufferRead, bufferRead1Ms, bufferReadMs ,bufferReadLs;
 	ALFA(10, 80, 6,  27, 17, 0, 10, 9),
