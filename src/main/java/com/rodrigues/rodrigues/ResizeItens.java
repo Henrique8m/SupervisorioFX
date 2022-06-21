@@ -42,7 +42,7 @@ public abstract class ResizeItens extends Application {
 			anchorAltoForno.setBackground(backgroud);
 			anchorGlendon.setBackground( new Background( backgroundGlendon) );
 			
-			ResizeListener<Number> resizePgPrincipal = new ResizeListener<Number>(anchorAltoForno, anchorAltoForno.getChildren().size() -1 );			
+			ResizeListener<Number> resizePgPrincipal = new ResizeListener<Number>(anchorAltoForno, anchorAltoForno.getChildren().size() -2 );			
 			anchorAltoForno.widthProperty().addListener(resizePgPrincipal);			
 			anchorAltoForno.heightProperty().addListener(resizePgPrincipal);
 			ResizeListener<Number> resizeGlendon = new ResizeListener<Number>(anchorGlendon, anchorGlendon.getChildren().size() );			

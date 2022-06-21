@@ -33,12 +33,12 @@ public class MainApp extends ResizeItens {
 	
 	
 	public static int
-	idPressaoCoroa = 15,
-	idPressaoTopo = 12,
-	idTempCoroa = 13,
-	idTempTopo = 10,
-	idVazao = 17,
-	idSecador = 18;
+	idPressaoCoroa = 15 -1,
+	idPressaoTopo = 12-1,
+	idTempCoroa = 13-1,
+	idTempTopo = 10-1,
+	idVazao = 17-1,
+	idSecador = 18-1;
 	
 	//--------------------------------------------- Configuração da view ------------------------------------------------------------------//
 	

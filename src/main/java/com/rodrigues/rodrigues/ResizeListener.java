@@ -8,6 +8,7 @@ import javafx.scene.text.Text;
 public class ResizeListener<T> implements ChangeListener<Number> {
 	
 	AnchorPane anchorAltoForno;
+	int size;
 	
 	Text[] text;
 	Double[] layoutX;
@@ -19,6 +20,7 @@ public class ResizeListener<T> implements ChangeListener<Number> {
 	
 	 public ResizeListener(AnchorPane anchorAltoForno, int size) 
 	 {		 
+		 this.size = size;
 		 text = new Text[size];
 		 layoutX = new Double[size] ;
 		 layoutY = new Double[size];	
@@ -46,7 +48,7 @@ public class ResizeListener<T> implements ChangeListener<Number> {
 	public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 		Double porcentWidth = anchorAltoForno.getWidth() / 100;	
 		Double porcentHeight = anchorAltoForno.getHeight() / 100;
-		 for(int i = 0; i < ( anchorAltoForno.getChildren().size() -1 ) ; i++) 
+		 for(int i = 0; i < ( size ) ; i++) 
 		 {
 			 text[i].setLayoutX( porcentXText[i] * porcentWidth);
 			 text[i].setLayoutY(porcentHeight * porcentYText[i]);

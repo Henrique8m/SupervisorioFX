@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 
 import com.rodrigues.rodrigues.securit.DataSecurit;
 import com.rodrigues.rodrigues.securit.EncryptionAES;
-import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 import javafx.event.ActionEvent;

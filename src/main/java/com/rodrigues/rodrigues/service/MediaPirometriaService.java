@@ -4,7 +4,9 @@ import java.sql.Date;
 
 import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.controller.ReadController;
+import com.rodrigues.rodrigues.entities.Pyrometry;
 import com.rodrigues.rodrigues.gui.PrimaryViewController;
+import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.Format;
 
@@ -17,72 +19,83 @@ public class MediaPirometriaService extends Thread {
 	
 	@Override
 	public void run() {
-		if(read ==null) read = DependencyInjection.getReadController();
-        Date date = new Date(System.currentTimeMillis()); 			
-        Integer time = Integer.parseInt(Format.formatHora.format(date));
-		
+		if(read ==null) read = DependencyInjection.getReadController();	
+        String timeStarStr = Format.formataTimeString.format(new Date(System.currentTimeMillis()));
+		Integer nextTime = Integer.parseInt(Format.formatHora.format(new Date(System.currentTimeMillis()))) + MainApp.tempoRelatorio;
+		if(nextTime >= 24) 
+			nextTime -= 24;
 		while(true) {
 			synchronized (this) {
 				try {
 					this.wait();
-					displayVetor = ReadController.displayVetor;					
-					if(displayVetor[MainApp.idPressaoCoroa]!= "Error") {
-						contCiclos[1] ++;
+					displayVetor = ReadController.displayVetor;	
+					Integer time = Integer.parseInt(Format.formatHora.format(new Date(System.currentTimeMillis())));					
+
+					
+					if(displayVetor[MainApp.idPressaoCoroa ]!= "Error" && displayVetor[MainApp.idPressaoCoroa] != null) {
+						contCiclos[0] ++;
 						Integer pCoroa = Integer.parseInt(displayVetor[MainApp.idPressaoCoroa].replaceAll("[^0-9]+", ""));
-						mPCoroa = calcMedia(pCoroa, mPCoroa, contCiclos[1]);
+						mPCoroa = calcMedia(pCoroa, mPCoroa);						
 					}
-					if(displayVetor[MainApp.idPressaoTopo]!= "Error") {
-						contCiclos[2] ++;
+					if(displayVetor[MainApp.idPressaoTopo ]!= "Error" && displayVetor[MainApp.idPressaoTopo] != null) {
+						contCiclos[1] ++;
 						Integer pTopo = Integer.parseInt(displayVetor[MainApp.idPressaoTopo].replaceAll("[^0-9]+", ""));
-						mPTopo = calcMedia(pTopo, mPTopo, contCiclos[2]);
+						mPTopo = calcMedia(pTopo, mPTopo);
 						
 					}
-					if(displayVetor[MainApp.idTempCoroa]!= "Error") {
+					if(displayVetor[MainApp.idTempCoroa]!= "Error" && displayVetor[MainApp.idTempCoroa] != null) {
 						Integer tCoroa = Integer.parseInt(displayVetor[MainApp.idTempCoroa].replaceAll("[^0-9]+", ""));
+						contCiclos[2] ++;
+						mTCoroa = calcMedia(tCoroa, mTCoroa);
+						
+					}
+					if(displayVetor[MainApp.idTempTopo]!= "Error" && displayVetor[MainApp.idTempTopo] != null) {
 						contCiclos[3] ++;
-						mTCoroa = calcMedia(tCoroa, mTCoroa, contCiclos[3]);
-						
-					}
-					if(displayVetor[MainApp.idTempTopo]!= "Error") {
-						contCiclos[4] ++;
 						Integer tTopo = Integer.parseInt(displayVetor[MainApp.idTempTopo].replaceAll("[^0-9]+", ""));						
-						mTTopo = calcMedia(tTopo, mTTopo, contCiclos[4]);
+						mTTopo = calcMedia(tTopo, mTTopo);
 						
 					}
-					if(displayVetor[MainApp.idVazao]!= "Error") {
-						contCiclos[5] ++;
+					if(displayVetor[MainApp.idVazao]!= "Error" && displayVetor[MainApp.idVazao] != null) {
+						contCiclos[4] ++;
 						Integer vazao = Integer.parseInt(displayVetor[MainApp.idVazao].replaceAll("[^0-9]+", ""));
-						mVazao = calcMedia(vazao, mVazao, contCiclos[5]);
+						mVazao = calcMedia(vazao, mVazao);
 						
 					}
-					if(displayVetor[MainApp.idSecador]!= "Error") {
-						contCiclos[6] ++;
+					if(displayVetor[MainApp.idSecador]!= "Error" && displayVetor[MainApp.idSecador] != null) {
+						contCiclos[5] ++;
 						Integer secador = Integer.parseInt(displayVetor[MainApp.idSecador].replaceAll("[^0-9]+", ""));
-						mSecador = calcMedia(secador, mSecador, contCiclos[6]);
+						mSecador = calcMedia(secador, mSecador);
 						
-					}
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+					}if(time == nextTime) {
+						String horaInicioFim = timeStarStr + " / " + Format.formataTimeString.format(new Date(System.currentTimeMillis()));
+						String pressaoCoroa = mPCoroa + " mmH2O";
+						String pressaoTopo = mPTopo + " mmH2O";
+						String temperaturaCoroa = mTCoroa + "°C";
+						String temperaturaTopo = mTTopo + "°C";
+						String vazao = mVazao + "m³/h";
+						String secador = mSecador + "°C";
+						RelatorioViewService.addListPyrometry(new Pyrometry( horaInicioFim,pressaoCoroa ,pressaoTopo ,temperaturaCoroa ,temperaturaTopo ,vazao ,secador ));
+						timeStarStr = Format.formataTimeString.format(new Date(System.currentTimeMillis()));
+						nextTime = Integer.parseInt(Format.formatHora.format(new Date(System.currentTimeMillis()))) + MainApp.tempoRelatorio;						
+						if(nextTime >= 24) 
+							nextTime -= 24;
+					}			
 
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
+				}catch (NullPointerException e2) {
+					System.out.println("NullPointer Media Pirometria Service");
+					e2.printStackTrace();
 				}
 			}
 		}
 	}
 
 
-		private Integer calcMedia(Integer newValue, Integer mediaValue, int contCiclos) {
+		private Integer calcMedia(Integer newValue, Integer mediaValue) {
+			if(mediaValue == 0 )return newValue;
 			Integer media = mediaValue + newValue;
-		return media / contCiclos;
+		return media / 2;
 	}
 
 

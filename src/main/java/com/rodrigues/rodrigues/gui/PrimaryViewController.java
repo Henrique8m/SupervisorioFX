@@ -39,6 +39,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -94,6 +96,8 @@ public class PrimaryViewController implements Initializable {
 	@FXML
 	public LineChart<String, Double> lineChart;
 
+	@FXML
+	public ImageView pdf;
   
 ///////////////////////////////////////////////////////////////////////////////Butons////////////////////////////////////////////////////////////////
     
@@ -263,6 +267,8 @@ public class PrimaryViewController implements Initializable {
 		historyController.startHistory();
 		
 		alimentarTabelaTestes();
+		Image image = new Image(MainApp.class.getResource("gui/resources/icons-pdf.png").toString() );
+		pdf.setImage(image);
 		
 	}
 
@@ -352,7 +358,6 @@ public class PrimaryViewController implements Initializable {
 	   vazaoAr.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("vazaoAr"));
 	   secador.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("secador"));
 	   
-	   RelatorioViewService.addListPyrometry(new Pyrometry("18:30 / 19:30", "6,55 mmH2O", "0,30 mmH2O", "650°C", "58°C", "19.600 m³/h", "250°C"));
 	   tablePyrometry.setItems(RelatorioViewService.getListPyrometry());
 	   
 	   tableCarvao.setEditable(false);
