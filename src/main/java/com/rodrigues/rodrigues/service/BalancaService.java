@@ -2,15 +2,12 @@ package com.rodrigues.rodrigues.service;
 
 import com.rodrigues.rodrigues.entities.Balancas;
 import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
-import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 public class BalancaService {
 	private Balancas balanca;
-	private RelatorioViewService service;
 
 
 	public void newBalancaData(Integer[] historySaveHC, String timeStart, String time, String currentDate) {
-		service = DependencyInjection.getRelatorioviewservice();
 		
 		balanca = new Balancas();
 		balanca.setBalanca01(Integer.toString(historySaveHC[0]));
@@ -26,7 +23,7 @@ public class BalancaService {
 		balanca.setDate(currentDate);
 		balanca.setHInicio(timeStart);
 		balanca.setHFim(time);	
-		service.addListBalancas(balanca);
+		RelatorioViewService.addListBalancas(balanca);
 		
 	}
 }

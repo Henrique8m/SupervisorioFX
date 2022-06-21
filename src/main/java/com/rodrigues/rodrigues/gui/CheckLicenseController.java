@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 public class CheckLicenseController implements Initializable {
-	private SerialProperties serialProperties;
+	//private SerialProperties serialProperties;
 	private EncryptionAES crypt;
 	/*
 	@FXML

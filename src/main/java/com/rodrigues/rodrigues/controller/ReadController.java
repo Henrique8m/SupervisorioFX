@@ -37,7 +37,7 @@ public class ReadController implements Runnable{
     private byte[] bufferWrite= new byte[8];
     private byte[] bufferReadAlfa = new byte[17];
     
-    public static String[] displayVetor = new String[28];
+    public static String[] displayVetor;
     
     private int bufferSizeRead;
     private int bufferSizeWrite;
@@ -63,18 +63,12 @@ public class ReadController implements Runnable{
 	 
     public ReadController() {}
 
-	@SuppressWarnings({ "removal", "deprecation" })
 	public void read() throws InterruptedException {
 		instanciates();
 		if(!thread.isAlive()){
 			whileRead = true;
 			thread.start();
-			}	
-			else {
-				whileRead = true;
-				thread.resume();
-			}
-			
+			}				
 		}
 
     @Override
@@ -82,7 +76,8 @@ public class ReadController implements Runnable{
     	int alfa = primeiroAlfa();
     	pirometriaService.start();
     	try {
-			Thread.sleep(1000);			
+			Thread.sleep(1000);		
+			displayVetor = new String[aparelhos.length];
 	    	while(whileRead) {
 //	    		System.out.println(alfa);
 	    		int cont = 0;	   
@@ -440,7 +435,6 @@ public class ReadController implements Runnable{
 		return this.readSetPointsEnd;
 	}
 	
-    @SuppressWarnings("unused")
 	private boolean pirometro(String display2) {
 		int i = Integer.parseInt(display2);
 		

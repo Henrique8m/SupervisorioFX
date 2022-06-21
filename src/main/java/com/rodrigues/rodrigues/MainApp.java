@@ -1,7 +1,6 @@
 package com.rodrigues.rodrigues;
 
 import java.io.IOException;
-import java.util.function.Consumer;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,13 +9,16 @@ public class MainApp extends ResizeItens {
 	static Stage stage;
 	static Scene mainScene;
 	
-	public static String strForno = "FundoAltoForno";
-	public static String strGlendon = "FundoGlendon";
-	final static String nameSupervisorio = "Supervisorio 3.0";
+	//--------------------------------------------- Configuração modbus -------------------------------------------------------------------//	
 	
-	public static final Object defautPort = "COM4";
-	
+	public static final Object defautPort = "COM4";	
 	public static Integer threadSleep = 150;
+	
+	//--------------------------------------------- Configuração do relatorio de media-----------------------------------------------------//
+	
+	public static final int tempoRelatorio = 1; //Em Horas
+	
+	//--------------------------------------------- Configuração dos aparelhos ------------------------------------------------------------//
 	
 	public static int varredurasAlfaMais = 1 ;
 	public static String[] aparelhos = new String[]{
@@ -29,11 +31,22 @@ public class MainApp extends ResizeItens {
 			"ALFA","ALFA","ALFA","ALFA","ALFA",
 			"ALFA","ALFA","ALFA","ALFA","ALFA"};
 	
+	
+	public static int
+	idPressaoCoroa = 15,
+	idPressaoTopo = 12,
+	idTempCoroa = 13,
+	idTempTopo = 10,
+	idVazao = 17,
+	idSecador = 18;
+	
+	//--------------------------------------------- Configuração da view ------------------------------------------------------------------//
+	
+	public static String strForno = "FundoAltoForno";
+	public static String strGlendon = "FundoGlendon";
+	final static String nameSupervisorio = "Supervisorio 3.0";	
 	static double tamanhoWidth = 13.56D;
 	static double tamanhoHeigt = 7.07D;
-		
-	@SuppressWarnings("unused")
-	private static Consumer<?> controller;
 
 	public static Scene getMainScene() {
 		return mainScene;

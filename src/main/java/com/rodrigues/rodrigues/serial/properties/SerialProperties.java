@@ -1,12 +1,8 @@
 package com.rodrigues.rodrigues.serial.properties;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
-
-import com.rodrigues.rodrigues.MainApp;
 
 public class SerialProperties {
     private String porta;
@@ -29,7 +25,7 @@ public class SerialProperties {
 			
 		String itemsCsv = br.readLine();
 			while(itemsCsv != null) {				
-				String[] line = itemsCsv.split(",");
+				//String[] line = itemsCsv.split(",");
 				//System.out.println(line[1]);								
 				itemsCsv = br.readLine();
 			}	

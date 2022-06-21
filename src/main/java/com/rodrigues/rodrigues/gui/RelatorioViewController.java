@@ -40,7 +40,6 @@ public class RelatorioViewController implements Initializable{
 		beginTimer();	
 	}	
 
-	@SuppressWarnings("unused")
 	 private void beginTimer() { 
 		  timeline = new
 		 Timeline(new KeyFrame(javafx.util.Duration.seconds(2), ev -> { 

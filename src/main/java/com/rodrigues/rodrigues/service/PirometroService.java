@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import com.rodrigues.rodrigues.entities.Pirometro;
-import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
 
 public class PirometroService {

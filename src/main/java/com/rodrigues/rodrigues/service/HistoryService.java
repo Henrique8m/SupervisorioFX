@@ -3,7 +3,6 @@ package com.rodrigues.rodrigues.service;
 import java.sql.Date;
 
 import com.rodrigues.rodrigues.entities.Carvao;
-import com.rodrigues.rodrigues.gui.PrimaryViewController;
 import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
 import com.rodrigues.rodrigues.serial.dao.WriteValueAccumulated;
 import com.rodrigues.rodrigues.serial.utilitary.Format;
@@ -50,9 +49,6 @@ public class HistoryService implements Runnable {
 		if(!thread.isAlive()){
 			thread.start();
 		}	
-		else {
-			thread.resume();
-		}
 	}
 
 	@Override

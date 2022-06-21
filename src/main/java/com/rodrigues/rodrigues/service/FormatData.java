@@ -42,7 +42,6 @@ public class FormatData {
 	}
 	
 	
-	@SuppressWarnings("unused")
 	public String formatDataAlfa(byte[] bufferRead) {
 		//Primeiro endereço
 		//Segundo Registrador
@@ -70,7 +69,6 @@ public class FormatData {
 		return Double.toString(valueDouble/10);
 	}
 	
-	@SuppressWarnings("unused")
 	public String formatDataAlfaGeneric(String gadgets , byte[] bufferRead, int ls1 , int ms1) {
 		//Primeiro endereço
 		//Segundo Registrador

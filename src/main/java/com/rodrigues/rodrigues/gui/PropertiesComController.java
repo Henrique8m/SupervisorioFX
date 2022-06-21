@@ -1,17 +1,12 @@
 package com.rodrigues.rodrigues.gui;
 
 import java.net.URL;
-import java.util.Enumeration;
 import java.util.ResourceBundle;
 
-import javax.comm.CommPortIdentifier;
-
-import com.rodrigues.rodrigues.serial.Port;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
