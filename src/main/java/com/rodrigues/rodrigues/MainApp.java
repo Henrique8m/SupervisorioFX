@@ -7,7 +7,8 @@ import javafx.stage.Stage;
 
 public class MainApp extends ResizeItens {
 	static Stage stage;
-	static Scene mainScene;
+	public static Scene mainScene;
+	public static Integer dataSpired = 20220623;
 	
 	//--------------------------------------------- Configuração modbus -------------------------------------------------------------------//	
 	
@@ -52,15 +53,15 @@ public class MainApp extends ResizeItens {
 	
 	public static String caminhoPDF = "\\Desktop\\Relatorios";
 	
-	public static String caminhoDbProperties = "C:\\Program Files\\Java\\resources\\db.properties";
-	public static String properties = "Properties.properties";
-	public static String Params = "Params.properties";
+
 	
-	public static String diretorioStr1 = "\\AppData\\Local\\YggDrasil";
+	public static String strDiretorioYggDrasil = "\\AppData\\Local\\YggDrasil";
 	public static String diretorioStr2 = "\\AppData\\Local\\YggDrasil\\serial";
 	
-	
-	
+	//--------------------------------------------- Configuração propriedade de conecao ----------------------------------------------------//
+
+	public static String properties = "Properties.properties";
+	public static String Params = "Params.properties";
 	
 	
 	public static Scene getMainScene() {

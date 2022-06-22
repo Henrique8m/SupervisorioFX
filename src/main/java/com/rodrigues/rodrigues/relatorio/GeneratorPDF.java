@@ -40,7 +40,7 @@ public class GeneratorPDF {
 		}
 		
 		String nameArquivo = "\\" + 
-						list.getClass().getName() +
+						list.get(0).getClass().getSimpleName() +
 						"  " + 
 						data +
 						".pdf";
@@ -64,7 +64,7 @@ public class GeneratorPDF {
     		paragraph = new Paragraph(" ");    		
     		document.add(paragraph);
     		    		
-    		switch (list.getClass().getName() ) {
+    		switch (list.get(0).getClass().getSimpleName() ) {
 			case "Balancas":
 				@SuppressWarnings("unchecked") 
 				List<Balancas> listBal = (List<Balancas>) list;

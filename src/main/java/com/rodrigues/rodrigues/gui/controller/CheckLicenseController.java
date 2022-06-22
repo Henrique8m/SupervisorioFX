@@ -3,7 +3,7 @@ package com.rodrigues.rodrigues.gui.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.rodrigues.rodrigues.securit.DataSecurit;
+import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.securit.EncryptionAES;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
@@ -37,8 +37,7 @@ public class CheckLicenseController implements Initializable {
 	}
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		DataSecurit data = DependencyInjection.getDataSecurit();
-		String str = Integer.toString(data.getSpiredData());
+		String str = Integer.toString(MainApp.dataSpired);
 		//System.out.println(str.substring(6,8) + "/" + str.substring(4,6) + "/" + str.substring(0,4));
 		String strFormated = str.substring(6,8) + "/" + str.substring(4,6) + "/" + str.substring(0,4);
 		

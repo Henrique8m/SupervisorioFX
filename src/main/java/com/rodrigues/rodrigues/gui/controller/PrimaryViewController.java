@@ -3,7 +3,6 @@ package com.rodrigues.rodrigues.gui.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import com.rodrigues.rodrigues.controller.HistoryController;
 import com.rodrigues.rodrigues.controller.LineChartController;
 import com.rodrigues.rodrigues.controller.MediaPirometriaController;
 import com.rodrigues.rodrigues.controller.SerialController;
+import com.rodrigues.rodrigues.db.DB;
 import com.rodrigues.rodrigues.entities.Balancas;
 import com.rodrigues.rodrigues.entities.Carvao;
 import com.rodrigues.rodrigues.entities.Pirometro;
@@ -30,7 +30,9 @@ import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.EndGadgets;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
-import javafx.collections.FXCollections;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -273,9 +275,10 @@ public class PrimaryViewController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		timerSecurit();
 		instanciates();
 		DependencyInjection.setPrimaryViewController(this);
-		if(securit.validateData()) {		
+		if(serialProperties.getPorta() == null ) {
 			
 			avaliablePorts = new ArrayList<>();
 			@SuppressWarnings("unchecked")
@@ -288,11 +291,11 @@ public class PrimaryViewController implements Initializable {
 			for(String e : avaliablePorts)
 				if(e.equals(MainApp.defautPort) || !e.equals("COM1"))
 					serialProperties.setPorta(e);
-			
-			serialController.startCommunication();
-		}else {
-			showError();
+			serialProperties.writeFile();
 		}
+			
+		serialController.startCommunication();
+
 		
 		//mediaPirometria.startMedia();
 		chartController.lineChartStart();
@@ -301,7 +304,35 @@ public class PrimaryViewController implements Initializable {
 		alimentarTabelaTestes();
 		Image image = new Image(MainApp.class.getResource("gui/resources/icons-pdf.png").toString() );
 		pdf.setImage(image);
+		DB.getConnection();	
 		
+	} 
+	
+	private Timeline timeline;
+	
+	private void timerSecurit() {
+		
+		timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(10), ev -> {			
+			if(!securit.validateData()) {
+				view();				
+			}
+		}));	
+		timeline.setCycleCount(Animation.INDEFINITE); 
+		timeline.play(); 
+	}
+	
+	
+	private void view() {		
+		try {
+			Pane pane = (Pane) UtilitarioNewView.loadFXML("checkLicense", new CheckLicenseController() );			
+			MainApp.getStage().close();			
+			UtilitarioNewView.getNewView("checkLicense",  new Scene(pane));
+			timeline.stop();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
 	}
 
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction, String title,
@@ -384,7 +415,8 @@ public class PrimaryViewController implements Initializable {
 	   tempCoroa.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("tempCoroa"));
 	   tempTopo.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("tempTopo"));
 	   vazaoAr.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("vazaoAr"));
-	   secador.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("secador"));	   
+	   secador.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("secador"));	
+//	   RelatorioService.addListBalancas(new Balancas("17/04/22", "10:01", "16:05", "1500", "1502", "1503", "1504", "1505", "1506", "1507", "1508", "1509", "1510"));
 	   tablePyrometry.setItems(RelatorioService.getListPyrometry());
 	   
 	   tableCarvao.setEditable(false);
@@ -395,6 +427,7 @@ public class PrimaryViewController implements Initializable {
 	   horaCarvao.setSortType(SortType.DESCENDING);
 	   pesoCarvao.setCellValueFactory(new PropertyValueFactory<Carvao, String>("pesoCarvao"));
 	   umidadeCarvao.setCellValueFactory(new PropertyValueFactory<Carvao, String>("umidadeCarvao"));
+//	   RelatorioService.addListCarvao(new Carvao("19/04/2022", "10:35", "953,5 Kg", ""));
 	   tableCarvao.setItems(RelatorioService.getListCarvao());
 	   
    }

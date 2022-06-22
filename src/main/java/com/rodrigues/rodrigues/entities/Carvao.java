@@ -38,13 +38,13 @@ public class Carvao {
 	private String pesoCarvao;
 	private String umidadeCarvao;
 	
-	/*public Carvao(String dataCarvao, String horaCarvao, String pesoCarvao, String umidadeCarvao) {
+	public Carvao(String dataCarvao, String horaCarvao, String pesoCarvao, String umidadeCarvao) {
 		
 		this.dataCarvao = dataCarvao;
 		this.horaCarvao = horaCarvao;
 		this.pesoCarvao = pesoCarvao;
 		this.umidadeCarvao = umidadeCarvao;
-	}*/
+	}
 	
 	public Carvao(Date dateCarvao, Double pesoCarvao, Double umidadeCarvao) {
 		
@@ -57,6 +57,7 @@ public class Carvao {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public String toString() {
 		String print = dataCarvao + "  " + horaCarvao + "  " + pesoCarvao;
