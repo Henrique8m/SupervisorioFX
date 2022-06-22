@@ -1,8 +1,9 @@
-package com.rodrigues.rodrigues.gui;
+package com.rodrigues.rodrigues.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -20,14 +21,17 @@ import com.rodrigues.rodrigues.entities.Balancas;
 import com.rodrigues.rodrigues.entities.Carvao;
 import com.rodrigues.rodrigues.entities.Pirometro;
 import com.rodrigues.rodrigues.entities.Pyrometry;
-import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
 import com.rodrigues.rodrigues.gui.util.Alerts;
+import com.rodrigues.rodrigues.relatorio.GeneratorPDF;
+import com.rodrigues.rodrigues.relatorio.servicies.RelatorioService;
 import com.rodrigues.rodrigues.securit.DataSecurit;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.EndGadgets;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -101,6 +105,34 @@ public class PrimaryViewController implements Initializable {
   
 ///////////////////////////////////////////////////////////////////////////////Butons////////////////////////////////////////////////////////////////
     
+	@FXML
+	private void gerarRelatorio(ActionEvent event) {
+		if( RelatorioService.getListBalancas().size() > 0) {
+			ObservableList<Balancas> obsList = RelatorioService.getListBalancas();
+			List<Balancas> list = new ArrayList<>();
+			list.addAll(obsList);
+			GeneratorPDF.newDocument(list);
+		}
+		if( RelatorioService.getListPyrometry().size() > 0) {
+			ObservableList<Pyrometry> obsList = RelatorioService.getListPyrometry();
+			List<Pyrometry> list = new ArrayList<>();
+			list.addAll(obsList);
+			GeneratorPDF.newDocument(list);
+		}
+		if( RelatorioService.getListCarvao().size() > 0) {
+			ObservableList<Carvao> obsList = RelatorioService.getListCarvao();
+			List<Carvao> list = new ArrayList<>();
+			list.addAll(obsList);
+			GeneratorPDF.newDocument(list);
+		}
+		if( RelatorioService.getListPirometro().size() > 0) {
+			ObservableList<Pirometro> obsList = RelatorioService.getListPirometro();
+			List<Pirometro> list = new ArrayList<>();
+			list.addAll(obsList);
+			GeneratorPDF.newDocument(list);
+		}
+	}
+	
 	@FXML
 	private void view1(ActionEvent event) throws UnsupportedCommOperationException, IOException {
 		ScrollPane scrollPane= (ScrollPane) UtilitarioNewView.loadFXML("relatorioView", viewController);
@@ -327,9 +359,7 @@ public class PrimaryViewController implements Initializable {
        dataTime.setSortType(TableColumn.SortType.DESCENDING);
        dataTime.setCellValueFactory(new PropertyValueFactory<Pirometro, String>("dataTime"));
        temp.setCellValueFactory(new PropertyValueFactory<Pirometro, String>("temp"));
-       tablePirometro.setItems(RelatorioViewService.getListPirometro());
-       
-       
+       tablePirometro.setItems(RelatorioService.getListPirometro());       
        
 	   tableBalancas.setEditable(false);
 	   data.setCellValueFactory(new PropertyValueFactory<Balancas, String>("date"));
@@ -345,9 +375,7 @@ public class PrimaryViewController implements Initializable {
 	   b8.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca08"));
 	   b9.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca09"));
 	   b10.setCellValueFactory(new PropertyValueFactory<Balancas, String>("balanca10"));
-	   
-	   RelatorioViewService.addListBalancas(new Balancas("17/04/22", "10:01", "16:05", "1500", "1502", "1503", "1504", "1505", "1506", "1507", "1508", "1509", "1510"));
-	   tableBalancas.setItems(RelatorioViewService.getListBalancas());
+	   tableBalancas.setItems(RelatorioService.getListBalancas());
 	   
 	   tablePyrometry.setEditable(false);
 	   timeStartFinish.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("timeStartFinish"));
@@ -356,9 +384,8 @@ public class PrimaryViewController implements Initializable {
 	   tempCoroa.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("tempCoroa"));
 	   tempTopo.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("tempTopo"));
 	   vazaoAr.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("vazaoAr"));
-	   secador.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("secador"));
-	   
-	   tablePyrometry.setItems(RelatorioViewService.getListPyrometry());
+	   secador.setCellValueFactory(new PropertyValueFactory<Pyrometry, String>("secador"));	   
+	   tablePyrometry.setItems(RelatorioService.getListPyrometry());
 	   
 	   tableCarvao.setEditable(false);
 	   dataCarvao.setCellValueFactory(new PropertyValueFactory<Carvao, String>("dataCarvao"));
@@ -368,9 +395,7 @@ public class PrimaryViewController implements Initializable {
 	   horaCarvao.setSortType(SortType.DESCENDING);
 	   pesoCarvao.setCellValueFactory(new PropertyValueFactory<Carvao, String>("pesoCarvao"));
 	   umidadeCarvao.setCellValueFactory(new PropertyValueFactory<Carvao, String>("umidadeCarvao"));
-	   
-	  // RelatorioViewService.addListCarvao(new Carvao("19/04/2022", "10:35", "953,5 Kg", ""));
-	   tableCarvao.setItems(RelatorioViewService.getListCarvao());
+	   tableCarvao.setItems(RelatorioService.getListCarvao());
 	   
    }
        

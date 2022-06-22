@@ -5,8 +5,8 @@ import java.sql.Date;
 import com.rodrigues.rodrigues.MainApp;
 import com.rodrigues.rodrigues.controller.ReadController;
 import com.rodrigues.rodrigues.entities.Pyrometry;
-import com.rodrigues.rodrigues.gui.PrimaryViewController;
-import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
+import com.rodrigues.rodrigues.gui.controller.PrimaryViewController;
+import com.rodrigues.rodrigues.relatorio.servicies.RelatorioService;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 import com.rodrigues.rodrigues.serial.utilitary.Format;
 
@@ -74,7 +74,7 @@ public class MediaPirometriaService extends Thread {
 						String temperaturaTopo = mTTopo + "°C";
 						String vazao = mVazao + "m³/h";
 						String secador = mSecador + "°C";
-						RelatorioViewService.addListPyrometry(new Pyrometry( horaInicioFim,pressaoCoroa ,pressaoTopo ,temperaturaCoroa ,temperaturaTopo ,vazao ,secador ));
+						RelatorioService.addListPyrometry(new Pyrometry( horaInicioFim,pressaoCoroa ,pressaoTopo ,temperaturaCoroa ,temperaturaTopo ,vazao ,secador ));
 						timeStarStr = Format.formataTimeString.format(new Date(System.currentTimeMillis()));
 						nextTime = Integer.parseInt(Format.formatHora.format(new Date(System.currentTimeMillis()))) + MainApp.tempoRelatorio;						
 						if(nextTime >= 24) 

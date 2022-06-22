@@ -48,6 +48,21 @@ public class MainApp extends ResizeItens {
 	static double tamanhoWidth = 13.56D;
 	static double tamanhoHeigt = 7.07D;
 
+	//--------------------------------------------- Configuração dos Relatorios-------------------------------------------------------------//
+	
+	public static String caminhoPDF = "\\Desktop\\Relatorios";
+	
+	public static String caminhoDbProperties = "C:\\Program Files\\Java\\resources\\db.properties";
+	public static String properties = "Properties.properties";
+	public static String Params = "Params.properties";
+	
+	public static String diretorioStr1 = "\\AppData\\Local\\YggDrasil";
+	public static String diretorioStr2 = "\\AppData\\Local\\YggDrasil\\serial";
+	
+	
+	
+	
+	
 	public static Scene getMainScene() {
 		return mainScene;
 	}

@@ -1,6 +1,6 @@
 package com.rodrigues.rodrigues.serial.dao;
 
-import com.rodrigues.rodrigues.gui.RelatorioViewController;
+import com.rodrigues.rodrigues.gui.controller.RelatorioViewController;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 public class WriteValueAccumulated {

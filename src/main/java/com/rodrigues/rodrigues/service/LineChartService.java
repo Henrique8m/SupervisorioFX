@@ -3,7 +3,7 @@ package com.rodrigues.rodrigues.service;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-import com.rodrigues.rodrigues.gui.PrimaryViewController;
+import com.rodrigues.rodrigues.gui.controller.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 import javafx.animation.Animation;

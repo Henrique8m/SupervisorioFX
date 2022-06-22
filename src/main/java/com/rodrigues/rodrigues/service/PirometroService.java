@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import com.rodrigues.rodrigues.entities.Pirometro;
-import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
+import com.rodrigues.rodrigues.relatorio.servicies.RelatorioService;
 
 public class PirometroService {
 	private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy - HH:mm");
@@ -17,7 +17,7 @@ public class PirometroService {
 		String strTemp;
 		try {
 			strTemp = Integer.toString(temp);
-			RelatorioViewService.addListPirometro(new Pirometro(strTemp, data));
+			RelatorioService.addListPirometro(new Pirometro(strTemp, data));
 		}catch(NumberFormatException e) {
 			e.printStackTrace();
 		}

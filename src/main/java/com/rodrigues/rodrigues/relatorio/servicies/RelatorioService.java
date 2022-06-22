@@ -1,4 +1,4 @@
-package com.rodrigues.rodrigues.gui.servicies;
+package com.rodrigues.rodrigues.relatorio.servicies;
 
 import com.rodrigues.rodrigues.entities.Balancas;
 import com.rodrigues.rodrigues.entities.Carvao;
@@ -8,7 +8,7 @@ import com.rodrigues.rodrigues.entities.Pyrometry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class RelatorioViewService {
+public class RelatorioService {
 	private static ObservableList<Balancas> listBalancas = FXCollections.observableArrayList();
 	private static ObservableList<Pyrometry> listPyrometry = FXCollections.observableArrayList();
 	private static ObservableList<Carvao> listCarvao = FXCollections.observableArrayList();

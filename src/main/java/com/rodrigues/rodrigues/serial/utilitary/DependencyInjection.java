@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.rodrigues.rodrigues.controller.ReadController;
 import com.rodrigues.rodrigues.controller.SerialController;
-import com.rodrigues.rodrigues.gui.CheckLicenseController;
-import com.rodrigues.rodrigues.gui.PrimaryViewController;
-import com.rodrigues.rodrigues.gui.PropertiesComController;
-import com.rodrigues.rodrigues.gui.RelatorioViewController;
-import com.rodrigues.rodrigues.gui.SetPointController;
-import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
+import com.rodrigues.rodrigues.gui.controller.CheckLicenseController;
+import com.rodrigues.rodrigues.gui.controller.PrimaryViewController;
+import com.rodrigues.rodrigues.gui.controller.PropertiesComController;
+import com.rodrigues.rodrigues.gui.controller.RelatorioViewController;
+import com.rodrigues.rodrigues.gui.controller.SetPointController;
+import com.rodrigues.rodrigues.relatorio.servicies.RelatorioService;
 import com.rodrigues.rodrigues.securit.DataSecurit;
 import com.rodrigues.rodrigues.securit.EncryptionAES;
 import com.rodrigues.rodrigues.securit.SerialMotherboard;
@@ -39,7 +39,7 @@ public class DependencyInjection {
 	private static final PortComResurce portComResurces = new PortComResurce();
 	private static final RelatorioViewController relatorioViewController = new RelatorioViewController();
 	private static final PirometroService pirometroService = new PirometroService();
-	private static final RelatorioViewService relatorioViewService = new RelatorioViewService();
+	private static final RelatorioService relatorioViewService = new RelatorioService();
 	public static RelatorioViewController getRelatorioviewcontroller() {
 		return relatorioViewController;
 	}
@@ -125,7 +125,7 @@ public class DependencyInjection {
 		return pirometroService;
 	}
 
-	public static RelatorioViewService getRelatorioviewservice() {
+	public static RelatorioService getRelatorioviewservice() {
 		return relatorioViewService;
 	}
 }

@@ -1,7 +1,7 @@
 package com.rodrigues.rodrigues.service;
 
-import com.rodrigues.rodrigues.gui.PrimaryViewController;
-import com.rodrigues.rodrigues.gui.SetPointController;
+import com.rodrigues.rodrigues.gui.controller.PrimaryViewController;
+import com.rodrigues.rodrigues.gui.controller.SetPointController;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;
 
 public class PrimaryViewService{

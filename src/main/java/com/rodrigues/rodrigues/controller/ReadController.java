@@ -6,7 +6,7 @@ import javax.comm.NoSuchPortException;
 import javax.comm.SerialPort;
 
 import com.rodrigues.rodrigues.MainApp;
-import com.rodrigues.rodrigues.gui.PrimaryViewController;
+import com.rodrigues.rodrigues.gui.controller.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.dao.WriteSetPoints;
 import com.rodrigues.rodrigues.serial.properties.SerialProperties;
 import com.rodrigues.rodrigues.serial.utilitary.DependencyInjection;

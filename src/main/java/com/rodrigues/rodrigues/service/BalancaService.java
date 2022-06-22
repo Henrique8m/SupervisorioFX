@@ -1,7 +1,7 @@
 package com.rodrigues.rodrigues.service;
 
 import com.rodrigues.rodrigues.entities.Balancas;
-import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
+import com.rodrigues.rodrigues.relatorio.servicies.RelatorioService;
 
 public class BalancaService {
 	private Balancas balanca;
@@ -23,7 +23,7 @@ public class BalancaService {
 		balanca.setDate(currentDate);
 		balanca.setHInicio(timeStart);
 		balanca.setHFim(time);	
-		RelatorioViewService.addListBalancas(balanca);
+		RelatorioService.addListBalancas(balanca);
 		
 	}
 }

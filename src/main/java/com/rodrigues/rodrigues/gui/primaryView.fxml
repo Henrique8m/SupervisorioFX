@@ -87,7 +87,7 @@
                         </NumberAxis>
                      </yAxis>
                   </LineChart>
-                  <Button layoutX="68.0" layoutY="521.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="209.0" text="Gerar Relatorio PDF">
+                  <Button layoutX="68.0" layoutY="521.0" mnemonicParsing="false" onAction="#gerarRelatorio" prefHeight="36.0" prefWidth="209.0" text="Gerar Relatorio PDF">
                      <font>
                         <Font name="Comic Sans MS" size="15.0" />
                      </font>

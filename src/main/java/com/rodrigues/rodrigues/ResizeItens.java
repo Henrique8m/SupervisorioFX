@@ -2,7 +2,7 @@ package com.rodrigues.rodrigues;
 
 import java.io.IOException;
 
-import com.rodrigues.rodrigues.gui.PrimaryViewController;
+import com.rodrigues.rodrigues.gui.controller.PrimaryViewController;
 import com.rodrigues.rodrigues.serial.utilitary.UtilitarioNewView;
 
 import javafx.application.Application;

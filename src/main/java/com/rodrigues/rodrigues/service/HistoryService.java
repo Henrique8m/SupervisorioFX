@@ -3,7 +3,7 @@ package com.rodrigues.rodrigues.service;
 import java.sql.Date;
 
 import com.rodrigues.rodrigues.entities.Carvao;
-import com.rodrigues.rodrigues.gui.servicies.RelatorioViewService;
+import com.rodrigues.rodrigues.relatorio.servicies.RelatorioService;
 import com.rodrigues.rodrigues.serial.dao.WriteValueAccumulated;
 import com.rodrigues.rodrigues.serial.utilitary.Format;
 
@@ -206,7 +206,7 @@ public class HistoryService implements Runnable {
 			if(i==9) {
 				
 				carvao = new Carvao(date,Double.valueOf(oldValueInt/10), 0d);
-				RelatorioViewService.addListCarvao(carvao);
+				RelatorioService.addListCarvao(carvao);
 				System.out.println("AddListCarvao " + carvao.toString());
 			}
 			//System.out.println("Salvando no historico " + oldValueInt + "\n Historico depois de Salvar " + historySaveHC[i]);

@@ -1,4 +1,4 @@
-package com.rodrigues.rodrigues.gui;
+package com.rodrigues.rodrigues.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
